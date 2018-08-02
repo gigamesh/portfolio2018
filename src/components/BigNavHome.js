@@ -1,0 +1,146 @@
+import React from 'react'
+import styled from 'styled-components'
+import posed from 'react-pose';
+import media from '../utils/mediaqueries';
+import { animations } from '../utils/animations';
+import { NavLink } from 'react-router-dom';
+
+const NavSection = posed.ul({
+  visible: {          
+    opacity: 1,
+    zIndex: 4,
+    delayChildren: 2600,
+    staggerChildren: 100
+  },
+  hidden: {      
+    opacity: 0,
+  }
+});
+
+const NavWrapAnimated = posed.div({
+  visible: {          
+    width: '35%',
+    delayChildren: 2000,
+    transition: {ease: [.71,.13,.35,.86], delay: 1800, duration: 800},
+  },
+  hidden: { 
+    width: 0,
+  }
+});
+
+const NavWrap = styled(NavWrapAnimated)`
+  position: relative;
+  display: flex;
+  left: 2vmax;
+`
+
+const NavSectionStyled = styled(NavSection)`
+  list-style-type: none;
+  font-size: 7.5em;
+  line-height: 1.1em;
+  font-weight: 700;
+  opacity: 0;
+  position: relative;
+  top: -1.5vh;
+  ${media.portrait.lg`
+    font-size: 6.3em;
+    `}
+  ${media.portrait.md`
+    font-size: 5.5em;
+    `}
+  ${media.portrait.sm`
+    font-size: 4.8em;
+    `}
+  ${media.portrait.xs`
+    font-size: 4em;
+    `}
+  ${media.landscape.xl`
+    font-size: 6.5em;
+    `}
+  ${media.landscape.lg`
+    font-size: 6em;
+    `}
+  ${media.landscape.md`
+    font-size: 5.3em;
+    `}
+  ${media.landscape.sm`
+    font-size: 4.2em;
+  `} 
+  ${media.landscape.xs`
+    font-size: 3.6em;
+  `} 
+`
+
+let LinkWrapper = posed.li(animations.homeNav);
+LinkWrapper = styled(LinkWrapper)`
+  position: relative;
+  width: 100%;
+`
+
+const NavLinkStyled = styled(NavLink)`
+  position: relative;
+  transition: color 200ms ease;
+  -webkit-text-stroke: var(--main-color) 2.5px;
+  width: 100%;
+  z-index: 1;
+  color: #fff;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    bottom: 20%;
+    z-index: -1;
+    transition: height 200ms ease;
+    background: var(--dark-blue);
+    padding: 0 4px;
+    left: -2px;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      height: 63%;
+    }
+  }
+  ${media.portrait.md`
+    -webkit-text-stroke: var(--main-color) 1.8px;
+  `}
+  ${media.landscape.lg`
+    -webkit-text-stroke: var(--main-color) 2px;
+  `}
+  ${media.landscape.md`
+    -webkit-text-stroke: var(--main-color) 1.5px;
+  `}
+  ${media.landscape.sm`
+    -webkit-text-stroke: var(--main-color) 1.2px;
+  `}
+`
+
+export default (props) => {
+  let { visible } = props;
+
+  const links = () => {
+    let text = ['about', 'portfolio', 'resume', 'contact'];
+
+    let linkMap = text.map(val => {
+      let link = `/${val}`
+        return (
+        <LinkWrapper key={val}>
+          <NavLinkStyled to={link} >
+            {val}
+          </NavLinkStyled>
+        </LinkWrapper>  
+      )  
+    })
+    return linkMap;
+  }
+
+  return (
+    <NavWrap pose={visible ? "visible" : "hidden"}>
+      <NavSectionStyled 
+        pose={visible ? "visible" : "hidden"}>
+        {links()}
+      </NavSectionStyled>
+    </NavWrap>
+  )
+}

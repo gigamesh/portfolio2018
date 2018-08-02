@@ -1,0 +1,194 @@
+import posed from 'react-pose';
+import media from '../utils/mediaqueries';
+import styled from 'styled-components';
+import { animations } from '../utils/animations';
+
+export const FullWrap = styled.div`
+  overflow: hidden
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--lighter-blue);
+  user-select: none;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+`
+
+export const InnerWrap = styled.div`
+  /* background: lightgreen; */
+  max-width: 1400px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span { 
+    color: var(--main-color);
+  }
+  color: var(--main-color);
+  path {
+    stroke: var(--main-color);
+    stroke-width: .3;
+  }
+`
+
+export const Content = styled.div`
+  right: ${props => props.homenav === 'true' ? '2vmax' : 0 };
+  width: 70vmin;
+  max-width: 520px;
+  user-select: none;
+  position: relative;
+  h1 {
+    font-weight: 300;
+    font-size: 4em;
+    }
+  h2 {
+    position: relative;
+    float: right;
+    font-weight: 400;
+    font-size: 2em;
+    }
+  ${media.portrait.xl`
+    margin: 0;
+  `}
+  ${media.portrait.md`
+    margin: 0;
+    width: 75vmin;  
+    h1 {
+      font-size: 3.4em;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+  `}
+  ${media.portrait.sm`
+    width: 85vmin;
+    h1 {
+      font-size: 2.8em;
+    }
+    h2 {
+      font-size: 1.4em;
+    }
+  `}
+  ${media.portrait.xs`
+    width: 90vmin;
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 1.2em;
+    }
+  `}
+  ${media.landscape.xl`
+    max-width: 460px;
+    width: 58vmin;
+    h1 {
+      font-size: 3.8em;
+    }
+    h2 {
+      font-size: 1.6em;
+    }
+  `}
+  ${media.landscape.lg`
+    h1 {
+      font-size: 3.5em;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+  `}
+  ${media.landscape.md`
+    max-width: 440px;
+    h1 {
+      font-size: 2.8em;
+    }
+    h2 {
+      font-size: 1.4em;
+    }
+  `}
+  ${media.landscape.sm`
+    max-width: 320px;
+    h1 {
+      font-size: 2.2em;
+    }
+    h2 {
+      font-size: 1em;
+    }
+  `}
+  ${media.landscape.xs`
+    h1 {
+      font-size: 1.8em;
+    }
+    h2 {
+      font-size: .9em;
+    }
+  `}
+  max-width: ${({homenav}) => homenav === 'true' ? '520px' : 'none'};
+`
+
+export const RevealBoxWrapper = styled.div`
+  height: 60px;
+  overflow: hidden;
+  ${media.portrait.md`
+    height: 50px;
+  `}
+  ${media.portrait.sm`
+    height: 42px;
+  `}
+  ${media.portrait.xs`
+    height: 38px;
+  `}
+  ${media.landscape.lg`
+    height: 50px;
+  `}
+  ${media.landscape.md`
+    height: 44px;
+  `}
+  ${media.landscape.sm`
+    height: 36px;
+  `}
+  ${media.landscape.xs`
+    height: 27px;
+  `}
+`
+
+export const RevealBoxBottom = styled(RevealBoxWrapper)`
+  top: -5px;
+  position: relative;
+  ${media.landscape.md`
+    height: 35px;
+  `}
+  ${media.landscape.xs`
+    height: 25px;
+  `}
+`
+
+export const NamePosed = posed.h1({
+    hidden: {y: 50, opacity: 0},
+    visible: {
+      y: 0, 
+      opacity: 1, 
+      transition: { type: 'spring', stiffness: 60 },
+      delay: 800
+    }
+})
+
+export const BottomTextPosed = posed.h2({
+    hidden: {y: -50, opacity: 0},
+    visible: {
+      y: 0, 
+      opacity: 1, 
+      transition: { type: 'spring', stiffness: 60 },
+      delay: 1200
+    }
+})
+
+export const TunnelAnimation = styled.div`
+  transition: opacity 1s linear;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+`
