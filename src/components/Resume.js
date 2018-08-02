@@ -105,11 +105,11 @@ export default class Contact extends Component {
             />
           </Header>
           <Resume pose={this.state.visisible ? 'visible' : 'hidden'}>
-            <object data="/temp.pdf" type="application/pdf" width="100%" height="100%">
+            <object data="/resume.pdf" type="application/pdf" width="100%" height="100%">
               <FallbackText>
                 <p>
                   If resume doesn't load, click here: 
-                  <a href='/temp.pdf' target="_blank"> [ PDF ]</a>
+                  <a href='/resume.pdf' target="_blank"> [ PDF ]</a>
                 </p>
               </FallbackText>
             </object>
