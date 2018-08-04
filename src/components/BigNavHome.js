@@ -80,7 +80,7 @@ LinkWrapper = styled(LinkWrapper)`
 const NavLinkStyled = styled(NavLink)`
   position: relative;
   transition: color 200ms ease;
-  -webkit-text-stroke: var(--main-color) 2.5px;
+  -webkit-text-stroke: var(--main-color) 1.5px;
   width: 100%;
   z-index: 1;
   color: #fff;
@@ -88,32 +88,18 @@ const NavLinkStyled = styled(NavLink)`
     content: '';
     position: absolute;
     width: 100%;
-    height: 8%;
-    bottom: 20%;
+    height: 2px;
+    bottom: 18%;
     z-index: -1;
     transition: height 200ms ease;
-    background: var(--dark-blue);
+    background: ${({color}) => color || '#fff'};
     padding: 0 4px;
     left: -2px;
   }
   &:hover {
-    color: #fff;
-    &:before {
-      height: 63%;
-    }
+    color: ${({color}) => color || '#fff'};
+    /* color: #fff; */
   }
-  ${media.portrait.md`
-    -webkit-text-stroke: var(--main-color) 1.8px;
-  `}
-  ${media.landscape.lg`
-    -webkit-text-stroke: var(--main-color) 2px;
-  `}
-  ${media.landscape.md`
-    -webkit-text-stroke: var(--main-color) 1.5px;
-  `}
-  ${media.landscape.sm`
-    -webkit-text-stroke: var(--main-color) 1.2px;
-  `}
 `
 
 export default (props) => {
@@ -126,7 +112,7 @@ export default (props) => {
       let link = `/${val}`
         return (
         <LinkWrapper key={val}>
-          <NavLinkStyled to={link} >
+          <NavLinkStyled to={link} color={`var(--${val}-color)`}>
             {val}
           </NavLinkStyled>
         </LinkWrapper>  

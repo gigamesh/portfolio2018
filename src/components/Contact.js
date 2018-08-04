@@ -2,17 +2,15 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import ReactSVG from 'react-svg'
 import ReactTooltip from 'react-tooltip'
-import { Link } from 'react-router-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import media from '../utils/mediaqueries';
 import NavItems from './NavItems';
 import { animations } from '../utils/animations';
 import posed from 'react-pose';
-import { Header, HeaderIcon } from './ui'
+import { Header } from './ui'
 
 const FullPageWrap = styled.div`
-  background: var(--lighter-blue);
-  color: #303d63;
+  background: #f7f7f7;
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +18,7 @@ const FullPageWrap = styled.div`
   width: 100%;
 `
 const Container = styled.div`
-  top: -40px;
+  top: -30px;
   position: relative;
   height: 60%;
   max-width: 1200px;
@@ -35,7 +33,7 @@ const InnerWrap = styled.div`
   margin: 0 auto;
   margin-bottom: 40px;
   height: 100%;
-  border: 2px solid var(--main-color);
+  border: 1px solid var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,8 +63,9 @@ LinkList = styled(LinkList)`
   overflow: hidden;
   left: 4%;
   user-select: none;
+  
   span {
-    /* display: block; */
+    -webkit-text-stroke: var(--main-color) 1px;
   }
   svg {
     position: relative;
@@ -76,10 +75,7 @@ LinkList = styled(LinkList)`
     width: 80px;
   }
   li:hover {
-    color: var(--blue);
-    svg {
-      fill: var(--blue);
-    }
+    color: var(--contact-color);
   }
   .tooltip-email{
     font-size: 20px;
@@ -133,12 +129,6 @@ LinkList = styled(LinkList)`
 
 let ListItem = posed.li(animations.homeNav);
 
-const IconWrap = styled.div`
-  position: relative;
-  height: 100px;
-  width: 100px;
-`
-
 const SVGInject = styled(ReactSVG)`
   display: inline;
   position: relative;
@@ -182,7 +172,6 @@ export default class Contact extends Component {
   render() {
     let { visible } = this.state;
 
-    console.log(visible);
     return (
       <FullPageWrap>
         {this.props.children}
@@ -197,11 +186,6 @@ export default class Contact extends Component {
             pose={this.state.visible ? 'visible' : 'hidden'}
             color={'var(--contact-color)'}>
             contact
-            <HeaderIcon 
-              alt="Portfolio Paint Brush Icon" 
-              bgURL={'/img/icons/retro/outlook_blue_clean-01.png'}
-              customID='contact'
-              />
           </Header>
           <InnerWrap pose={this.state.visisible ? 'visible' : 'hidden'}>
             <LinkList pose={visible ? "visible" : "hidden"}>
@@ -218,7 +202,7 @@ export default class Contact extends Component {
                 </ListItem>
               </CopyToClipboard>
               <ListItem>
-                <a href="https://www.linkedin.com/in/matt-masurka-334762150/" target="_blank">
+                <a rel="noopener noreferrer" href="https://www.linkedin.com/in/matt-masurka-334762150/" target="_blank">
                   <SVGInject 
                     path="/img/icons/linkedin.svg" 
                     svgClassName='icon-linkedin' />
@@ -226,7 +210,7 @@ export default class Contact extends Component {
                 </a>
               </ListItem>
               <ListItem>
-                <a href="https://github.com/gigamesh" target="_blank">
+                <a rel="noopener noreferrer" href="https://github.com/gigamesh" target="_blank">
                   <SVGInject 
                     path="/img/icons/github.svg" 
                     svgClassName='icon-github' />
@@ -234,7 +218,7 @@ export default class Contact extends Component {
                 </a>
               </ListItem>
               <ListItem>
-                <a href="https://twitter.com/gigamesh" target="_blank">
+                <a rel="noopener noreferrer" href="https://twitter.com/gigamesh" target="_blank">
                   <SVGInject 
                     path="/img/icons/twitter.svg" 
                     svgClassName='icon-twitter' />

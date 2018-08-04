@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components'
 import posed from 'react-pose'
 import { animations } from '../utils/animations';
@@ -21,26 +20,22 @@ export const Header = styled(PosedH2)`
   font-weight: 700;
   padding-bottom: 20px;
   padding-top: 10px;
-  color: #fff;
-  -webkit-text-stroke: var(--main-color) 2px;
+  color: ${({color}) => color || '#fff'};
+  -webkit-text-stroke: var(--main-color) 1px;
   ${media.portrait.md`
-    -webkit-text-stroke: var(--main-color) 1.5px;
     font-size: 5.2em;
     top: 40px;
   `}
   ${media.portrait.sm`
-    -webkit-text-stroke: var(--main-color) 1.5px;
     font-size: 3.6em;
     top: 35px;
   `}
   ${media.portrait.xs`
-    -webkit-text-stroke: var(--main-color) 1px;
     font-size: 3.4em;
     top: 33px;
   `}
   ${media.landscape.xs`
     top: 38px;
-    -webkit-text-stroke: var(--main-color) 1.5px;
     font-size: 4.2em;
   `}
 `

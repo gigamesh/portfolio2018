@@ -29,7 +29,7 @@ MobileOverlay = styled(MobileOverlay)`
   top: 0;
   left: 0;
   z-index: 10;
-  background: #fff;
+  background: #f7f7f7;
   opacity: 0;
   transition: opacity 300ms ease;
 `
@@ -59,7 +59,7 @@ NameAndHomeIcon = styled(NameAndHomeIcon)`
   align-items: center;
   font-weight: 200;
   i {
-    -webkit-text-stroke: var(--dark-blue) 1.5px;
+    -webkit-text-stroke: var(--main-color) 1px;
     color: transparent;
     display: block;
     font-size: 1.5em;
@@ -124,7 +124,7 @@ class MobileMenu extends React.Component {
                   <NameAndHomeIcon>
                     <span>Matthew Masurka </span>
                       <Link to='/' onClick={(e) => clickHandler(e, pathname)}>
-                      <i class="material-icons">
+                      <i className="material-icons">
                         home
                       </i>
                     </Link>

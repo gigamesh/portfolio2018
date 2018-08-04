@@ -2,26 +2,22 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import media from '../utils/mediaqueries';
 import NavItems from './NavItems';
-import { animations } from '../utils/animations';
 import portfolioItems from './portfolioItems';
-import posed from 'react-pose';
 import Modal from './Modal';
-import { Header, HeaderIcon } from './ui'
+import posed from 'react-pose'
+import { animations } from '../utils/animations';
+import { Header } from './ui'
 
 const FullPageWrap = styled.div`
-  background: var(--lighter-blue);
+  background: #f7f7f7;
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   color: #28435e;
   filter: ${props => props.active ? 'blur(5px)' : ''};
-  /* ${media.landscape.md`
-    height: 175%;
-  `} */
-  transition: filter 300ms ease;
+  transition: filter 100ms ease;
 `
-const PosedDiv = posed.div(animations.main);
 
 const AnimationWrap = styled.div`
   display: table;
@@ -29,7 +25,7 @@ const AnimationWrap = styled.div`
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
-  top: -40px;
+  top: -30px;
   width: 90%;
   ${media.portrait.lg`
     width: 96%;
@@ -38,20 +34,31 @@ const AnimationWrap = styled.div`
     width: 96%;
   `}
 `
+let ItemWrap = posed.div({
+  visible: {          
+    opacity: 1,
+    staggerChildren: 100,
+    delayChildren: 200,
+  },
+  hidden: {      
+    opacity: 0,
+    staggerChildren: 10
+  }
+});
 
-const ItemWrap = styled.div`
+ItemWrap = styled(ItemWrap)`
   padding: 40px;
   position: relative;
   background: #fff;
   height: 70%;
-  border: 2px solid var(--main-color);
+  border: 1px solid var(--main-color);
   display: grid;
   grid-gap: 30px;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   margin-bottom: 50px;
   &:hover > *:not(:hover) {
-    filter: opacity(50%);
+    filter: opacity(70%);
   }
   @media (max-width: 1100px){
     grid-template-columns: 1fr 1fr;   
@@ -74,10 +81,10 @@ const ItemWrap = styled.div`
     grid-template-columns: 1fr;
   `}
 `
+let GridCell = posed.div(animations.homeNav)
 
-const GridCell = styled.div`
+GridCell = styled(GridCell)`
   position: relative;
-  /* width: 100%; */
   &:before{
     content: "";
     display: block;
@@ -105,11 +112,10 @@ const Item = styled.div`
   background-color: #324b56;
   background: url('${props => props.img}');
   background-size: cover;
-  box-shadow: 2px 4px 8px 4px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.4);
   transition: all 300ms ease;
   &:hover {
     transform: scale(1.05);
-    box-shadow: 2px 7px 30px 4px rgba(0,0,0,0.5);
   }
 `
 
@@ -189,8 +195,6 @@ export default class Contact extends Component {
               pose={this.state.visisible ? 'visible' : 'hidden'}
               color='var(--portfolio-color)'>
                 portfolio
-              <HeaderIcon alt="Portfolio Paint Brush Icon" 
-                bgURL={'/img/icons/retro/paint_blue_clean-01.png'}/>
             </Header>
             <ItemWrap pose={this.state.visisible ? 'visible' : 'hidden'}>
               {portfolio}

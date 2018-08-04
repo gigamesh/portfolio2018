@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import Contact from './components/Contact';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Resume from './components/Resume';
 import MobileMenu from './components/MobileMenu'
-
 import './styles/page-swipes.css';
-
-
 
 class App extends Component {
   state= {
@@ -34,7 +30,6 @@ class App extends Component {
 
   checkMenus = () => {
     let { x, y } = this.state.pageDimensions;
-    let { menuBtnShowing } = this.state;
 
     if((x === null || y === null)){return;}
     if(x > 1200 || y > 1200){
@@ -61,7 +56,7 @@ class App extends Component {
   }
 
   clickHandler = (e, source) =>{
-    let { bigNavMobileOpen, mobileMenuOpen} = this.state;
+    let { mobileMenuOpen } = this.state;
 
     if(source){ this.setState({source: source}) 
     } else { this.setState({source: ''})}

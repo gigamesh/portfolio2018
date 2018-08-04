@@ -159,7 +159,7 @@ export default class Contact extends Component {
           />}
         <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
           <span>Hello!</span>
-            I'm Matt. I love making web apps, animations, data models, and music. Until recently, I've been travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank">music producer & DJ</a>. It was a great experience, but in late 2017 I decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and social justice. ✌
+            I'm Matt. I love making web apps, animations, data models, and music. Until recently, I've been travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but in late 2017 I decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and social justice. ✌
         </TextStyled>
 
           <HeadShot/>

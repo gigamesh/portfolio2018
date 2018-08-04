@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const NavSection = posed.ul({
   visible: {
     opacity: 1,
-    delayChildren: 0,
-    staggerChildren: 60,
+    delayChildren: 200,
+    staggerChildren: 100,
   }
 });
 
@@ -15,7 +15,7 @@ const LinkWrapper = posed.li({
   visible: { 
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 50 }
+    transition: { type: 'spring', stiffness: 50}
   },
   hidden: { opacity: 0, y: -50 }
 });
@@ -23,7 +23,7 @@ const LinkWrapper = posed.li({
 const LinkWrapStyled = styled(LinkWrapper)`
   display: inline-block;
   padding: 0 10px;
-  font-weight: 300;
+  font-weight: 200;
 `
 
 const NavSectionStyled = styled(NavSection)`
@@ -37,20 +37,20 @@ const NavSectionStyled = styled(NavSection)`
     margin-left: 40px;
   }
   i {
-    -webkit-text-stroke: var(--blue) 1.5px;
+    -webkit-text-stroke: var(--main-color) 1px;
     color: transparent;
     position: absolute;
     font-size: 1.4em;
     transition: color 150ms ease;
     &:hover {
       color: var(--lightest-blue);
-      -webkit-text-stroke: var(--dark-blue) 1.5px;
+      -webkit-text-stroke: var(--main-color) 1px;
     }
   }
 `
 
 const LinkStyled = styled(Link)`
-  color: var(--blue);
+  color: var(--main-color);
   z-index: 10;
   a {
     position: relative;
@@ -111,7 +111,7 @@ class NavItems extends React.Component {
       <NavSectionStyled
         pose={navSectionVisible ? "visible" : "hidden"}>
         <Link to='/'>
-          <i class="material-icons">
+          <i className="material-icons">
             home
           </i>
         </Link>

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Iframe from 'react-iframe'
 import media from '../utils/mediaqueries';
 import NavItems from './NavItems';
-import { animations } from '../utils/animations';
-import posed from 'react-pose';
-import { Header, HeaderIcon } from './ui'
+import { Header } from './ui'
 
 const FullPageWrap = styled.div`
   background: var(--lighter-blue);
-  color: #303d63;
+  color: var(--main-color);
   position: absolute;
+  background: #f7f7f7;
   top: 0;
   left: 0;
   height: 100vh;
@@ -17,7 +17,7 @@ const FullPageWrap = styled.div`
 `
 
 const Container = styled.div`
-  top: -40px;
+  top: -30px;
   position: relative;
   height: 80%;
   max-width: 900px;
@@ -29,12 +29,13 @@ const Container = styled.div`
 `
 
 const Resume = styled.div`
+  position: relative;
   background: #fff;
   padding: 40px;
   padding-bottom: 0;
   margin: 0 auto;
   height: 100%;
-  border: 2px solid var(--main-color);
+  border: 1px solid var(--main-color);
   z-index: 5;
   object {
     border: 1px solid var(--main-color);
@@ -100,19 +101,16 @@ export default class Contact extends Component {
             pose={this.state.visisible ? 'visible' : 'hidden'}
             color={'var(--resume-color)'}>
             resume
-            <HeaderIcon alt="Portfolio Paint Brush Icon" bgURL={'/img/icons/retro/directory_blue_clean.png'}
-            customID='resume'
-            />
           </Header>
           <Resume pose={this.state.visisible ? 'visible' : 'hidden'}>
-            <object data="/resume.pdf" type="application/pdf" width="100%" height="100%">
+            <Iframe url="https://s3-us-west-1.amazonaws.com/matthew-masurka-portfolio/resume.pdf" position="relative" width="100%" height="100%" allowFullScreen style={{width: '50%'}}>
               <FallbackText>
                 <p>
                   If resume doesn't load, click here: 
                   <a href='/resume.pdf' target="_blank"> [ PDF ]</a>
                 </p>
               </FallbackText>
-            </object>
+            </Iframe>
           </Resume>
         </Container>
       </FullPageWrap>

@@ -1,14 +1,13 @@
 import posed from 'react-pose';
 import media from '../utils/mediaqueries';
 import styled from 'styled-components';
-import { animations } from '../utils/animations';
 
 export const FullWrap = styled.div`
   overflow: hidden
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--lighter-blue);
+  background: #f7f7f7;
   user-select: none;
   top: 0;
   left: 0;
@@ -18,7 +17,6 @@ export const FullWrap = styled.div`
 `
 
 export const InnerWrap = styled.div`
-  /* background: lightgreen; */
   max-width: 1400px;
   width: 100%;
   height: 100vh;
@@ -31,7 +29,7 @@ export const InnerWrap = styled.div`
   color: var(--main-color);
   path {
     stroke: var(--main-color);
-    stroke-width: .3;
+    stroke-width: .2;
   }
 `
 
@@ -42,13 +40,13 @@ export const Content = styled.div`
   user-select: none;
   position: relative;
   h1 {
-    font-weight: 300;
+    font-weight: 200;
     font-size: 4em;
     }
   h2 {
     position: relative;
     float: right;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 2em;
     }
   ${media.portrait.xl`

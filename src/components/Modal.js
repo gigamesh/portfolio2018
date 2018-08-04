@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import media from '../utils/mediaqueries';
-import { animations } from '../utils/animations';
-import posed from 'react-pose';
 import { animateScroll } from 'react-scroll';
 import { PosedH2 } from './ui'
-import { Link } from 'react-router-dom';
+import posed from 'react-pose'
 
 const Overlay = styled.div`
   position: absolute;
@@ -60,6 +58,26 @@ const OuterWrap = styled.div`
   }
 `
 
+let PoseDivWrap = posed.div({
+  hidden: {
+    opacity: 0,
+    y: -1000,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 50
+    }
+  }
+});
+
+PoseDivWrap = styled(PoseDivWrap)`
+  width: 100%;
+  height: 100%;
+`
+
 const InnerWrap = styled.div`
   position: relative;
   margin: 0 auto;
@@ -77,7 +95,6 @@ const HeaderTwo = styled(PosedH2)`
   font-size: 4em;
   line-height: 1em;
   padding-bottom: 40px;
-  /* padding-top: 40px; */
   width: 80%;
   margin: 0 auto;
   ${media.portrait.xl`
@@ -107,8 +124,6 @@ const HeaderTwo = styled(PosedH2)`
 `
 const CloseIcon = styled.div`
   position: absolute;
-  /* top: 3vmax;
-  right: 3vmax; */
   right: 0;
   line-height: 100%;
   cursor: pointer;
@@ -213,12 +228,12 @@ export default class Modal extends Component {
         visible: true
       })
     },0)
-    // window.scrollTo(0, 0)
     animateScroll.scrollToTop({duration: 500});
   }
 
   render() {
     const { title, text, url, img } = this.props.item;
+    let { visible } = this.state;
 
     return (
       <React.Fragment>
@@ -227,33 +242,34 @@ export default class Modal extends Component {
           dimensions={this.props.dimensions}
           />
         <FullPageWrap 
-          // visible={this.state.visible.toString()}
           dimensions={this.props.dimensions}>
           <OuterWrap>
-          <CloseIcon onClick={this.props.close}>
-            <i class="material-icons">
-              close
-            </i>
-          </CloseIcon>
-              <HeaderTwo>
-                {title}
-              </HeaderTwo>
-            <InnerWrap>
-              <a href={url} target="_blank" style={{margin: '0 auto'}}>
-                <Img src={img} alt={title} />
-              </a>
-              <TextWrap>
-                <Text>
-                  {text}
-                  <p id='link'>
-                    <a href={url} target="_blank">Click to open in a new tab</a>
-                  </p>
-                </Text>
-              </TextWrap>
-            </InnerWrap>
-          </OuterWrap>
-        </FullPageWrap>
-      </React.Fragment>
+            <PoseDivWrap pose={visible ? 'visible' : 'hidden'}>
+              <CloseIcon onClick={this.props.close}>
+                <i className="material-icons">
+                  close
+                </i>
+              </CloseIcon>
+                  <HeaderTwo>
+                    {title}
+                  </HeaderTwo>
+                <InnerWrap>
+                  <a href={url} target="_blank" style={{margin: '0 auto'}}>
+                    <Img src={img} alt={title} />
+                  </a>
+                  <TextWrap>
+                    <Text>
+                      {text}
+                      <p id='link'>
+                        <a href={url} target="_blank">Click to open in a new tab</a>
+                      </p>
+                    </Text>
+                  </TextWrap>
+                </InnerWrap>
+              </PoseDivWrap>
+            </OuterWrap>
+          </FullPageWrap>
+        </React.Fragment>
     )
   }
 }

@@ -19,10 +19,10 @@ const MenuBtn = styled.div`
   span {
     display: block;
     position: absolute;
-    height: 6px;
+    height: 3px;
     width: 100%;
     background: ${({btncolor})=> btncolor || 'var(--main-color)'};
-    border-radius: 6px;
+    border-radius: 3px;
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
