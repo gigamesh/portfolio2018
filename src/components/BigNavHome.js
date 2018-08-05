@@ -36,7 +36,7 @@ const NavWrap = styled(NavWrapAnimated)`
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 7.5em;
+  font-size: 8em;
   line-height: 1.1em;
   font-weight: 700;
   opacity: 0;
@@ -55,16 +55,16 @@ const NavSectionStyled = styled(NavSection)`
     font-size: 4em;
     `}
   ${media.landscape.xl`
-    font-size: 6.5em;
+    font-size: 7.4em;
     `}
   ${media.landscape.lg`
-    font-size: 6em;
+    font-size: 6.8em;
     `}
   ${media.landscape.md`
-    font-size: 5.3em;
+    font-size: 6em;
     `}
   ${media.landscape.sm`
-    font-size: 4.2em;
+    font-size: 4.8em;
   `} 
   ${media.landscape.xs`
     font-size: 3.6em;
@@ -84,6 +84,12 @@ const NavLinkStyled = styled(NavLink)`
   width: 100%;
   z-index: 1;
   color: #fff;
+  ${media.landscape.xs`
+    -webkit-text-stroke: var(--main-color) 1px;
+  `}
+  ${media.portrait.xs`
+    -webkit-text-stroke: var(--main-color) 1px;
+  `}
   &:before {
     content: '';
     position: absolute;
@@ -106,7 +112,7 @@ export default (props) => {
   let { visible } = props;
 
   const links = () => {
-    let text = ['about', 'portfolio', 'resume', 'contact'];
+    let text = ['about', 'portfolio', 'contact'];
 
     let linkMap = text.map(val => {
       let link = `/${val}`

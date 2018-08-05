@@ -47,7 +47,7 @@ export const Content = styled.div`
     position: relative;
     float: right;
     font-weight: 300;
-    font-size: 2em;
+    font-size: 1.6em;
     }
   ${media.portrait.xl`
     margin: 0;
@@ -59,7 +59,7 @@ export const Content = styled.div`
       font-size: 3.4em;
     }
     h2 {
-      font-size: 1.5em;
+      font-size: 1.4em;
     }
   `}
   ${media.portrait.sm`
@@ -68,7 +68,7 @@ export const Content = styled.div`
       font-size: 2.8em;
     }
     h2 {
-      font-size: 1.4em;
+      font-size: 1.2em;
     }
   `}
   ${media.portrait.xs`
@@ -77,7 +77,7 @@ export const Content = styled.div`
       font-size: 2.5em;
     }
     h2 {
-      font-size: 1.2em;
+      font-size: 1em;
     }
   `}
   ${media.landscape.xl`
@@ -85,9 +85,6 @@ export const Content = styled.div`
     width: 58vmin;
     h1 {
       font-size: 3.8em;
-    }
-    h2 {
-      font-size: 1.6em;
     }
   `}
   ${media.landscape.lg`
@@ -104,7 +101,7 @@ export const Content = styled.div`
       font-size: 2.8em;
     }
     h2 {
-      font-size: 1.4em;
+      font-size: 1.1em;
     }
   `}
   ${media.landscape.sm`
@@ -113,15 +110,15 @@ export const Content = styled.div`
       font-size: 2.2em;
     }
     h2 {
-      font-size: 1em;
+      font-size: .8em;
     }
   `}
   ${media.landscape.xs`
     h1 {
-      font-size: 1.8em;
+      font-size: 1.6em;
     }
     h2 {
-      font-size: .9em;
+      font-size: .6em;
     }
   `}
   max-width: ${({homenav}) => homenav === 'true' ? '520px' : 'none'};
@@ -162,6 +159,7 @@ export const RevealBoxBottom = styled(RevealBoxWrapper)`
   ${media.landscape.xs`
     height: 25px;
   `}
+
 `
 
 export const NamePosed = posed.h1({
@@ -189,4 +187,33 @@ export const TunnelAnimation = styled.div`
   position: relative;
   margin: 0 auto;
   width: 100%;
+`
+
+export const ColorSquare = styled.div`
+  background: ${({color}) => color};
+  top: 1px;
+  height: 18px;
+  width: 18px;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  ${media.landscape.lg`
+    height: 15px;
+    width: 15px;
+  `}
+  ${media.landscape.md`
+    height: 10px;
+    width: 10px;
+    margin-right: 4px;
+  `}
+  ${media.portrait.sm`
+    height: 15px;
+    width: 15px;
+  `}
+  ${media.portrait.xs`
+    top: 0;
+    height: 12px;
+    width: 12px;
+    margin-right: 4px;
+`}
 `

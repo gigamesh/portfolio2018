@@ -228,7 +228,7 @@ export default class Modal extends Component {
         visible: true
       })
     },0)
-    animateScroll.scrollToTop({duration: 500});
+    animateScroll.scrollToTop({duration: 1000});
   }
 
   render() {
