@@ -87,10 +87,10 @@ class NavItems extends React.Component {
         text: 'contact',
         to: '/contact'
       },
-      {
-        text: 'resume',
-        to: '/resume'
-      },
+      // {
+      //   text: 'resume',
+      //   to: '/resume'
+      // },
     ];
     
     const navItemsMap = navItems.map(item => {

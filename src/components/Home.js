@@ -28,11 +28,11 @@ export default class Home extends Component {
     }
   }
 
-  componentWillMount(){
-    if(this.props.loaded === 'true'){
-      this.setState({visible: true})
-    };
-  }
+  // componentWillMount(){
+  //   if(this.props.loaded === 'true'){
+  //     this.setState({visible: true})
+  //   };
+  // }
 
   componentDidMount() {
     setTimeout(()=> this.setState({visible: true}), 0);
@@ -81,7 +81,8 @@ export default class Home extends Component {
                   /> */}
                 <TunnelVision percentage={0.5} 
                   loaded={this.props.loaded}
-                  introAnimationDone={this.props.introAnimationDone}/>
+                  introAnimationDone={this.props.introAnimationDone}
+                  />
               </TunnelThrottled>
             <RevealBoxBottom>
               <div id='reveal-down'>
