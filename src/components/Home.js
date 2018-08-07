@@ -28,12 +28,6 @@ export default class Home extends Component {
     }
   }
 
-  // componentWillMount(){
-  //   if(this.props.loaded === 'true'){
-  //     this.setState({visible: true})
-  //   };
-  // }
-
   componentDidMount() {
     setTimeout(()=> this.setState({visible: true}), 0);
     this.updateTunnelWidth();
@@ -71,7 +65,7 @@ export default class Home extends Component {
               <div id='reveal-up'>
                 <NamePosed
                   pose={visible ? 'visible' : 'hidden'}>
-                  Matt Masurka
+                  Matthew Masurka
                 </NamePosed> 
               </div>
             </RevealBoxWrapper>

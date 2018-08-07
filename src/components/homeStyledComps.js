@@ -37,11 +37,12 @@ export const Content = styled.div`
   right: ${props => props.homenav === 'true' ? '2vmax' : 0 };
   width: 70vmin;
   max-width: 520px;
+  min-width: 210px;
   user-select: none;
   position: relative;
   h1 {
     font-weight: 200;
-    font-size: 4em;
+    font-size: 3.5em;
     }
   h2 {
     position: relative;
@@ -56,7 +57,7 @@ export const Content = styled.div`
     margin: 0;
     width: 75vmin;  
     h1 {
-      font-size: 3.4em;
+      font-size: 2.8em;
     }
     h2 {
       font-size: 1.4em;
@@ -65,16 +66,17 @@ export const Content = styled.div`
   ${media.portrait.sm`
     width: 85vmin;
     h1 {
-      font-size: 2.8em;
+      font-size: 2.4em;
     }
     h2 {
       font-size: 1.2em;
     }
   `}
   ${media.portrait.xs`
+    min-width: 270px
     width: 90vmin;
     h1 {
-      font-size: 2.5em;
+      font-size: 1.8em;
     }
     h2 {
       font-size: 1em;
@@ -84,12 +86,12 @@ export const Content = styled.div`
     max-width: 460px;
     width: 58vmin;
     h1 {
-      font-size: 3.8em;
+      font-size: 3.1em;
     }
   `}
   ${media.landscape.lg`
     h1 {
-      font-size: 3.5em;
+      font-size: 2.8em;
     }
     h2 {
       font-size: 1.5em;
@@ -98,7 +100,7 @@ export const Content = styled.div`
   ${media.landscape.md`
     max-width: 440px;
     h1 {
-      font-size: 2.8em;
+      font-size: 2.2em;
     }
     h2 {
       font-size: 1.1em;
@@ -107,7 +109,7 @@ export const Content = styled.div`
   ${media.landscape.sm`
     max-width: 320px;
     h1 {
-      font-size: 2.2em;
+      font-size: 1.6em;
     }
     h2 {
       font-size: .8em;
@@ -115,7 +117,7 @@ export const Content = styled.div`
   `}
   ${media.landscape.xs`
     h1 {
-      font-size: 1.6em;
+      font-size: 1.3em;
     }
     h2 {
       font-size: .6em;
@@ -125,28 +127,31 @@ export const Content = styled.div`
 `
 
 export const RevealBoxWrapper = styled.div`
-  height: 60px;
+  height: 53px;
   overflow: hidden;
   ${media.portrait.md`
-    height: 50px;
+    height: 48px;
   `}
   ${media.portrait.sm`
-    height: 42px;
+    height: 40px;
   `}
   ${media.portrait.xs`
-    height: 38px;
+    height: 30px;
   `}
-  ${media.landscape.lg`
+  ${media.landscape.xl`
     height: 50px;
   `}
+  ${media.landscape.lg`
+    height: 47px;
+  `}
   ${media.landscape.md`
-    height: 44px;
+    height: 38px;
   `}
   ${media.landscape.sm`
-    height: 36px;
+    height: 28px;
   `}
   ${media.landscape.xs`
-    height: 27px;
+    height: 24px;
   `}
 `
 
