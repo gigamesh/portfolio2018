@@ -13,8 +13,12 @@
   --about-color:#7aa7ee;
   --portfolio-color: #e07f7f;
   --resume-color:#f7eb80;
-  --contact-color:#98db88;
+  --connect-color:#98db88;
   /* --contact-color:#98db88; */
+}
+
+::selection {
+  background: var(--lightest-blue)
 }
 
 body {
@@ -29,6 +33,7 @@ body {
 
 p {
   font-weight: 200;
+  margin: 0;
 }
 
 h1,h2,h3,h4 {

@@ -11,7 +11,7 @@ export const FullWrap = styled.div`
   user-select: none;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   position: absolute;
 `

@@ -87,7 +87,7 @@ class BigNavMobile extends React.Component{
     let { visible, clickHandler, pathname } = this.props;
 
     const links = () => {
-      let text = ['about', 'portfolio', 'contact'];
+      let text = ['about', 'portfolio', 'connect'];
 
       let linkMap = text.map(val => {
         let link = `/${val}`

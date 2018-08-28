@@ -112,7 +112,7 @@ export default (props) => {
   let { visible } = props;
 
   const links = () => {
-    let text = ['about', 'portfolio', 'contact'];
+    let text = ['about', 'portfolio', 'connect'];
 
     let linkMap = text.map(val => {
       let link = `/${val}`

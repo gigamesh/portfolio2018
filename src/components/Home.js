@@ -84,7 +84,7 @@ export default class Home extends Component {
                   pose={visible ? 'visible' : 'hidden'}>
                   <ColorSquare color='var(--about-color)'/>
                   <ColorSquare color='var(--portfolio-color)'/>
-                  <ColorSquare color='var(--contact-color)'/>
+                  <ColorSquare color='var(--connect-color)'/>
                     web development & design
                 </BottomTextPosed>
               </div>

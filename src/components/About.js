@@ -12,7 +12,7 @@ const FullPageWrap = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -39,13 +39,14 @@ const HeadShot = styled.div`
   `}
 `
 
-const Text = posed.p(animations.main)
+const Text = posed.div(animations.main)
 
 const TextStyled = styled(Text)`
   a {
     color: #5296ce;
     font-weight: 300;
     &:hover {
+      text-decoration: underline;
       color: #205887
     }
   }
@@ -55,7 +56,8 @@ const TextStyled = styled(Text)`
   font-size: 1.8em;
   font-weight: 200;
   width: 80%;
-  max-width: 600px;
+  max-width: 650px;
+  text-align: justify;
   line-height: 130%;
   span {
     display: block;
@@ -66,14 +68,15 @@ const TextStyled = styled(Text)`
     /* font-weight: 100; */
   }
   ${media.portrait.lg`
-    font-size: 1.6em;
+    font-size: 1.5em;
     span {
-      top: -20px;
-      font-size: 2.5em;
+      top: -10px;
+      font-size: 2.3em;
     }
   `}
   ${media.portrait.md`
-    font-size: 1.2em;
+      width: 90%;
+    font-size: 1.1em;
     span {
       top: -10px;
       font-size: 2.1em;
@@ -88,7 +91,7 @@ const TextStyled = styled(Text)`
   `} 
   ${media.portrait.xs`
     font-size: 0.9em;
-    width: 90%;
+    width: 95%;
     span {
       font-size: 1.5em;
       top: -5px;
@@ -105,12 +108,11 @@ const TextStyled = styled(Text)`
   ${media.landscape.xl`
     font-size: 1.7em;
     span {
-      top: -20px;
       font-size: 2.5em;
     }
   `}
   ${media.landscape.lg`
-    font-size: 1.4em;
+    font-size: 1.3em;
     span {
       top: -20px;
       font-size: 2.5em;
@@ -136,6 +138,12 @@ const TextStyled = styled(Text)`
   `}
 `
 
+const FooterText = styled.p`
+  text-align: center;
+  position: relative;
+  margin: 3vh auto 0;
+`
+
 export default class Contact extends Component {
   state = {
     textVisible: false
@@ -157,12 +165,15 @@ export default class Contact extends Component {
           hovercolor={'#205887'}
           path={this.props.location.pathname}
           />}
-        <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
-          <span>Hello!</span>
-            I'm Matt. I love making web apps, animations, data models, and music. Until recently, I've been travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but in late 2017 I decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and social justice. ✌
-        </TextStyled>
-
-          <HeadShot/>
+          <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
+            <span>Hello!</span>
+              <p>I'm Matt. I love making web apps, animations, data models, and music. Until recently, I've been travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but in late 2017 I decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and effective altruism. ✌
+              </p>
+            <FooterText>
+              <a href="https://medium.com/@m.masurka" target="_blank">Read More...</a>
+            </FooterText>
+          </TextStyled>
+        <HeadShot/>
 
       </FullPageWrap>
     )

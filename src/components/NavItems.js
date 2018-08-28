@@ -84,8 +84,8 @@ class NavItems extends React.Component {
         to: '/portfolio'
       },
       {
-        text: 'contact',
-        to: '/contact'
+        text: 'connect',
+        to: '/connect'
       },
       // {
       //   text: 'resume',

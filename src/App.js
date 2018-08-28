@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from './components/Home';
-import Contact from './components/Contact';
+import Connect from './components/Connect';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Resume from './components/Resume';
@@ -125,10 +125,10 @@ class App extends Component {
           classNames="swipe"
           >
           <Switch location={this.props.location} key="switch">
-            <Route path="/contact" exact render={routeProps => (
-              <Contact {...routeProps} menuBtnShowing={menuBtnShowing}>
+            <Route path="/connect" exact render={routeProps => (
+              <Connect {...routeProps} menuBtnShowing={menuBtnShowing}>
                 {menuBtnShowing && mobileMenuComp()}
-              </Contact>
+              </Connect>
               )
             }/>
             <Route path="/portfolio" exact render={routeProps => (
@@ -145,13 +145,7 @@ class App extends Component {
                 {menuBtnShowing && mobileMenuComp('#fff')}
               </About>
               )
-            }/>      
-            <Route path="/resume" exact render={routeProps => (
-              <Resume {...routeProps} menuBtnShowing={menuBtnShowing}>
-                {menuBtnShowing && mobileMenuComp()}
-              </Resume>
-              )
-            }/>      
+            }/>          
             <Route path="/" exact render={routeProps => (
               <Home
                 loaded={this.state.initialLoad.toString()}
