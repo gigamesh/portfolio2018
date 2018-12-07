@@ -1,30 +1,30 @@
-import React from 'react'
-import styled from 'styled-components'
-import posed from 'react-pose';
-import media from '../utils/mediaqueries';
-import { animations } from '../utils/animations';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import posed from "react-pose";
+import media from "../utils/mediaqueries";
+import { animations } from "../utils/animations";
+import { NavLink } from "react-router-dom";
 
 const NavSection = posed.ul({
-  visible: {          
+  visible: {
     opacity: 1,
     zIndex: 4,
-    delayChildren: 2600,
+    delayChildren: 2200,
     staggerChildren: 100
   },
-  hidden: {      
-    opacity: 0,
+  hidden: {
+    opacity: 0
   }
 });
 
 const NavWrapAnimated = posed.div({
-  visible: {          
-    width: '35%',
+  visible: {
+    width: "35%",
     delayChildren: 2000,
-    transition: {ease: [.71,.13,.35,.86], delay: 1800, duration: 800},
+    transition: { ease: [0.71, 0.13, 0.35, 0.86], delay: 1800, duration: 800 }
   },
-  hidden: { 
-    width: 0,
+  hidden: {
+    width: 0
   }
 });
 
@@ -32,11 +32,11 @@ const NavWrap = styled(NavWrapAnimated)`
   position: relative;
   display: flex;
   left: 2vmax;
-`
+`;
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 8em;
+  font-size: 9em;
   line-height: 1.1em;
   font-weight: 700;
   opacity: 0;
@@ -55,10 +55,10 @@ const NavSectionStyled = styled(NavSection)`
     font-size: 4em;
     `}
   ${media.landscape.xl`
-    font-size: 7.4em;
+    font-size: 8.4em;
     `}
   ${media.landscape.lg`
-    font-size: 6.8em;
+    font-size: 7.3em;
     `}
   ${media.landscape.md`
     font-size: 6em;
@@ -69,13 +69,13 @@ const NavSectionStyled = styled(NavSection)`
   ${media.landscape.xs`
     font-size: 3.6em;
   `} 
-`
+`;
 
 let LinkWrapper = posed.li(animations.homeNav);
 LinkWrapper = styled(LinkWrapper)`
   position: relative;
   width: 100%;
-`
+`;
 
 const NavLinkStyled = styled(NavLink)`
   position: relative;
@@ -86,53 +86,51 @@ const NavLinkStyled = styled(NavLink)`
   color: #fff;
   ${media.landscape.xs`
     -webkit-text-stroke: var(--main-color) 1px;
-  `}
-  ${media.portrait.xs`
+  `} ${media.portrait.xs`
     -webkit-text-stroke: var(--main-color) 1px;
   `}
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 2px;
     bottom: 18%;
     z-index: -1;
     transition: height 200ms ease;
-    background: ${({color}) => color || '#fff'};
+    background: ${({ color }) => color || "#fff"};
     padding: 0 4px;
     left: -2px;
   }
   &:hover {
-    color: ${({color}) => color || '#fff'};
+    color: ${({ color }) => color || "#fff"};
     /* color: #fff; */
   }
-`
+`;
 
-export default (props) => {
+export default props => {
   let { visible } = props;
 
   const links = () => {
-    let text = ['about', 'portfolio', 'connect'];
+    let text = ["about", "portfolio", "connect"];
 
     let linkMap = text.map(val => {
-      let link = `/${val}`
-        return (
+      let link = `/${val}`;
+      return (
         <LinkWrapper key={val}>
           <NavLinkStyled to={link} color={`var(--${val}-color)`}>
             {val}
           </NavLinkStyled>
-        </LinkWrapper>  
-      )  
-    })
+        </LinkWrapper>
+      );
+    });
     return linkMap;
-  }
+  };
 
   return (
     <NavWrap pose={visible ? "visible" : "hidden"}>
-      <NavSectionStyled 
-        pose={visible ? "visible" : "hidden"}>
+      <NavSectionStyled pose={visible ? "visible" : "hidden"}>
         {links()}
       </NavSectionStyled>
     </NavWrap>
-  )
-}
+  );
+};

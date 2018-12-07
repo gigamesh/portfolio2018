@@ -58,7 +58,7 @@ ItemWrap = styled(ItemWrap)`
   margin: auto;
   margin-bottom: 50px;
   &:hover > *:not(:hover) {
-    filter: opacity(70%);
+    filter: opacity(40%);
   }
   @media (max-width: 1100px){
     grid-template-columns: 1fr 1fr;   
@@ -156,6 +156,7 @@ export default class Contact extends Component {
     let heightToRender = this.props.pageHeight;
     const portfolio = portfolioItems.map(item => {
       return (
+        <div>
         <GridCell 
           key={item.title}
           active={this.state.activeItem === item.title ? 'yup' : ''}>
@@ -163,8 +164,10 @@ export default class Contact extends Component {
             url={item.url} 
             img={item.img} 
             onClick={() => this.itemClickHandler(item)}
-            />
+            >
+            </Item>
         </GridCell>
+        </div>
       )
     })
 

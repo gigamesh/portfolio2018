@@ -200,18 +200,6 @@ export default class Contact extends Component {
           </Header>
           <InnerWrap pose={this.state.visisible ? 'visible' : 'hidden'}>
             <LinkList pose={visible ? "visible" : "hidden"}>
-              <CopyToClipboard onCopy={this.onCopy} text='m.masurka@gmail.com'>
-                <ListItem 
-                  style={{cursor: 'pointer'}} 
-                  data-tip={this.state.tooltipText}
-                  key={this.state.tooltipText}>
-                  <SVGInject 
-                    path="/img/icons/mail.svg" 
-                    svgClassName='icon-email' />
-                  <span>email</span>
-                  <ReactTooltip className='tooltip-email'/>
-                </ListItem>
-              </CopyToClipboard>
               <ListItem>
                 <a rel="noopener noreferrer" href="https://www.linkedin.com/in/matt-masurka-334762150/" target="_blank">
                   <SVGInject 
@@ -244,6 +232,19 @@ export default class Contact extends Component {
                   <span>twitter</span>
                 </a>
               </ListItem>
+              <CopyToClipboard onCopy={this.onCopy} text='m.masurka@gmail.com'>
+                <ListItem 
+                  style={{cursor: 'pointer'}} 
+                  data-tip={this.state.tooltipText}
+                  key={this.state.tooltipText}
+                  >
+                  <SVGInject 
+                    path="/img/icons/mail.svg" 
+                    svgClassName='icon-email' />
+                  <span>email</span>
+                  <ReactTooltip className='tooltip-email'/>
+                </ListItem>
+              </CopyToClipboard>
             </LinkList>
           </InnerWrap>
         </Container>

@@ -42,7 +42,7 @@ const OuterWrap = styled.div`
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  top: 45%;
+  top: 30%;
   transform: translateY(-50%);
   ${media.portrait.lg`
     top: 80px;
@@ -149,7 +149,6 @@ const CloseIcon = styled.div`
 `
 const Img = styled.img`
   opacity: 1;
-  display: inline-block;
   float: left;
   width: 45vw;
   max-width: 550px;
@@ -216,6 +215,28 @@ const TextWrap = styled.div`
     max-width: 550px;
   `}
 `
+const Button = styled.button`
+  background: var(--light-blue);
+  font-size: 1em;
+  width: 40%;
+  padding: .5em;
+  border-radius: 7px;
+  color: white;
+  margin-top: 1em;
+  border: none;
+  &:focus {
+    outline-style: none;
+  }
+  cursor: pointer;
+  &:hover {
+    background: var(--blue);
+  }
+`
+const Link = styled.a`
+  font-size: .9em;
+  display: block;
+  margin-top: 10px;
+`
 
 export default class Modal extends Component {
   state = {
@@ -232,7 +253,7 @@ export default class Modal extends Component {
   }
 
   render() {
-    const { title, text, url, img } = this.props.item;
+    const { title, text, url, img, src} = this.props.item;
     let { visible } = this.state;
 
     return (
@@ -261,7 +282,12 @@ export default class Modal extends Component {
                     <Text>
                       {text}
                       <p id='link'>
-                        <a href={url} target="_blank">Click to open in a new tab</a>
+                        <a href={url} target="_blank">
+                        <Button>OPEN</Button>
+                        </a>
+                        {src && <Link href={src} target="_blank">
+                        [  source  ]
+                        </Link>}
                       </p>
                     </Text>
                   </TextWrap>

@@ -1,6 +1,6 @@
-import posed from 'react-pose';
-import media from '../utils/mediaqueries';
-import styled from 'styled-components';
+import posed from "react-pose";
+import media from "../utils/mediaqueries";
+import styled from "styled-components";
 
 export const FullWrap = styled.div`
   overflow: hidden
@@ -14,7 +14,7 @@ export const FullWrap = styled.div`
   height: 100%;
   width: 100vw;
   position: absolute;
-`
+`;
 
 export const InnerWrap = styled.div`
   max-width: 1400px;
@@ -23,18 +23,18 @@ export const InnerWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  span { 
+  span {
     color: var(--main-color);
   }
   color: var(--main-color);
   path {
     stroke: var(--main-color);
-    stroke-width: .2;
+    stroke-width: 0.2;
   }
-`
+`;
 
 export const Content = styled.div`
-  right: ${props => props.homenav === 'true' ? '2vmax' : 0 };
+  right: ${props => (props.homenav === "true" ? "2vmax" : 0)};
   width: 70vmin;
   max-width: 520px;
   min-width: 210px;
@@ -91,7 +91,7 @@ export const Content = styled.div`
   `}
   ${media.landscape.lg`
     h1 {
-      font-size: 2.8em;
+      font-size: 2.7em;
     }
     h2 {
       font-size: 1.5em;
@@ -123,11 +123,11 @@ export const Content = styled.div`
       font-size: .6em;
     }
   `}
-  max-width: ${({homenav}) => homenav === 'true' ? '520px' : 'none'};
-`
+  max-width: ${({ homenav }) => (homenav === "true" ? "520px" : "none")};
+`;
 
 export const RevealBoxWrapper = styled.div`
-  height: 53px;
+  height: 60px;
   overflow: hidden;
   ${media.portrait.md`
     height: 48px;
@@ -139,7 +139,7 @@ export const RevealBoxWrapper = styled.div`
     height: 30px;
   `}
   ${media.landscape.xl`
-    height: 50px;
+    height: 55px;
   `}
   ${media.landscape.lg`
     height: 47px;
@@ -153,49 +153,47 @@ export const RevealBoxWrapper = styled.div`
   ${media.landscape.xs`
     height: 24px;
   `}
-`
+`;
 
 export const RevealBoxBottom = styled(RevealBoxWrapper)`
   top: -5px;
   position: relative;
   ${media.landscape.md`
     height: 35px;
-  `}
-  ${media.landscape.xs`
+  `} ${media.landscape.xs`
     height: 25px;
-  `}
-
-`
+  `};
+`;
 
 export const NamePosed = posed.h1({
-    hidden: {y: 50, opacity: 0},
-    visible: {
-      y: 0, 
-      opacity: 1, 
-      transition: { type: 'spring', stiffness: 60 },
-      delay: 800
-    }
-})
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 60 },
+    delay: 800
+  }
+});
 
 export const BottomTextPosed = posed.h2({
-    hidden: {y: -50, opacity: 0},
-    visible: {
-      y: 0, 
-      opacity: 1, 
-      transition: { type: 'spring', stiffness: 60 },
-      delay: 1200
-    }
-})
+  hidden: { y: -50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 60 },
+    delay: 1200
+  }
+});
 
 export const TunnelAnimation = styled.div`
   transition: opacity 1s linear;
   position: relative;
   margin: 0 auto;
   width: 100%;
-`
+`;
 
 export const ColorSquare = styled.div`
-  background: ${({color}) => color};
+  background: ${({ color }) => color};
   top: 1px;
   height: 18px;
   width: 18px;
@@ -221,4 +219,4 @@ export const ColorSquare = styled.div`
     width: 12px;
     margin-right: 4px;
 `}
-`
+`;

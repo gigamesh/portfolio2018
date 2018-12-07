@@ -3,13 +3,29 @@ const portfolioItems = [
     title: 'aud.io',
     img:  '/img/thumbnails/audio.jpg',
     text: 'Social network for musicians and recording studios. Made with MongoDB, Node, React, Redux, Redux-saga, Material-UI & styled-components. Includes user registration with password encryption, form validation, live search, lazy-loaded images, and mobile-responsive CSS.',
-    url: 'https://aud-io.herokuapp.com'
+    url: 'https://aud-io.herokuapp.com',
+    src: 'https://github.com/gigamesh/aud.io'
   },
   {
-    title: 'OECD Better Life Index',
+    title: 'Three.js Demo',
+    img:  '/img/thumbnails/threejs.jpg',
+    text: 'Experiments wtih different ways of presenting interactive 3D-rendered text using three.js, a popular WebGL library. Presented via a simple React app.',
+    url: 'http://threejs-logo-demo.s3-website-us-west-1.amazonaws.com',
+    src: 'https://github.com/gigamesh/threejs-demo'
+  },
+  {
+    title: 'Fireblog',
+    img:  '/img/thumbnails/fireblog.jpg',
+    text: 'This project started as a markdown-based blogging editor for a multidisciplinary economics conference I\'m helping organize (RadicalxChange). I eventually decided to generalize and open-source it. It has a React front-end and uses Firebase Cloudstore for data persistence.',
+    url: 'https://fireblog-2018.firebaseapp.com',
+    src: 'https://github.com/gigamesh/fireblog'
+  },
+  {
+    title: 'Better Life Index',
     img:  '/img/thumbnails/OECD.jpg',
-    text: 'Interactive D3 bar chart that displays OECD statistics. Fully mobile-responsive.',
-    url: 'https://s3-us-west-1.amazonaws.com/oecd-better-life-index/index.html'
+    text: 'Interactive D3 bar chart that displays various OECD statistics saved in CSV files. Fully mobile-responsive.',
+    url: 'https://s3-us-west-1.amazonaws.com/oecd-better-life-index/index.html',
+    src: 'https://github.com/gigamesh/OECD-Better-Life-Index'
   },
   {
     title: 'Valentine',
