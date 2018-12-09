@@ -44,7 +44,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { visible, tunnelWidth } = this.state;
+    const { visible } = this.state;
     const { homeNavShowing } = this.props;
 
     // console.log(this.state.items);
@@ -64,10 +64,8 @@ export default class Home extends Component {
               </div>
             </RevealBoxWrapper>
             <TunnelThrottled visible={visible}>
-              {/* <TunnelShapesThrottled 
-                  tunnelWidth={tunnelWidth}
-                  /> */}
               <TunnelVision
+                options={{}}
                 percentage={0.5}
                 loaded={this.props.loaded}
                 introAnimationDone={this.props.introAnimationDone}

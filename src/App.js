@@ -5,7 +5,6 @@ import Home from './components/Home';
 import Connect from './components/Connect';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
-import Resume from './components/Resume';
 import MobileMenu from './components/MobileMenu'
 import './styles/page-swipes.css';
 

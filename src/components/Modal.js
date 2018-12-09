@@ -39,22 +39,24 @@ const FullPageWrap = styled.div`
 `
 const OuterWrap = styled.div`
   position: relative;
-  width: 90%;
+  width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-  top: 30%;
-  transform: translateY(-50%);
+  top: 80px;
+  ${media.portrait.xl`
+    width: 55%;
+  `}
   ${media.portrait.lg`
-    top: 80px;
-    transform: translateY(0);  
+    width: 65%;
+  `}
+  ${media.portrait.md`
+    width: 70%;
   `}
   ${media.landscape.md`
-    top: 20px;
-    transform: translateY(0);  
+    top: 20px;  
   `}
   @media (max-width: 1100px){
-    top: 5vh;
-    transform: translateY(0);  
+    top: 5vh;  
   }
 `
 
@@ -81,9 +83,9 @@ PoseDivWrap = styled(PoseDivWrap)`
 const InnerWrap = styled.div`
   position: relative;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5%;
   ${media.portrait.xl`
     display: block;
   `}
@@ -92,11 +94,10 @@ const InnerWrap = styled.div`
 const HeaderTwo = styled(PosedH2)`
   text-align: center;
   align-self: flex-start;
-  font-size: 4em;
+  font-size: 5em;
   line-height: 1em;
-  padding-bottom: 40px;
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 5%;
   ${media.portrait.xl`
     font-size: 3.8em;
   `}
@@ -109,6 +110,10 @@ const HeaderTwo = styled(PosedH2)`
   `}
   ${media.portrait.xs`
     font-size: 2.3em;
+  `}
+  ${media.landscape.lg`
+    font-size: 4em;
+    padding-bottom: 15px;
   `}
   ${media.landscape.md`
     font-size: 3.5em;
@@ -123,8 +128,9 @@ const HeaderTwo = styled(PosedH2)`
   `}
 `
 const CloseIcon = styled.div`
-  position: absolute;
-  right: 0;
+  position: relative;
+  top: 1em;
+  float: right;
   line-height: 100%;
   cursor: pointer;
   transition: transform 200ms ease;
@@ -149,10 +155,7 @@ const CloseIcon = styled.div`
 `
 const Img = styled.img`
   opacity: 1;
-  float: left;
-  width: 45vw;
-  max-width: 550px;
-  margin: 0 auto 30px;
+  width: 100%;
   height: auto;
   transition: box-shadow 100ms ease;
   box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);
@@ -160,60 +163,38 @@ const Img = styled.img`
     box-shadow: 0px 0px 2px 4px rgba(88, 135, 211, 0.5);
   }
   ${media.portrait.xl`
-    width: 70vw;
     max-width: none;
-    float: none;
     display: block;
-  `}
-  ${media.portrait.lg`
-    width: 80vw;
+    margin: 0 auto 5%;
   `}
   ${media.landscape.sm`
-    width: 60vh;
-    float: none;
     display: block;
   `}
 `
 const Text = styled.p`
   position: relative;
-  font-size: 1.7em;
-  margin: 0;
-  top: -8px;
-  ${media.portrait.lg`
-    font-size: 1.5em;
-  `}
-  ${media.portrait.md`
-    font-size: 1.2em;
-  `}
-  ${media.landscape.md`
-    font-size: 1.4em;
-  `}
-  ${media.landscape.sm`
-    font-size: 1em;
-  `}
 `
 const TextWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  max-width: 550px;
-  margin: 0 auto;
-  padding: 0 30px;
-  p#link {
-    text-align: center
-  }
-  ${media.portrait.xl`
-    max-width: none;
-    width: 70vw;
+  font-size: 1.7em;
+  ${media.landscape.lg`
+    font-size: 1.4em
   `}
   ${media.portrait.lg`
-    width: 80vw;
+    font-size: 1.4em
   `}
-  ${media.landscape.md`
-    width: 85%;
-    max-width: 550px;
+  ${media.portrait.md`
+    font-size: 1.2em
   `}
+  ${media.portrait.sm`
+    font-size: 1em
+  `}
+  ${media.portrait.xs`
+    font-size: .8em
+  `}
+  button {
+    display: block;
+    margin: 10% auto 0;
+  }
 `
 const Button = styled.button`
   background: var(--light-blue);
@@ -233,9 +214,9 @@ const Button = styled.button`
   }
 `
 const Link = styled.a`
-  font-size: .9em;
   display: block;
-  margin-top: 10px;
+  margin: 5px auto;
+  text-align: center;
 `
 
 export default class Modal extends Component {
@@ -281,15 +262,15 @@ export default class Modal extends Component {
                   <TextWrap>
                     <Text>
                       {text}
-                      <p id='link'>
-                        <a href={url} target="_blank">
+                    </Text>
+                      <div id='link'>
+                        <a href={url} target="_blank" rel="noopener noreferrer">
                         <Button>OPEN</Button>
                         </a>
                         {src && <Link href={src} target="_blank">
                         [  source  ]
                         </Link>}
-                      </p>
-                    </Text>
+                      </div>
                   </TextWrap>
                 </InnerWrap>
               </PoseDivWrap>

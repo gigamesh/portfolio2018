@@ -167,10 +167,10 @@ export default class Contact extends Component {
           />}
           <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
             <span>Hello!</span>
-              <p>I'm Matt. I love making web apps, animations, data models, and music. Until recently, I've been travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but in late 2017 I decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and effective altruism. ✌
+              <p>I'm Matt. I love making web apps, animations, data models, and music. Until 2017, I was travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but I eventually decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, blockchain technology, and effective altruism. ✌
               </p>
             <FooterText>
-              <a href="https://medium.com/@m.masurka" target="_blank">Read More...</a>
+              <a href="https://medium.com/@m.masurka/newcareer-start-6ca77b45bc9a" target="_blank" rel="noopener noreferrer">Read More...</a>
             </FooterText>
           </TextStyled>
         <HeadShot/>

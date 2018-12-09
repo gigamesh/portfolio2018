@@ -156,7 +156,7 @@ export default class Contact extends Component {
     let heightToRender = this.props.pageHeight;
     const portfolio = portfolioItems.map(item => {
       return (
-        <div>
+        <div key={item.title}>
         <GridCell 
           key={item.title}
           active={this.state.activeItem === item.title ? 'yup' : ''}>
