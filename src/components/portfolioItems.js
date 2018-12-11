@@ -9,7 +9,7 @@ const portfolioItems = [
   {
     title: 'Three.js Demo',
     img:  '/img/thumbnails/threejs.jpg',
-    text: 'Experiments wtih different ways of presenting interactive 3D-rendered text using three.js, a popular WebGL library. Presented via a simple React app.',
+    text: 'Experiments in different ways of presenting interactive 3D-rendered text using three.js, a popular WebGL library. Bundled into a simple React app.',
     url: 'http://threejs-logo-demo.s3-website-us-west-1.amazonaws.com',
     src: 'https://github.com/gigamesh/threejs-demo'
   },
