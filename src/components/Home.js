@@ -47,7 +47,6 @@ export default class Home extends Component {
     const { visible } = this.state;
     const { homeNavShowing } = this.props;
 
-    // console.log(this.state.items);
     return (
       <FullWrap>
         {this.props.children}

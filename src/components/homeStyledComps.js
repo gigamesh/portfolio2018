@@ -3,7 +3,7 @@ import media from "../utils/mediaqueries";
 import styled from "styled-components";
 
 export const FullWrap = styled.div`
-  overflow: hidden
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

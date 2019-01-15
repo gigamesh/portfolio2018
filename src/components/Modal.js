@@ -256,7 +256,7 @@ export default class Modal extends Component {
                     {title}
                   </HeaderTwo>
                 <InnerWrap>
-                  <a href={url} target="_blank" style={{margin: '0 auto'}}>
+                  <a href={url} target="_blank" rel="noopener noreferrer" style={{margin: '0 auto'}}>
                     <Img src={img} alt={title} />
                   </a>
                   <TextWrap>
