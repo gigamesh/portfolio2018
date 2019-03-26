@@ -1,8 +1,8 @@
 const portfolioItems = [
   {
-    title: 'Liberal Radicalism',
+    title: 'Quadratic Finance',
     img:  '/img/thumbnails/librad.png',
-    text: 'This is a data visualization I built using D3 and React for the purpose of explaining a novel funding mechanism for public goods. It features animation using D3\'s force simulations, with hundreds of SVG circle nodes and multiple state transitions. My future plan is to convert it to HTML canvas, as that would potentially allow for smooth animation of 10x more nodes.',
+    text: 'This is a data visualization I built using D3 and React for the purpose of explaining a novel funding mechanism for public goods. It features animation using D3\'s force simulations, with hundreds of SVG circle nodes and multiple state transitions.',
     url: 'http://liberal-radicalism.s3-website-us-west-1.amazonaws.com/',
     src: 'https://github.com/gigamesh/liberal-radicalism-d3'
   },
@@ -16,7 +16,7 @@ const portfolioItems = [
   {
     title: 'aud.io',
     img:  '/img/thumbnails/audio.jpg',
-    text: 'Social network for musicians and recording studios. Made with MongoDB, Node, React, Redux, Redux-saga, Material-UI & styled-components. Includes user registration with password encryption, form validation, live search, lazy-loaded images, and mobile-responsive CSS.',
+    text: 'Aud.io is a social network for connecting musicians and recording studios. Made with MongoDB, Node, React, Redux, Redux-saga, Material-UI & styled-components. Includes user registration with password encryption, form validation, live search, lazy-loaded images, and mobile-responsive CSS.',
     url: 'https://aud-io.herokuapp.com',
     src: 'https://github.com/gigamesh/aud.io'
   },
