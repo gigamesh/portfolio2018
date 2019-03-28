@@ -471,12 +471,12 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
-      isEnvProduction && new CompressionPlugin({
-        test: /\.(js|css)$/,
-        filename: '[path][query]',
-        algorithm: 'gzip',
-        deleteOriginalAssets: true
-      }),
+      // isEnvProduction && new CompressionPlugin({
+      //   test: /\.(js|css)$/,
+      //   filename: '[path][query]',
+      //   algorithm: 'gzip',
+      //   deleteOriginalAssets: false
+      // }),
       isEnvProduction && new S3Plugin({
         s3Options: {
           accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Your AWS access key
@@ -502,7 +502,7 @@ module.exports = function(webpackEnv) {
           }
         },
         basePath: '/', // This is the name the uploaded directory will be given
-        // directory: 'public' // This is the directory you want to upload
+        directory: 'public' // This is the directory you want to upload
       }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
