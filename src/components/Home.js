@@ -73,9 +73,9 @@ export default class Home extends Component {
             <RevealBoxBottom>
               <div id="reveal-down">
                 <BottomTextPosed pose={visible ? "visible" : "hidden"}>
-                  <ColorSquare color="var(--about-color)" />
-                  <ColorSquare color="var(--portfolio-color)" />
-                  <ColorSquare color="var(--connect-color)" />
+                  <ColorSquare color="var(--light-blue)" />
+                  <ColorSquare color="var(--light-blue)" />
+                  <ColorSquare color="var(--light-blue)" />
                   web development & design
                 </BottomTextPosed>
               </div>

@@ -40,7 +40,7 @@ const FullPageWrap = styled.div`
 const OuterWrap = styled.div`
   position: relative;
   width: 80%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   top: 80px;
   ${media.portrait.xl`
@@ -94,19 +94,19 @@ const InnerWrap = styled.div`
 const HeaderTwo = styled(PosedH2)`
   text-align: center;
   align-self: flex-start;
-  font-size: 5em;
+  font-size: 4em;
   line-height: 1em;
   width: 80%;
   margin: 0 auto 5%;
   ${media.portrait.xl`
-    font-size: 3.8em;
+    font-size: 3.5em;
   `}
   ${media.portrait.lg`
     font-size: 3em;
   `}
   ${media.portrait.sm`
     padding-bottom: 15px;
-    font-size: 2.7em;
+    font-size: 2.6em;
   `}
   ${media.portrait.xs`
     font-size: 2.3em;
@@ -116,11 +116,11 @@ const HeaderTwo = styled(PosedH2)`
     padding-bottom: 15px;
   `}
   ${media.landscape.md`
-    font-size: 3.5em;
+    font-size: 3em;
     padding-bottom: 15px;
   `}
   ${media.landscape.sm`
-    font-size: 2.9em;
+    font-size: 2.6em;
   `}
   ${media.landscape.xs`
     font-size: 2.2em;
@@ -135,7 +135,7 @@ const CloseIcon = styled.div`
   cursor: pointer;
   transition: transform 200ms ease;
   i {
-    font-size: 2.5em;
+    font-size: 2.2em;
   }
   &:hover {
     transform: scale(1.2);
@@ -143,14 +143,6 @@ const CloseIcon = styled.div`
   ${media.portrait.lg`
   top: -10px;
   right: -10px;
-    i {
-      font-size: 2.2em;
-    }
-  `}
-  ${media.landscape.xs`
-    i {
-      font-size: 2.2em;
-    }
   `}
 `
 const Img = styled.img`
@@ -175,13 +167,7 @@ const Text = styled.p`
   position: relative;
 `
 const TextWrap = styled.div`
-  font-size: 1.7em;
-  ${media.landscape.lg`
-    font-size: 1.4em
-  `}
-  ${media.portrait.lg`
-    font-size: 1.4em
-  `}
+  font-size: 1.4em;
   ${media.portrait.md`
     font-size: 1.2em
   `}

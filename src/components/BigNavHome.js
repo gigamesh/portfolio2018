@@ -117,7 +117,7 @@ export default props => {
       let link = `/${val}`;
       return (
         <LinkWrapper key={val}>
-          <NavLinkStyled to={link} color={`var(--${val}-color)`}>
+          <NavLinkStyled to={link} color={`var(--light-blue)`}>
             {val}
           </NavLinkStyled>
         </LinkWrapper>

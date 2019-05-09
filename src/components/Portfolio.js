@@ -24,7 +24,7 @@ const AnimationWrap = styled.div`
   text-align: center;
   position: relative;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1000px;
   top: -30px;
   width: 90%;
   ${media.portrait.lg`
@@ -196,7 +196,7 @@ export default class Contact extends Component {
           <AnimationWrap>
             <Header
               pose={this.state.visisible ? 'visible' : 'hidden'}
-              color='var(--portfolio-color)'>
+              color='var(--light-blue)'>
                 portfolio
             </Header>
             <ItemWrap pose={this.state.visisible ? 'visible' : 'hidden'}>

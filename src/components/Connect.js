@@ -21,9 +21,8 @@ const Container = styled.div`
   top: -30px;
   position: relative;
   height: 65%;
-  max-width: 1200px;
+  max-width: 1000px;
   width: 90%;
-  max-width: 680px;
   margin: 0 auto; 
 `
 const InnerWrap = styled.div`
@@ -195,7 +194,7 @@ export default class Contact extends Component {
         <Container>
           <Header 
             pose={this.state.visible ? 'visible' : 'hidden'}
-            color={'var(--connect-color)'}>
+            color={'var(--light-blue)'}>
             connect
           </Header>
           <InnerWrap pose={this.state.visisible ? 'visible' : 'hidden'}>

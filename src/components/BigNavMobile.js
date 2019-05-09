@@ -97,7 +97,7 @@ class BigNavMobile extends React.Component{
               to={link} 
               onClick={(e)=> 
               clickHandler(e, pathname)}
-               color={`var(--${val}-color)`}>
+               color={`var(--light-blue)`}>
               {val}
             </NavLinkStyled>
           </LinkWrapper>  
