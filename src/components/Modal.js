@@ -96,7 +96,6 @@ const HeaderTwo = styled(PosedH2)`
   align-self: flex-start;
   font-size: 4em;
   line-height: 1em;
-  width: 80%;
   margin: 0 auto 5%;
   ${media.portrait.xl`
     font-size: 3.5em;
@@ -109,7 +108,7 @@ const HeaderTwo = styled(PosedH2)`
     font-size: 2.6em;
   `}
   ${media.portrait.xs`
-    font-size: 2.3em;
+    font-size: 2.1em;
   `}
   ${media.landscape.lg`
     font-size: 4em;
