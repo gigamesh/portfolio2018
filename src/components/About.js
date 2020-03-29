@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import media from '../utils/mediaqueries';
-import NavItems from './NavItems';
-import posed from 'react-pose';
-import { animations } from '../utils/animations';
+import React, { Component } from "react";
+import styled from "styled-components";
+import media from "../utils/mediaqueries";
+import NavItems from "./NavItems";
+import posed from "react-pose";
+import { animations } from "../utils/animations";
+import { mainColor } from "../styles/variables.scss";
 
 const FullPageWrap = styled.div`
   overflow: hidden;
-  /* background: var(--lightest-blue); */
   background: #fff;
   position: absolute;
   top: 0;
@@ -21,12 +21,12 @@ const FullPageWrap = styled.div`
     grid-template-rows: 1fr 1fr;
   `}
   }
-`
+`;
 
 const HeadShot = styled.div`
   background: url("/img/photos/headshot.jpg");
   background-size: cover;
-  background-position: center; 
+  background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
@@ -37,9 +37,9 @@ const HeadShot = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
   `}
-`
+`;
 
-const Text = posed.div(animations.main)
+const Text = posed.div(animations.main);
 
 const TextStyled = styled(Text)`
   a {
@@ -50,7 +50,7 @@ const TextStyled = styled(Text)`
       color: #205887
     }
   }
-  color: var(--main-color);
+  color: ${mainColor};
   margin: 0 auto;
   align-self: center;
   font-size: 1.8em;
@@ -136,44 +136,57 @@ const TextStyled = styled(Text)`
       top: -5px;
     }
   `}
-`
+`;
 
 const FooterText = styled.p`
   text-align: center;
   position: relative;
   margin: 3vh auto 0;
-`
+`;
 
 export default class Contact extends Component {
   state = {
-    textVisible: false
-  }
+    textVisible: false,
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.setState({
-      textVisible: true
-    })
+      textVisible: true,
+    });
   }
 
   render() {
     return (
       <FullPageWrap>
         {this.props.children}
-        {!this.props.menuBtnShowing && 
-        <NavItems 
-          color={'#5296ce'} 
-          hovercolor={'#205887'}
-          path={this.props.location.pathname}
-          />}
-          <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
-            <span>Hello!</span>
-              <p>I'm Matt. I love making web apps, animations, data models, and music. Until 2017, I was travelling the world as a professional <a href="http://www.gigameshmusic.com" target="_blank" rel="noopener noreferrer">music producer & DJ</a>. It was a great experience, but I eventually decided to pursue my love of technology and learn how to code. I started with the Javascript + React stack and quickly fell in love. In addition to code and music, I'm a big enthusiast for visual design, mechanism design, and effective altruism. ✌
-              </p>
-        
-          </TextStyled>
-        <HeadShot/>
-
+        {!this.props.menuBtnShowing && (
+          <NavItems
+            color={"#5296ce"}
+            hovercolor={"#205887"}
+            path={this.props.location.pathname}
+          />
+        )}
+        <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
+          <span>Hello!</span>
+          <p>
+            I'm Matt. I love making web apps, animations, data models, and
+            music. Until 2017, I was travelling the world as a professional{" "}
+            <a
+              href="http://www.gigameshmusic.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              music producer & DJ
+            </a>
+            . It was a great experience, but I eventually decided to pursue my
+            love of technology and learn how to code. I started with the
+            Javascript + React stack and quickly fell in love. In addition to
+            code and music, I'm a big enthusiast for visual design, mechanism
+            design, and effective altruism. ✌
+          </p>
+        </TextStyled>
+        <HeadShot />
       </FullPageWrap>
-    )
+    );
   }
 }

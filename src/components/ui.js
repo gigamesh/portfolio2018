@@ -1,7 +1,8 @@
-import styled from 'styled-components'
-import posed from 'react-pose'
-import { animations } from '../utils/animations';
-import media from '../utils/mediaqueries';
+import styled from "styled-components";
+import posed from "react-pose";
+import { animations } from "../utils/animations";
+import media from "../utils/mediaqueries";
+import { mainColor } from "../styles/variables.scss";
 
 export const PosedH2 = posed.h2(animations.header);
 
@@ -20,8 +21,8 @@ export const Header = styled(PosedH2)`
   font-weight: 700;
   padding-bottom: 20px;
   padding-top: 10px;
-  color: ${({color}) => color || '#fff'};
-  -webkit-text-stroke: var(--main-color) 1px;
+  color: ${({ color }) => color || "#fff"};
+  -webkit-text-stroke: ${mainColor} 1px;
   ${media.portrait.md`
     font-size: 5.2em;
     top: 40px;
@@ -38,31 +39,31 @@ export const Header = styled(PosedH2)`
     top: 38px;
     font-size: 4.2em;
   `}
-`
+`;
 
 export const HeaderIcon = styled.div`
   width: 75px;
   height: 75px;
-  background: url('${({bgURL}) => bgURL}');
+  background: url('${({ bgURL }) => bgURL}');
   background-size: cover;
   display: inline-block;
   margin-left: 15px;
   position: relative;
-  top: ${({customID}) => customID === 'contact' ? '15px' 
-    : customID === 'resume' ? '13px' : 0};
+  top: ${({ customID }) =>
+    customID === "contact" ? "15px" : customID === "resume" ? "13px" : 0};
   ${media.portrait.md`
     margin-left: 10px;
     width: 60px;
     height: 60px;
-    top: ${({customID}) => customID === 'contact' ? '12px' 
-    : customID === 'resume' ? '11px' : 0 };
+    top: ${({ customID }) =>
+      customID === "contact" ? "12px" : customID === "resume" ? "11px" : 0};
   `}
   ${media.portrait.sm`
     margin-left: 6px;
     width: 50px;
     height: 50px;
-    top: ${({customID}) => customID === 'contact' ? '10px' 
-    : customID === 'resume' ? '9px' : 0}; 
+    top: ${({ customID }) =>
+      customID === "contact" ? "10px" : customID === "resume" ? "9px" : 0}; 
   `} 
   ${media.portrait.xs`
     display: none;
@@ -71,7 +72,7 @@ export const HeaderIcon = styled.div`
   ${media.landscape.xs`
     width: 50px;
     height: 50px;
-    top: ${({customID}) => customID === 'contact' ? '10px' 
-    : customID === 'resume' ? '9px' : 0}; 
+    top: ${({ customID }) =>
+      customID === "contact" ? "10px" : customID === "resume" ? "9px" : 0}; 
   `} 
-`
+`;

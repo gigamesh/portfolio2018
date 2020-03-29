@@ -1,26 +1,27 @@
-import React from 'react';
-import styled from 'styled-components'
-import posed, { PoseGroup } from 'react-pose';
-import BigNavMobile from './BigNavMobile';
-import MobileMenuBtn from './MobileMenuBtn';
-import { Link } from 'react-router-dom';
-import media from '../utils/mediaqueries'
-import { animations } from '../utils/animations';
+import React from "react";
+import styled from "styled-components";
+import posed, { PoseGroup } from "react-pose";
+import BigNavMobile from "./BigNavMobile";
+import MobileMenuBtn from "./MobileMenuBtn";
+import { Link } from "react-router-dom";
+import media from "../utils/mediaqueries";
+import { animations } from "../utils/animations";
+import { mainColor, lightBlue } from "../styles/variables.scss";
 
 let MobileOverlay = posed.div({
-  enter: { 
+  enter: {
     opacity: 1,
-    transition: {ease: [0,0,1,1], duration: 200}
-    },
-  exit: { 
+    transition: { ease: [0, 0, 1, 1], duration: 200 },
+  },
+  exit: {
     opacity: 0,
-    transition: ({duration}) => ({
-    ease: [0,0,1,1], 
-    delay: 100, 
-    duration: duration
-    })
-  }
-})
+    transition: ({ duration }) => ({
+      ease: [0, 0, 1, 1],
+      delay: 100,
+      duration: duration,
+    }),
+  },
+});
 
 MobileOverlay = styled(MobileOverlay)`
   position: absolute;
@@ -32,7 +33,7 @@ MobileOverlay = styled(MobileOverlay)`
   background: #f7f7f7;
   opacity: 0;
   transition: opacity 300ms ease;
-`
+`;
 
 const CenterDiv = styled.div`
   display: flex;
@@ -40,12 +41,12 @@ const CenterDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-`
+`;
 
 const NameAndHomeWrap = posed.div({
   visible: { opacity: 1 },
-  hidden: { opacity: 0 }
-})
+  hidden: { opacity: 0 },
+});
 
 let NameAndHomeIcon = posed.div(animations.homeNav);
 
@@ -59,12 +60,12 @@ NameAndHomeIcon = styled(NameAndHomeIcon)`
   align-items: center;
   font-weight: 200;
   i {
-    -webkit-text-stroke: var(--main-color) 1px;
+    -webkit-text-stroke: ${mainColor} 1px;
     color: transparent;
     display: block;
     font-size: 1.5em;
     &:hover {
-      color: var(--lightest-blue);
+      color: ${lightBlue};
     }
     ${media.portrait.xs`
     font-size: 1em;
@@ -89,62 +90,62 @@ NameAndHomeIcon = styled(NameAndHomeIcon)`
       display: none;
     }
   `}
-`
+`;
 
 class MobileMenu extends React.Component {
-
-  render(){
-    let { 
-      mobileMenuOpen, 
-      clickHandler, 
+  render() {
+    let {
+      mobileMenuOpen,
+      clickHandler,
       bigNavMobileOpen,
       btncolor,
       dimensions,
       source,
-      pathname
+      pathname,
     } = this.props;
 
     let duration = 300;
-    if((source && pathname) && source !== pathname){
+    if (source && pathname && source !== pathname) {
       duration = 0;
-    } 
+    }
 
     return (
       <React.Fragment>
-        <MobileMenuBtn 
-          open={mobileMenuOpen} 
+        <MobileMenuBtn
+          open={mobileMenuOpen}
           clickHandler={clickHandler}
           btncolor={btncolor}
-          dimensions={dimensions}/>
-          <PoseGroup>
-            { mobileMenuOpen && 
+          dimensions={dimensions}
+        />
+        <PoseGroup>
+          {mobileMenuOpen && (
             <MobileOverlay key={source} duration={duration}>
               <CenterDiv>
                 <NameAndHomeWrap pose={bigNavMobileOpen ? "visible" : "hidden"}>
                   <NameAndHomeIcon>
                     <span>Matthew Masurka </span>
-                      <Link to='/' onClick={(e) => clickHandler(e, pathname)}>
-                      <i className="material-icons">
-                        home
-                      </i>
+                    <Link to="/" onClick={e => clickHandler(e, pathname)}>
+                      <i className="material-icons">home</i>
                     </Link>
                   </NameAndHomeIcon>
                 </NameAndHomeWrap>
                 <PoseGroup>
-                  {mobileMenuOpen && 
-                  <BigNavMobile
-                    clickHandler={clickHandler}
-                    visible={bigNavMobileOpen}
-                    key={'BigNavMobile'}
-                    pathname={pathname}
-                    />}
+                  {mobileMenuOpen && (
+                    <BigNavMobile
+                      clickHandler={clickHandler}
+                      visible={bigNavMobileOpen}
+                      key={"BigNavMobile"}
+                      pathname={pathname}
+                    />
+                  )}
                 </PoseGroup>
               </CenterDiv>
-            </MobileOverlay>}
-          </PoseGroup>
+            </MobileOverlay>
+          )}
+        </PoseGroup>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default MobileMenu
+export default MobileMenu;

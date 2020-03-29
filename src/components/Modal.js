@@ -1,42 +1,49 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import media from '../utils/mediaqueries';
-import { animateScroll } from 'react-scroll';
-import { PosedH2 } from './ui'
-import posed from 'react-pose'
+import React, { Component } from "react";
+import styled from "styled-components";
+import media from "../utils/mediaqueries";
+import { animateScroll } from "react-scroll";
+import { PosedH2 } from "./ui";
+import posed from "react-pose";
+import { mainColor, lightBlue, blue, darkBlue } from "../styles/variables.scss";
 
 const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: ${({dimensions}) => dimensions ? dimensions.height + 'px' : '100vh'};
-  width: ${({dimensions}) => dimensions ? dimensions.width + 'px' : '100vw'};
+  height: ${({ dimensions }) =>
+    dimensions ? dimensions.height + "px" : "100vh"};
+  width: ${({ dimensions }) =>
+    dimensions ? dimensions.width + "px" : "100vw"};
   background: #fff;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
   transition: opacity 300ms ease;
-  opacity: ${props => props.visible === 'true' ? .92 : 0};
-`
+  opacity: ${props => (props.visible === "true" ? 0.92 : 0)};
+`;
 
 const FullPageWrap = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: ${({dimensions}) => dimensions ? dimensions.height + 'px' : '100vh'};
-  width: ${({dimensions}) => dimensions ? dimensions.width + 'px' : '100vw'};
+  height: ${({ dimensions }) =>
+    dimensions ? dimensions.height + "px" : "100vh"};
+  width: ${({ dimensions }) =>
+    dimensions ? dimensions.width + "px" : "100vw"};
   z-index: 3;
-  color: var(--main-color);
-  p { font-weight: 300;}
+  color: ${mainColor};
+  p {
+    font-weight: 300;
+  }
   a {
     font-weight: 300;
-    color: var(--dark-blue);
+    color: ${darkBlue};
     &:hover {
-      color: var(--blue);
+      color: ${blue};
     }
   }
-`
+`;
 const OuterWrap = styled.div`
   position: relative;
   width: 80%;
@@ -58,7 +65,7 @@ const OuterWrap = styled.div`
   @media (max-width: 1100px){
     top: 5vh;  
   }
-`
+`;
 
 let PoseDivWrap = posed.div({
   hidden: {
@@ -69,16 +76,16 @@ let PoseDivWrap = posed.div({
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
-      stiffness: 50
-    }
-  }
+      type: "spring",
+      stiffness: 50,
+    },
+  },
 });
 
 PoseDivWrap = styled(PoseDivWrap)`
   width: 100%;
   height: 100%;
-`
+`;
 
 const InnerWrap = styled.div`
   position: relative;
@@ -89,7 +96,7 @@ const InnerWrap = styled.div`
   ${media.portrait.xl`
     display: block;
   `}
-`
+`;
 
 const HeaderTwo = styled(PosedH2)`
   text-align: center;
@@ -125,7 +132,7 @@ const HeaderTwo = styled(PosedH2)`
     font-size: 2.2em;
     padding-bottom: 10px;
   `}
-`
+`;
 const CloseIcon = styled.div`
   position: relative;
   top: 1em;
@@ -143,13 +150,13 @@ const CloseIcon = styled.div`
   top: -10px;
   right: -10px;
   `}
-`
+`;
 const Img = styled.img`
   opacity: 1;
   width: 100%;
   height: auto;
   transition: box-shadow 100ms ease;
-  box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.3);
   &:hover {
     box-shadow: 0px 0px 2px 4px rgba(88, 135, 211, 0.5);
   }
@@ -161,10 +168,10 @@ const Img = styled.img`
   ${media.landscape.sm`
     display: block;
   `}
-`
+`;
 const Text = styled.p`
   position: relative;
-`
+`;
 const TextWrap = styled.div`
   font-size: 1.4em;
   ${media.portrait.md`
@@ -180,12 +187,12 @@ const TextWrap = styled.div`
     display: block;
     margin: 10% auto 0;
   }
-`
+`;
 const Button = styled.button`
-  background: var(--light-blue);
+  background: ${lightBlue};
   font-size: 1em;
   width: 40%;
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 7px;
   color: white;
   margin-top: 1em;
@@ -195,73 +202,73 @@ const Button = styled.button`
   }
   cursor: pointer;
   &:hover {
-    background: var(--blue);
+    background: ${blue};
   }
-`
+`;
 const Link = styled.a`
   display: block;
   margin: 5px auto;
   text-align: center;
-`
+`;
 
 export default class Modal extends Component {
   state = {
-    visible: false
-  }
+    visible: false,
+  };
 
-  componentDidMount(){
-    setTimeout(()=>{
+  componentDidMount() {
+    setTimeout(() => {
       this.setState({
-        visible: true
-      })
-    },0)
-    animateScroll.scrollToTop({duration: 1000});
+        visible: true,
+      });
+    }, 0);
+    animateScroll.scrollToTop({ duration: 1000 });
   }
 
   render() {
-    const { title, text, url, img, src} = this.props.item;
+    const { title, text, url, img, src } = this.props.item;
     let { visible } = this.state;
 
     return (
       <React.Fragment>
-        <Overlay 
+        <Overlay
           visible={this.state.visible.toString()}
           dimensions={this.props.dimensions}
-          />
-        <FullPageWrap 
-          dimensions={this.props.dimensions}>
+        />
+        <FullPageWrap dimensions={this.props.dimensions}>
           <OuterWrap>
-            <PoseDivWrap pose={visible ? 'visible' : 'hidden'}>
+            <PoseDivWrap pose={visible ? "visible" : "hidden"}>
               <CloseIcon onClick={this.props.close}>
-                <i className="material-icons">
-                  close
-                </i>
+                <i className="material-icons">close</i>
               </CloseIcon>
-                  <HeaderTwo>
-                    {title}
-                  </HeaderTwo>
-                <InnerWrap>
-                  <a href={url} target="_blank" rel="noopener noreferrer" style={{margin: '0 auto'}}>
-                    <Img src={img} alt={title} />
-                  </a>
-                  <TextWrap>
-                    <Text>
-                      {text}
-                    </Text>
-                      <div id='link'>
-                        <a href={url} target="_blank" rel="noopener noreferrer">
-                        <Button>OPEN</Button>
-                        </a>
-                        {src && <Link href={src} target="_blank">
-                        [  source  ]
-                        </Link>}
-                      </div>
-                  </TextWrap>
-                </InnerWrap>
-              </PoseDivWrap>
-            </OuterWrap>
-          </FullPageWrap>
-        </React.Fragment>
-    )
+              <HeaderTwo>{title}</HeaderTwo>
+              <InnerWrap>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ margin: "0 auto" }}
+                >
+                  <Img src={img} alt={title} />
+                </a>
+                <TextWrap>
+                  <Text>{text}</Text>
+                  <div id="link">
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      <Button>OPEN</Button>
+                    </a>
+                    {src && (
+                      <Link href={src} target="_blank">
+                        [ source ]
+                      </Link>
+                    )}
+                  </div>
+                </TextWrap>
+              </InnerWrap>
+            </PoseDivWrap>
+          </OuterWrap>
+        </FullPageWrap>
+      </React.Fragment>
+    );
   }
 }

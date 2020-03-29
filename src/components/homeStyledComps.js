@@ -1,6 +1,7 @@
 import posed from "react-pose";
 import media from "../utils/mediaqueries";
 import styled from "styled-components";
+import { darkBlue, mainColor } from "../styles/variables.scss";
 
 export const FullWrap = styled.div`
   overflow: hidden;
@@ -24,11 +25,11 @@ export const InnerWrap = styled.div`
   justify-content: center;
   align-items: center;
   span {
-    color: var(--main-color);
+    color: ${mainColor};
   }
-  color: var(--main-color);
+  color: ${mainColor};
   path {
-    stroke: var(--main-color);
+    stroke: ${mainColor};
     stroke-width: 0.2;
   }
 `;
@@ -171,8 +172,8 @@ export const NamePosed = posed.h1({
     y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
-    delay: 800
-  }
+    delay: 800,
+  },
 });
 
 export const BottomTextPosed = posed.h2({
@@ -181,8 +182,8 @@ export const BottomTextPosed = posed.h2({
     y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
-    delay: 1200
-  }
+    delay: 1200,
+  },
 });
 
 export const TunnelAnimation = styled.div`

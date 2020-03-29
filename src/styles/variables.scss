@@ -1,0 +1,17 @@
+$mainColor: #282d33;
+$mainHalfopacity: rgba(31, 47, 73, 0.5);
+$lightestBlue: #e9f3ff;
+$lighterBlue: #c7deff;
+$lightBlue: #7aa7ee;
+$blue: #5887d3;
+$darkBlue: #375688;
+
+:export {
+  mainColor: $mainColor;
+  mainHalfopacity: $mainHalfopacity;
+  lightestBlue: $lightestBlue;
+  lighterBlue: $lighterBlue;
+  lightBlue: $lightBlue;
+  blue: $blue;
+  darkBlue: $darkBlue;
+}

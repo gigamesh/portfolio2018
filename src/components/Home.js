@@ -13,8 +13,9 @@ import {
   NamePosed,
   BottomTextPosed,
   TunnelAnimation,
-  ColorSquare
+  ColorSquare,
 } from "./homeStyledComps";
+import { lightBlue } from "../styles/variables.scss";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
 const TunnelThrottled = throttle(30)(TunnelAnimation);
@@ -24,7 +25,7 @@ export default class Home extends Component {
     super(props);
     this.state = {
       visible: false,
-      tunnelWidth: 0
+      tunnelWidth: 0,
     };
   }
 
@@ -73,9 +74,9 @@ export default class Home extends Component {
             <RevealBoxBottom>
               <div id="reveal-down">
                 <BottomTextPosed pose={visible ? "visible" : "hidden"}>
-                  <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" />
+                  <ColorSquare color={lightBlue} />
+                  <ColorSquare color={lightBlue} />
+                  <ColorSquare color={lightBlue} />
                   web development & design
                 </BottomTextPosed>
               </div>
