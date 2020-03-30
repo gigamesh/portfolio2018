@@ -1,6 +1,19 @@
 import React, { createRef, useEffect } from "react";
 import styled from "styled-components";
+import * as PIXI from "pixi.js";
+import { isWebGlSupported } from "../utils";
 import "./tunnel-canvas.scss";
+
+PIXI.Renderer.create = function create(options) {
+  if (isWebGlSupported()) {
+    return new PIXI.Renderer(options);
+  }
+  throw new Error(
+    'WebGL unsupported in this browser, use "pixi.js-legacy" for fallback canvas2d support.'
+  );
+};
+
+const app = new PIXI.Application();
 
 const AspectRatioBox = styled.div`
   width: 100%;
@@ -9,45 +22,25 @@ const AspectRatioBox = styled.div`
   position: relative;
 `;
 
-const Square = function(ctx) {
-  this.size = 100;
-  this.x = 50.5;
-  this.y = 50.5;
-
-  this.draw = () => {
-    ctx.beginPath();
-    ctx.lineWidth = 0.5;
-    ctx.strokeRect(this.x, this.y, this.size, this.size);
-    // ctx.stroke();
-  };
-};
-
 export default function TunnelCanvas() {
-  const canvasRef = createRef(null);
+  const container = createRef(null);
 
   useEffect(() => {
-    if (canvasRef.current) {
+    if (container.current) {
       const {
         width,
         height,
-      } = canvasRef.current.parentNode.getBoundingClientRect();
-      canvasRef.current.width = width * 2;
-      canvasRef.current.height = height * 2;
-      canvasRef.current.style.width = width;
-      canvasRef.current.style.height = height;
+      } = container.current.parentNode.getBoundingClientRect();
+      container.current.width = width;
+      container.current.height = height;
 
-      const ctx = canvasRef.current.getContext("2d");
-      const dpr = window.devicePixelRatio || 1;
-      ctx.scale(dpr, dpr);
-
-      const square = new Square(ctx);
-      square.draw();
+      container.current.appendChild(app.view);
     }
-  }, [canvasRef.current]);
+  }, [container.current]);
 
   return (
     <AspectRatioBox>
-      <canvas className="tunnel-canvas" ref={canvasRef} />
+      <div className="tunnel-canvas" ref={container} />
     </AspectRatioBox>
   );
 }

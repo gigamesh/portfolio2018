@@ -32,7 +32,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     setTimeout(() => this.setState({ visible: true }), 0);
-    this.updateTunnelWidth();
+    // this.updateTunnelWidth();
   }
 
   updateTunnelWidth = () => {
@@ -40,9 +40,9 @@ export default class Home extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.tunnelWidth !== this.contentDiv.clientWidth) {
-      this.updateTunnelWidth();
-    }
+    // if (prevState.tunnelWidth !== this.contentDiv.clientWidth) {
+    //   this.updateTunnelWidth();
+    // }
   }
 
   render() {
