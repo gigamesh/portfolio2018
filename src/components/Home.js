@@ -25,7 +25,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      visible: true,
       tunnelWidth: 0,
     };
   }
