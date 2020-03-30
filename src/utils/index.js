@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export function isWebGlSupported() {
   const canvas = document.createElement("canvas");
   let gl;
@@ -18,6 +20,38 @@ export function isWebGlSupported() {
   }
 
   return true;
+}
+
+export function useAnimation(duration) {
+  const [progress, setProgress] = useState(0);
+  const [startTime, setStartTime] = useState(Date.now());
+
+  const reset = () => setStartTime(Date.now());
+  useEffect(() => {
+    let queuedFrame;
+    const frame = () => {
+      const now = Date.now() - startTime;
+      if (now < duration) queuedFrame = requestAnimationFrame(frame);
+      setProgress(Math.min(1, now / duration));
+    };
+    frame();
+    return () => cancelAnimationFrame(queuedFrame);
+  }, [startTime, duration]);
+
+  return [progress, reset];
+}
+
+export function useMousePosition(initPosition) {
+  const [mousePos, setMousePos] = useState(initPosition);
+
+  const setPosition = () => setMousePos(getMousePosition());
+
+  useEffect(() => {
+    document.addEventListener("mousemove", setPosition);
+    return () => document.removeEventListener("mousemove", setPosition);
+  }, []);
+
+  return mousePos;
 }
 
 export function getMousePosition(e) {
