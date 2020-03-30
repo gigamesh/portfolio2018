@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import { scaleLinear } from "d3-scale";
 import { Renderer, Application, Graphics } from "pixi.js";
-import { isWebGlSupported } from "../utils";
+import { isWebGlSupported, getMousePosition } from "../utils";
 import "./tunnel-canvas.scss";
 
 Renderer.create = function create(options) {
@@ -28,10 +28,15 @@ const scale = scaleLinear()
   .range([0, 4]);
 
 export default function TunnelCanvas() {
-  const container = createRef(null);
   let app;
+  const container = createRef(null);
+  const [mousePos, setMousePos] = useState(null);
 
   useEffect(() => {
+    document.addEventListener("mousemove", () =>
+      setMousePos(getMousePosition())
+    );
+
     if (container.current) {
       const {
         width,
@@ -75,11 +80,9 @@ export default function TunnelCanvas() {
     }
 
     for (let square of squares) {
-      console.log(square);
       square.shape.clear();
       square.age++;
       square.size = square.size + scale(square.age);
-      console.log(square.size);
 
       // sets anchor to center
       square.shape.pivot.set(square.size / 2, square.size / 2);
