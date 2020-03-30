@@ -30,15 +30,18 @@ const Square = ctx => {
 export default function TunnelCanvas() {
   const canvasRef = createRef(null);
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      console.log(canvasRef.current);
-      let ctx = canvasRef.getContext("2d");
+  useEffect(
+    () => {
+      if (canvasRef.current) {
+        console.log(canvasRef.current);
+        let ctx = canvasRef.getContext("2d");
 
-      const square = new Square(ctx);
-      square.draw();
-    }
-  }, [canvasRef.current]);
+        const square = new Square(ctx);
+        square.draw();
+      }
+    },
+    [canvasRef.current]
+  );
 
   return (
     <AspectRatioBox>

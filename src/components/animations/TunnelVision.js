@@ -1,43 +1,48 @@
-import React from 'react'
-import Lottie from 'react-lottie';
-import tunnelVision from './tunnelvision.json'
-import tunnelVisionIntro from './tunnelvisionintro.json'
+import React from "react";
+import Lottie from "react-lottie";
+import tunnelVision from "./tunnelvision.json";
+import tunnelVisionIntro from "./tunnelvisionintro.json";
 
 export default class TunnelVision extends React.Component {
   state = {
-    introDone: false
-    }
+    introDone: false,
+  };
 
-  componentDidMount(){
-    setTimeout(()=>{
+  componentDidMount() {
+    setTimeout(() => {
       this.setState({
-        introDone: true
-      })
+        introDone: true,
+      });
       this.props.introAnimationDone();
-    }, 880)
+    }, 880);
   }
 
   render() {
-
     const partOne = (
-      <Lottie options={{
+      <Lottie
+        options={{
           loop: false,
           animationData: tunnelVisionIntro,
           rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-            }
-          }}/>      
-    )
+            preserveAspectRatio: "xMidYMid slice",
+          },
+        }}
+      />
+    );
     const partTwo = (
-      <Lottie options={{
+      <Lottie
+        options={{
           loop: true,
           animationData: tunnelVision,
           rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-            }
-          }}/>        
-    )
+            preserveAspectRatio: "xMidYMid slice",
+          },
+        }}
+      />
+    );
 
-    return this.state.introDone || this.props.loaded === 'true' ? partTwo : partOne;
+    return this.state.introDone || this.props.loaded === "true"
+      ? partTwo
+      : partOne;
   }
 }

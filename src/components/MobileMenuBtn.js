@@ -78,10 +78,10 @@ const MobileMenu = ({ open, btncolor, clickHandler, dimensions }) => {
       btncolor={color}
       scale={scale}
     >
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+      <span />
+      <span />
+      <span />
+      <span />
     </MenuBtn>
   );
 };

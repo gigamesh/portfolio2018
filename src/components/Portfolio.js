@@ -168,7 +168,7 @@ export default class Contact extends Component {
               url={item.url}
               img={item.img}
               onClick={() => this.itemClickHandler(item)}
-            ></Item>
+            />
           </GridCell>
         </div>
       );
