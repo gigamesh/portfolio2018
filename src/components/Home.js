@@ -16,6 +16,7 @@ import {
   ColorSquare,
 } from "./homeStyledComps";
 import { lightBlue } from "../styles/variables.scss";
+import TunnelCanvas from "./TunnelCanvas";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
 const TunnelThrottled = throttle(30)(TunnelAnimation);
@@ -63,14 +64,15 @@ export default class Home extends Component {
                 </NamePosed>
               </div>
             </RevealBoxWrapper>
-            <TunnelThrottled visible={visible}>
+            {/* <TunnelThrottled visible={visible}>
               <TunnelVision
                 options={{}}
                 percentage={0.5}
                 loaded={this.props.loaded}
                 introAnimationDone={this.props.introAnimationDone}
               />
-            </TunnelThrottled>
+            </TunnelThrottled> */}
+            <TunnelCanvas />
             <RevealBoxBottom>
               <div id="reveal-down">
                 <BottomTextPosed pose={visible ? "visible" : "hidden"}>
