@@ -71,3 +71,17 @@ export function getMousePosition(e) {
 
   return { x: pageX, y: pageY };
 }
+
+export function setAnimFrame(cb) {
+  let queueFrame;
+  let frame = 0;
+
+  const executeCallback = () => {
+    cb(frame);
+    frame++;
+    queueFrame = requestAnimationFrame(executeCallback);
+  };
+
+  executeCallback();
+  return queueFrame;
+}
