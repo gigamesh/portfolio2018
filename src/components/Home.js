@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import throttle from "react-throttle-render";
-import TunnelVision from "./animations/TunnelVision";
+import TunnelVision from "./animations/TunnelSVG";
 // import TunnelShapes from './animations/TunnelShapes';
 import "./LandingPage.css";
 import BigNavHome from "./BigNavHome";
@@ -16,7 +16,7 @@ import {
   ColorSquare,
 } from "./homeStyledComps";
 import { lightBlue } from "../styles/variables.scss";
-import TunnelCanvas from "./TunnelCanvas";
+import TunnelCanvas from "./animations/TunnelCanvas";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
 const TunnelThrottled = throttle(30)(TunnelAnimation);
