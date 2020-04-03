@@ -1,7 +1,17 @@
-import { autoDetectRenderer, Container, Loader } from "pixi.js";
+import { autoDetectRenderer, Renderer, Loader } from "pixi.js";
 import Signal from "signals";
+import { isWebGlSupported } from "../../../utils";
 import TunnelContainer from "./TunnelContainer";
 import Ticker from "./Ticker";
+
+Renderer.create = function create(options) {
+  if (isWebGlSupported()) {
+    return new Renderer(options);
+  }
+  throw new Error(
+    'WebGL unsupported in this browser, use "pixi.js-legacy" for fallback canvas2d support.'
+  );
+};
 
 /**
  * A new PIXI application.
