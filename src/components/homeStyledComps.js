@@ -27,10 +27,10 @@ export const InnerWrap = styled.div`
     color: var(--main-color);
   }
   color: var(--main-color);
-  path {
+  /* path {
     stroke: var(--main-color);
     stroke-width: 0.2;
-  }
+  } */
 `;
 
 export const Content = styled.div`
@@ -171,8 +171,8 @@ export const NamePosed = posed.h1({
     y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
-    delay: 800
-  }
+    delay: 800,
+  },
 });
 
 export const BottomTextPosed = posed.h2({
@@ -181,8 +181,8 @@ export const BottomTextPosed = posed.h2({
     y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
-    delay: 1200
-  }
+    delay: 1200,
+  },
 });
 
 export const TunnelAnimation = styled.div`
