@@ -1,43 +1,37 @@
-import React from 'react'
-import Lottie from 'react-lottie';
-import tunnelVision from './tunnelvision.json'
-import tunnelVisionIntro from './tunnelvisionintro.json'
+import React, { useEffect } from "react";
+import { select } from "d3-selection";
+import { scaleLinear, scaleTime } from "d3-scale";
 
-export default class TunnelVision extends React.Component {
-  state = {
-    introDone: false
-    }
+// const xScale = scaleTime(
+//   [new Date(2007, 3, 24), new Date(2007, 4, 1)],
+//   [0, 100]
+// );
+// const yScale = scaleLinear([90, 100], [0, 100]);
 
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({
-        introDone: true
-      })
-      this.props.introAnimationDone();
-    }, 880)
-  }
+const canvasSize = 500;
 
-  render() {
+const TunnelVision = () => {
+  useEffect(() => {
+    draw();
+  }, []);
 
-    const partOne = (
-      <Lottie options={{
-          loop: false,
-          animationData: tunnelVisionIntro,
-          rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-            }
-          }}/>      
-    )
-    const partTwo = (
-      <Lottie options={{
-          loop: true,
-          animationData: tunnelVision,
-          rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-            }
-          }}/>        
-    )
+  const draw = () => {
+    select(".tunnel-wrapper")
+      .append("svg")
+      .attr("width", canvasSize)
+      .attr("height", canvasSize)
+      .append("g")
+      .append("rect")
+      .attr("transform-origin", `${canvasSize / 2}px ${canvasSize / 2}px`)
+      .attr("transform", `center`)
+      .attr("width", canvasSize)
+      .attr("height", canvasSize)
+      .attr("stroke", "black")
+      .attr("stroke-width", 2)
+      .attr("fill", "none");
+  };
 
-    return this.state.introDone || this.props.loaded === 'true' ? partTwo : partOne;
-  }
-}
+  return <div class="tunnel-wrapper" />;
+};
+
+export default TunnelVision;
