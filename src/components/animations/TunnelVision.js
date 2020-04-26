@@ -19,8 +19,8 @@ const strokeWidthScale = scalePow()
   .domain([0, squareCount])
   .range([0.5, 2]);
 const squares = [];
-const framesPerLoop = 60;
-let currentFrame = 0;
+const framesPerLoop = 120;
+const mouseEaseDuration = 15;
 
 // create squares
 for (let i = 0; i <= squareCount; i++) {
@@ -104,9 +104,18 @@ for (let frame = 1; frame < framesPerLoop; frame++) {
 
 const TunnelVision = () => {
   let wrapper;
-  const mouseCoords = { x: null, y: null };
+  const mouseCoords = {
+    x: window.innerWidth * 0.8,
+    y: window.innerHeight * 0.8
+  };
+  const prevMouseCoords = {
+    x: window.innerWidth * 0.8,
+    y: window.innerHeight * 0.8
+  };
+  const mouseCoordArray = [];
   const wrappingDiv = { x: null, y: null, width: null, height: null };
-  let rafId = useRef(null);
+  const rafId = useRef(null);
+  const currentFrame = useRef(0);
 
   useEffect(() => {
     const { width, height, top, left } = document
@@ -135,42 +144,58 @@ const TunnelVision = () => {
   }, []);
 
   const draw = () => {
-    if (currentFrame < framesPerLoop) {
-      wrapper
-        .selectAll("rect")
-        .data(squares)
-        .join("rect")
-        .attr("stroke", "black")
-        .attr("fill", "none")
-        .attr("opacity", (currSquare, i) =>
-          i < squares.length - 1 ? currSquare.opacity[currentFrame] : 1
-        )
-        .attr("width", (currSquare, i) =>
-          i < squares.length - 1 ? currSquare.size[currentFrame] : canvasSize
-        )
-        .attr("height", (currSquare, i) =>
-          i < squares.length - 1 ? currSquare.size[currentFrame] : canvasSize
-        )
-        .attr("stroke-width", (currSquare, i) =>
-          i < squares.length - 1 ? currSquare.strokeWidth[currentFrame] : 4
-        )
-        .attr("x", (currSquare, i) =>
-          i < squares.length - 1
-            ? currSquare.x[currentFrame].value +
-              currSquare.x[currentFrame].scaleFn(mouseCoords.x)
-            : 0
-        )
-        .attr("y", (currSquare, i) =>
-          i < squares.length - 1
-            ? currSquare.y[currentFrame].value +
-              currSquare.y[currentFrame].scaleFn(mouseCoords.y)
-            : 0
-        );
-      currentFrame++;
-    } else {
-      currentFrame = 0;
-    }
+    const currFrame = currentFrame.current;
 
+    wrapper
+      .selectAll("rect")
+      .data(squares)
+      .join("rect")
+      .attr("stroke", "black")
+      .attr("fill", "none")
+      .attr("opacity", (currSquare, i) =>
+        i < squares.length - 1 ? currSquare.opacity[currFrame] : 1
+      )
+      .attr("width", (currSquare, i) =>
+        i < squares.length - 1 ? currSquare.size[currFrame] : canvasSize
+      )
+      .attr("height", (currSquare, i) =>
+        i < squares.length - 1 ? currSquare.size[currFrame] : canvasSize
+      )
+      .attr("stroke-width", (currSquare, i) =>
+        i < squares.length - 1 ? currSquare.strokeWidth[currFrame] : 4
+      )
+      .attr("x", (currSquare, i) =>
+        i < squares.length - 1
+          ? currSquare.x[currFrame].value +
+            currSquare.x[currFrame].scaleFn(prevMouseCoords.x)
+          : 0
+      )
+      .attr("y", (currSquare, i) =>
+        i < squares.length - 1
+          ? currSquare.y[currFrame].value +
+            currSquare.y[currFrame].scaleFn(prevMouseCoords.y)
+          : 0
+      );
+
+    // for (let i = 0; i < mouseEaseDuration; i++) {
+    //   mouseCoordArray[i] = {
+    //     x:
+    //       prevMouseCoords.x +
+    //       ((mouseCoords.x - prevMouseCoords.x) / mouseEaseDuration) * i,
+    //     y:
+    //       prevMouseCoords.y +
+    //       ((mouseCoords.y - prevMouseCoords.y) / mouseEaseDuration) * i
+    //   };
+    // }
+
+    prevMouseCoords.x =
+      prevMouseCoords.x +
+      (mouseCoords.x - prevMouseCoords.x) / mouseEaseDuration;
+    prevMouseCoords.y =
+      prevMouseCoords.y +
+      (mouseCoords.y - prevMouseCoords.y) / mouseEaseDuration;
+
+    currentFrame.current = currFrame < framesPerLoop - 1 ? currFrame + 1 : 0;
     rafId.current = requestAnimationFrame(draw);
   };
 
