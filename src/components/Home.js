@@ -58,7 +58,7 @@ export default class Home extends Component {
             <RevealBoxWrapper>
               <div id="reveal-up">
                 <NamePosed pose={visible ? "visible" : "hidden"}>
-                  Matthew Masurka
+                  Matt Masurka
                 </NamePosed>
               </div>
             </RevealBoxWrapper>
