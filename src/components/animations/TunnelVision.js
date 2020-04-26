@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { select } from "d3-selection";
 import { scaleLinear, scalePow } from "d3-scale";
 import "./tunnel.css";
@@ -18,12 +18,6 @@ const strokeWidthScale = scalePow()
   .exponent(6)
   .domain([0, squareCount])
   .range([0.5, 2]);
-const xMouseScale = scaleLinear()
-  .domain([0, window.innerWidth])
-  .range([-halfCanvas, halfCanvas]);
-const yMouseScale = scaleLinear()
-  .domain([0, window.innerHeight])
-  .range([-halfCanvas, halfCanvas]);
 const squares = [];
 const framesPerLoop = 60;
 let currentFrame = 0;
@@ -35,16 +29,24 @@ for (let i = 0; i <= squareCount; i++) {
     size: [sizeScale(i)],
     opacity: [opacityScale(i)],
     strokeWidth: [strokeWidthScale(i)],
-    x: [{ value: centerPosition, scaleFn: () => {} }],
-    xScale: scaleLinear(
-      [0, window.innerWidth],
-      [-(canvasSize - sizeScale(i)), canvasSize - sizeScale(i)]
-    ),
-    y: [{ value: centerPosition, scaleFn: () => {} }],
-    yScale: scaleLinear(
-      [0, window.innerHeight],
-      [-(canvasSize - sizeScale(i)), canvasSize - sizeScale(i)]
-    )
+    x: [
+      {
+        value: centerPosition,
+        scaleFn: scaleLinear(
+          [window.innerWidth, 0],
+          [-(halfCanvas - sizeScale(i) / 2), halfCanvas - sizeScale(i) / 2]
+        )
+      }
+    ],
+    y: [
+      {
+        value: centerPosition,
+        scaleFn: scaleLinear(
+          [window.innerHeight, 0],
+          [-(halfCanvas - sizeScale(i) / 2), halfCanvas - sizeScale(i) / 2]
+        )
+      }
+    ]
   };
   squares.push(square);
 }
@@ -53,13 +55,24 @@ for (let i = 0; i <= squareCount; i++) {
 for (let frame = 1; frame < framesPerLoop; frame++) {
   squares.forEach((square, sqIdx) => {
     if (sqIdx < squares.length - 1) {
+      const currentFrameSquareSize =
+        ((squares[sqIdx + 1].size[0] - square.size[0]) / framesPerLoop) *
+          frame +
+        square.size[0];
+
       square.x[frame] = {
         value:
           ((squares[sqIdx + 1].x[0].value - square.x[0].value) /
             framesPerLoop) *
             frame +
           square.x[0].value,
-        scaleFn: () => {}
+        scaleFn: scaleLinear(
+          [window.innerWidth, 0],
+          [
+            -(halfCanvas - currentFrameSquareSize / 2),
+            halfCanvas - currentFrameSquareSize / 2
+          ]
+        )
       };
       square.y[frame] = {
         value:
@@ -67,12 +80,15 @@ for (let frame = 1; frame < framesPerLoop; frame++) {
             framesPerLoop) *
             frame +
           square.y[0].value,
-        scaleFn: () => {}
+        scaleFn: scaleLinear(
+          [window.innerHeight, 0],
+          [
+            -(halfCanvas - currentFrameSquareSize / 2),
+            halfCanvas - currentFrameSquareSize / 2
+          ]
+        )
       };
-      square.size[frame] =
-        ((squares[sqIdx + 1].size[0] - square.size[0]) / framesPerLoop) *
-          frame +
-        square.size[0];
+      square.size[frame] = currentFrameSquareSize;
       square.opacity[frame] =
         ((squares[sqIdx + 1].opacity[0] - square.opacity[0]) / framesPerLoop) *
           frame +
@@ -86,12 +102,11 @@ for (let frame = 1; frame < framesPerLoop; frame++) {
   });
 }
 
-console.log(squares);
-
 const TunnelVision = () => {
   let wrapper;
   const mouseCoords = { x: null, y: null };
   const wrappingDiv = { x: null, y: null, width: null, height: null };
+  let rafId = useRef(null);
 
   useEffect(() => {
     const { width, height, top, left } = document
@@ -113,11 +128,13 @@ const TunnelVision = () => {
       mouseCoords.y = e.clientY;
     });
 
-    requestAnimationFrame(draw);
+    rafId.current = requestAnimationFrame(draw);
+    return () => {
+      cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   const draw = () => {
-    // console.log(mouseCoords.x, mouseCoords.y);
     if (currentFrame < framesPerLoop) {
       wrapper
         .selectAll("rect")
@@ -140,13 +157,13 @@ const TunnelVision = () => {
         .attr("x", (currSquare, i) =>
           i < squares.length - 1
             ? currSquare.x[currentFrame].value +
-              currSquare.xScale(mouseCoords.x)
+              currSquare.x[currentFrame].scaleFn(mouseCoords.x)
             : 0
         )
         .attr("y", (currSquare, i) =>
           i < squares.length - 1
             ? currSquare.y[currentFrame].value +
-              currSquare.yScale(mouseCoords.y)
+              currSquare.y[currentFrame].scaleFn(mouseCoords.y)
             : 0
         );
       currentFrame++;
@@ -154,7 +171,7 @@ const TunnelVision = () => {
       currentFrame = 0;
     }
 
-    requestAnimationFrame(draw);
+    rafId.current = requestAnimationFrame(draw);
   };
 
   return <div className="tunnelWrapper" />;
