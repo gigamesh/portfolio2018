@@ -10,10 +10,6 @@ const sizeScale = scalePow()
   .exponent(6)
   .domain([0, squareCount])
   .range([0, canvasSize]);
-const opacityScale = scalePow()
-  .exponent(3)
-  .domain([0, squareCount])
-  .range([0.5, 1]);
 const strokeWidthScale = scalePow()
   .exponent(6)
   .domain([0, squareCount])
@@ -27,7 +23,6 @@ for (let i = 0; i <= squareCount; i++) {
   const centerPosition = halfCanvas - sizeScale(i) / 2;
   const square = {
     size: [sizeScale(i)],
-    opacity: [opacityScale(i)],
     strokeWidth: [strokeWidthScale(i)],
     x: [
       {
@@ -89,10 +84,6 @@ for (let frame = 1; frame < framesPerLoop; frame++) {
         )
       };
       square.size[frame] = currentFrameSquareSize;
-      square.opacity[frame] =
-        ((squares[sqIdx + 1].opacity[0] - square.opacity[0]) / framesPerLoop) *
-          frame +
-        square.opacity[0];
       square.strokeWidth[frame] =
         ((squares[sqIdx + 1].strokeWidth[0] - square.strokeWidth[0]) /
           framesPerLoop) *
@@ -152,9 +143,7 @@ const TunnelVision = () => {
       .join("rect")
       .attr("stroke", "black")
       .attr("fill", "none")
-      .attr("opacity", (currSquare, i) =>
-        i < squares.length - 1 ? currSquare.opacity[currFrame] : 1
-      )
+      .attr("opacity", 1)
       .attr("width", (currSquare, i) =>
         i < squares.length - 1 ? currSquare.size[currFrame] : canvasSize
       )
