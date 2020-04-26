@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { select } from "d3-selection";
 import { scaleLinear, scalePow } from "d3-scale";
+import "./tunnel.css";
 
-const canvasSize = 400;
+const canvasSize = 500;
 const halfCanvas = canvasSize / 2;
 const squareCount = 30;
 const sizeScale = scalePow()
@@ -19,22 +20,31 @@ const strokeWidthScale = scalePow()
   .range([0.5, 2]);
 const xMouseScale = scaleLinear()
   .domain([0, window.innerWidth])
-  .range([0, canvasSize]);
+  .range([-halfCanvas, halfCanvas]);
 const yMouseScale = scaleLinear()
   .domain([0, window.innerHeight])
-  .range([0, canvasSize]);
+  .range([-halfCanvas, halfCanvas]);
 const squares = [];
 const framesPerLoop = 60;
 let currentFrame = 0;
 
 // create squares
 for (let i = 0; i <= squareCount; i++) {
+  const centerPosition = halfCanvas - sizeScale(i) / 2;
   const square = {
     size: [sizeScale(i)],
     opacity: [opacityScale(i)],
     strokeWidth: [strokeWidthScale(i)],
-    x: [{ value: halfCanvas - sizeScale(i) / 2, scaleFn: () => {} }],
-    y: [{ value: halfCanvas - sizeScale(i) / 2, scaleFn: () => {} }]
+    x: [{ value: centerPosition, scaleFn: () => {} }],
+    xScale: scaleLinear(
+      [0, window.innerWidth],
+      [-(canvasSize - sizeScale(i)), canvasSize - sizeScale(i)]
+    ),
+    y: [{ value: centerPosition, scaleFn: () => {} }],
+    yScale: scaleLinear(
+      [0, window.innerHeight],
+      [-(canvasSize - sizeScale(i)), canvasSize - sizeScale(i)]
+    )
   };
   squares.push(square);
 }
@@ -80,13 +90,23 @@ console.log(squares);
 
 const TunnelVision = () => {
   let wrapper;
-  const mouseCoords = { x: 0, y: 0 };
+  const mouseCoords = { x: null, y: null };
+  const wrappingDiv = { x: null, y: null, width: null, height: null };
 
   useEffect(() => {
-    wrapper = select(".tunnel-wrapper")
+    const { width, height, top, left } = document
+      .querySelector(".tunnelWrapper")
+      .getBoundingClientRect();
+
+    wrappingDiv.width = width;
+    wrappingDiv.height = height;
+    wrappingDiv.x = top;
+    wrappingDiv.y = left;
+
+    wrapper = select(".tunnelWrapper")
       .append("svg")
-      .attr("width", canvasSize)
-      .attr("height", canvasSize);
+      .attr("width", wrappingDiv.width)
+      .attr("height", wrappingDiv.height);
 
     document.body.addEventListener("mousemove", e => {
       mouseCoords.x = e.clientX;
@@ -105,26 +125,28 @@ const TunnelVision = () => {
         .join("rect")
         .attr("stroke", "black")
         .attr("fill", "none")
-        .attr("opacity", (d, i) =>
-          i < squares.length - 1 ? squares[i].opacity[currentFrame] : 1
+        .attr("opacity", (currSquare, i) =>
+          i < squares.length - 1 ? currSquare.opacity[currentFrame] : 1
         )
-        .attr("width", (d, i) =>
-          i < squares.length - 1 ? squares[i].size[currentFrame] : canvasSize
+        .attr("width", (currSquare, i) =>
+          i < squares.length - 1 ? currSquare.size[currentFrame] : canvasSize
         )
-        .attr("height", (d, i) =>
-          i < squares.length - 1 ? squares[i].size[currentFrame] : canvasSize
+        .attr("height", (currSquare, i) =>
+          i < squares.length - 1 ? currSquare.size[currentFrame] : canvasSize
         )
-        .attr("stroke-width", (d, i) =>
-          i < squares.length - 1 ? squares[i].strokeWidth[currentFrame] : 4
+        .attr("stroke-width", (currSquare, i) =>
+          i < squares.length - 1 ? currSquare.strokeWidth[currentFrame] : 4
         )
-        .attr("x", (d, i) =>
+        .attr("x", (currSquare, i) =>
           i < squares.length - 1
-            ? squares[i].x[currentFrame].value + xMouseScale(mouseCoords.x)
+            ? currSquare.x[currentFrame].value +
+              currSquare.xScale(mouseCoords.x)
             : 0
         )
-        .attr("y", (d, i) =>
+        .attr("y", (currSquare, i) =>
           i < squares.length - 1
-            ? squares[i].y[currentFrame].value + yMouseScale(mouseCoords.y)
+            ? currSquare.y[currentFrame].value +
+              currSquare.yScale(mouseCoords.y)
             : 0
         );
       currentFrame++;
@@ -135,7 +157,7 @@ const TunnelVision = () => {
     requestAnimationFrame(draw);
   };
 
-  return <div className="tunnel-wrapper" />;
+  return <div className="tunnelWrapper" />;
 };
 
 export default TunnelVision;
