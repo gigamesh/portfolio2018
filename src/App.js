@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Home from "./components/Home";
@@ -7,6 +7,8 @@ import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import MobileMenu from "./components/MobileMenu";
 import "./styles/page-swipes.css";
+
+const mouseEaseDuration = 15;
 
 class App extends Component {
   state = {
@@ -22,6 +24,24 @@ class App extends Component {
     homeNavShowing: true,
     source: "",
     hasIntroFinished: false
+  };
+
+  mouseCoords = {
+    x: window.innerWidth * 0.8,
+    y: window.innerHeight * 0.8
+  };
+  prevMouseCoords = {
+    x: window.innerWidth * 0.8,
+    y: window.innerHeight * 0.8
+  };
+
+  updatePrevMouseCoords = () => {
+    this.prevMouseCoords.x =
+      this.prevMouseCoords.x +
+      (this.mouseCoords.x - this.prevMouseCoords.x) / mouseEaseDuration;
+    this.prevMouseCoords.y =
+      this.prevMouseCoords.y +
+      (this.mouseCoords.y - this.prevMouseCoords.y) / mouseEaseDuration;
   };
 
   registerIntroFinished = () => {
@@ -82,6 +102,8 @@ class App extends Component {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions);
     this.checkMenus();
+
+    document.body.addEventListener("mousemove", this.mouseMove);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -96,7 +118,13 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
+    document.body.removeEventListener("mousemove", this.mouseMove, true);
   }
+
+  mouseMove = e => {
+    this.mouseCoords.x = e.clientX;
+    this.mouseCoords.y = e.clientY;
+  };
 
   render() {
     const pathname = this.props.location.pathname.split("/")[1] || "/";
@@ -167,6 +195,9 @@ class App extends Component {
                     registerIntroFinished={this.registerIntroFinished}
                     homeNavShowing={homeNavShowing}
                     clickHandler={this.clickHandler}
+                    mouseCoords={this.mouseCoords}
+                    prevMouseCoords={this.prevMouseCoords}
+                    updatePrevMouseCoords={this.updatePrevMouseCoords}
                     {...routeProps}
                   >
                     {menuBtnShowing && mobileMenuComp()}

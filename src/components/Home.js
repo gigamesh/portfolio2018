@@ -31,7 +31,13 @@ export default class Home extends Component {
 
   render() {
     const { visible } = this.state;
-    const { homeNavShowing, hasIntroFinished } = this.props;
+    const {
+      homeNavShowing,
+      hasIntroFinished,
+      mouseCoords,
+      prevMouseCoords,
+      updatePrevMouseCoords
+    } = this.props;
 
     return (
       <FullWrap>
@@ -54,6 +60,9 @@ export default class Home extends Component {
               <TunnelVision
                 hasIntroFinished={hasIntroFinished}
                 registerIntroFinished={this.props.registerIntroFinished}
+                mouseCoords={mouseCoords}
+                prevMouseCoords={prevMouseCoords}
+                updatePrevMouseCoords={updatePrevMouseCoords}
               />
             </TunnelThrottled>
             <RevealBoxBottom>

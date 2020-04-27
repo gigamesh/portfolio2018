@@ -9,21 +9,18 @@ const strokeWidthScale = scalePow()
   .domain([0, squareCount])
   .range([0.5, 2]);
 const framesPerLoop = 120;
-const mouseEaseDuration = 15;
 
-const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
+const TunnelVision = ({
+  hasIntroFinished,
+  registerIntroFinished,
+  mouseCoords,
+  prevMouseCoords,
+  updatePrevMouseCoords
+}) => {
   const tunnelWrapper = useRef(null);
   const tunnel = useRef(null);
   const squares = [];
   let sizeScale;
-  const mouseCoords = {
-    x: window.innerWidth * 0.8,
-    y: window.innerHeight * 0.8
-  };
-  const prevMouseCoords = {
-    x: window.innerWidth * 0.8,
-    y: window.innerHeight * 0.8
-  };
   const svgDimensions = { x: null, y: null, size: null };
   const rafId = useRef(null);
   const currentFrame = useRef(0);
@@ -43,18 +40,10 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
       tunnel.current = select(".tunnelWrapper").append("svg");
     }
 
-    const mouseMove = e => {
-      mouseCoords.x = e.clientX;
-      mouseCoords.y = e.clientY;
-    };
-
-    document.body.addEventListener("mousemove", mouseMove);
-
     initSquares();
     rafId.current = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(rafId.current);
-      document.body.removeEventListener("mousemove", mouseMove, true);
     };
   });
 
@@ -139,7 +128,6 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
 
   const draw = () => {
     const currFrame = currentFrame.current;
-    console.log(currFrame);
 
     if (!hasIntroFinished && currFrame > squares.length) {
       registerIntroFinished();
@@ -185,12 +173,7 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
 
     // console.log(prevMouseCoords.x, prevMouseCoords.y);
 
-    prevMouseCoords.x =
-      prevMouseCoords.x +
-      (mouseCoords.x - prevMouseCoords.x) / mouseEaseDuration;
-    prevMouseCoords.y =
-      prevMouseCoords.y +
-      (mouseCoords.y - prevMouseCoords.y) / mouseEaseDuration;
+    updatePrevMouseCoords();
 
     currentFrame.current = currFrame < framesPerLoop - 1 ? currFrame + 1 : 0;
     rafId.current = requestAnimationFrame(draw);
