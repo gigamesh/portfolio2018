@@ -23,7 +23,6 @@ const TunnelVision = () => {
     x: window.innerWidth * 0.8,
     y: window.innerHeight * 0.8
   };
-  const mouseCoordArray = [];
   const wrappingDiv = { x: null, y: null, width: null, height: null };
   const rafId = useRef(null);
   const currentFrame = useRef(0);
@@ -36,8 +35,6 @@ const TunnelVision = () => {
     wrappingDiv.size = width;
     wrappingDiv.x = top;
     wrappingDiv.y = left;
-
-    console.log(width);
 
     sizeScale = scalePow()
       .exponent(6)
@@ -61,16 +58,6 @@ const TunnelVision = () => {
     };
   }, []);
 
-  useLayoutEffect(
-    () => {
-      console.log(
-        "width",
-        document.querySelector(".tunnelWrapper").getBoundingClientRect().width
-      );
-    },
-    [document.querySelector(".tunnelWrapper")]
-  );
-
   const initSquares = () => {
     const halfCanvas = wrappingDiv.size / 2;
 
@@ -79,6 +66,7 @@ const TunnelVision = () => {
       const square = {
         size: [sizeScale(i)],
         strokeWidth: [strokeWidthScale(i)],
+        opacity: 0,
         x: [
           {
             value: centerPosition,
@@ -151,6 +139,7 @@ const TunnelVision = () => {
 
   const draw = () => {
     const currFrame = currentFrame.current;
+    console.log(currFrame);
 
     wrapper
       .selectAll("rect")
@@ -158,7 +147,14 @@ const TunnelVision = () => {
       .join("rect")
       .attr("stroke", "black")
       .attr("fill", "none")
-      .attr("opacity", 1)
+      .attr("opacity", (d, i) => {
+        if (i === currFrame && squares[currFrame].opacity === 0) {
+          squares[currFrame].opacity = 1;
+          return 1;
+        } else {
+          return d.opacity;
+        }
+      })
       .attr("width", (currSquare, i) =>
         i < squares.length - 1 ? currSquare.size[currFrame] : wrappingDiv.size
       )
