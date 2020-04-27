@@ -37,7 +37,7 @@ const NavWrap = styled(NavWrapAnimated)`
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
   font-size: 20em;
-  line-height: 1.1em;
+  line-height: 1em;
   font-weight: 700;
   opacity: 0;
   position: relative;
@@ -55,10 +55,10 @@ const NavSectionStyled = styled(NavSection)`
     font-size: 4em;
     `}
   ${media.landscape.xl`
-    font-size: 8.4em;
+    font-size: 8.6em;
     `}
   ${media.landscape.lg`
-    font-size: 7.3em;
+    font-size: 8.2em;
     `}
   ${media.landscape.md`
     font-size: 6em;
@@ -79,7 +79,7 @@ LinkWrapper = styled(LinkWrapper)`
 
 const NavLinkStyled = styled(NavLink)`
   position: relative;
-  transition: color 200ms ease;
+  transition: color 400ms ease;
   -webkit-text-stroke: var(--main-color) 1.5px;
   width: 100%;
   z-index: 1;

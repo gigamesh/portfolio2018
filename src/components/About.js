@@ -58,7 +58,7 @@ const TextStyled = styled(Text)`
   width: 80%;
   max-width: 650px;
   text-align: justify;
-  line-height: 130%;
+  line-height: normal;
   span {
     display: block;
     text-align: center;
@@ -114,7 +114,7 @@ const TextStyled = styled(Text)`
   ${media.landscape.lg`
     font-size: 1.3em;
     span {
-      top: -20px;
+      // top: -20px;
       font-size: 2.5em;
     }
   `}
@@ -170,7 +170,7 @@ export default class Contact extends Component {
           <span>Hello!</span>
           <p>
             I'm Matt, a web developer based in Los Angeles. I also have
-            experience in the music industry, travelling the world as a &nbsp;
+            experience in the music industry and travelled the world as a &nbsp;
             <a
               href="https://open.spotify.com/artist/1Bo8Afb2Qbjs4x6kJHyjle?si=kj3V1cQLS32h8Ibfr4zLZA"
               target="_blank"
