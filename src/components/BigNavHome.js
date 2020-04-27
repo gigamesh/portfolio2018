@@ -38,10 +38,8 @@ const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
   font-size: 20em;
   line-height: 1em;
-  font-weight: 700;
   opacity: 0;
   position: relative;
-  top: -1.5vh;
   ${media.portrait.lg`
     font-size: 6.3em;
     `}

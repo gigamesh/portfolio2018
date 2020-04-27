@@ -12,7 +12,7 @@ export const FullWrap = styled.div`
   top: 0;
   left: 0;
   height: 100%;
-  width: 100vw;
+  width: 100%;
   position: absolute;
 `;
 
@@ -23,14 +23,10 @@ export const InnerWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--main-color);
   span {
     color: var(--main-color);
   }
-  color: var(--main-color);
-  /* path {
-    stroke: var(--main-color);
-    stroke-width: 0.2;
-  } */
 `;
 
 export const Content = styled.div`
@@ -73,7 +69,7 @@ export const Content = styled.div`
     }
   `}
   ${media.portrait.xs`
-    min-width: 270px
+    min-width: 280px
     width: 90vmin;
     h1 {
       font-size: 1.8em;

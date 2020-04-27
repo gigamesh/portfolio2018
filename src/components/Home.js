@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import throttle from "react-throttle-render";
 import TunnelVision from "./animations/TunnelVision";
-// import TunnelShapes from './animations/TunnelShapes';
 import "./LandingPage.css";
 import BigNavHome from "./BigNavHome";
 import {
@@ -12,8 +11,7 @@ import {
   RevealBoxWrapper,
   NamePosed,
   BottomTextPosed,
-  TunnelWrapper,
-  ColorSquare
+  TunnelWrapper
 } from "./homeStyledComps";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
@@ -23,29 +21,17 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
-      tunnelWidth: 0
+      visible: false
     };
   }
 
   componentDidMount() {
     setTimeout(() => this.setState({ visible: true }), 0);
-    this.updateTunnelWidth();
-  }
-
-  updateTunnelWidth = () => {
-    this.setState({ tunnelWidth: this.contentDiv.clientWidth });
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.tunnelWidth !== this.contentDiv.clientWidth) {
-      this.updateTunnelWidth();
-    }
   }
 
   render() {
     const { visible } = this.state;
-    const { homeNavShowing } = this.props;
+    const { homeNavShowing, hasIntroFinished } = this.props;
 
     return (
       <FullWrap>
@@ -57,24 +43,33 @@ export default class Home extends Component {
           >
             <RevealBoxWrapper>
               <div id="reveal-up">
-                <NamePosed pose={visible ? "visible" : "hidden"}>
+                <NamePosed
+                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
+                >
                   Matt Masurka
                 </NamePosed>
               </div>
             </RevealBoxWrapper>
             <TunnelThrottled visible={visible}>
-              <TunnelVision loaded={this.props.loaded} />
+              <TunnelVision
+                hasIntroFinished={hasIntroFinished}
+                registerIntroFinished={this.props.registerIntroFinished}
+              />
             </TunnelThrottled>
             <RevealBoxBottom>
               <div id="reveal-down">
-                <BottomTextPosed pose={visible ? "visible" : "hidden"}>
+                <BottomTextPosed
+                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
+                >
                   web development & design
                 </BottomTextPosed>
               </div>
             </RevealBoxBottom>
           </Content>
           {homeNavShowing && (
-            <BigNavHome visible={visible}>{this.props.children}</BigNavHome>
+            <BigNavHome visible={visible || hasIntroFinished}>
+              {this.props.children}
+            </BigNavHome>
           )}
         </InnerWrap>
       </FullWrap>

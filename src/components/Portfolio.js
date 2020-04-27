@@ -9,6 +9,8 @@ import { animations } from "../utils/animations";
 import { Header } from "./ui";
 
 const FullPageWrap = styled.div`
+  height: 100vh;
+  overflow: auto;
   background: #f7f7f7;
   position: absolute;
   width: 100%;

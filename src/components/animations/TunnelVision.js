@@ -11,10 +11,11 @@ const strokeWidthScale = scalePow()
 const framesPerLoop = 120;
 const mouseEaseDuration = 15;
 
-const TunnelVision = () => {
+const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
+  const tunnelWrapper = useRef(null);
+  const tunnel = useRef(null);
   const squares = [];
   let sizeScale;
-  let wrapper;
   const mouseCoords = {
     x: window.innerWidth * 0.8,
     y: window.innerHeight * 0.8
@@ -23,46 +24,45 @@ const TunnelVision = () => {
     x: window.innerWidth * 0.8,
     y: window.innerHeight * 0.8
   };
-  const wrappingDiv = { x: null, y: null, width: null, height: null };
+  const svgDimensions = { x: null, y: null, size: null };
   const rafId = useRef(null);
   const currentFrame = useRef(0);
 
   useEffect(() => {
-    const { width, top, left } = document
-      .querySelector(".tunnelWrapper")
-      .getBoundingClientRect();
-
-    wrappingDiv.size = width;
-    wrappingDiv.x = top;
-    wrappingDiv.y = left;
+    const { width, top, left } = tunnelWrapper.current.getBoundingClientRect();
+    svgDimensions.size = width;
+    svgDimensions.x = top;
+    svgDimensions.y = left;
 
     sizeScale = scalePow()
       .exponent(6)
       .domain([0, squareCount])
-      .range([0, wrappingDiv.size]);
+      .range([0, svgDimensions.size]);
 
-    wrapper = select(".tunnelWrapper")
-      .append("svg")
-      .attr("width", wrappingDiv.size)
-      .attr("height", wrappingDiv.size);
+    if (!tunnel.current) {
+      tunnel.current = select(".tunnelWrapper").append("svg");
+    }
 
-    document.body.addEventListener("mousemove", e => {
+    const mouseMove = e => {
       mouseCoords.x = e.clientX;
       mouseCoords.y = e.clientY;
-    });
+    };
+
+    document.body.addEventListener("mousemove", mouseMove);
 
     initSquares();
     rafId.current = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(rafId.current);
+      document.body.removeEventListener("mousemove", mouseMove, true);
     };
-  }, []);
+  });
 
   const initSquares = () => {
-    const halfCanvas = wrappingDiv.size / 2;
+    const halfSvg = svgDimensions.size / 2;
 
     for (let i = 0; i <= squareCount; i++) {
-      const centerPosition = halfCanvas - sizeScale(i) / 2;
+      const centerPosition = halfSvg - sizeScale(i) / 2;
       const square = {
         size: [sizeScale(i)],
         strokeWidth: [strokeWidthScale(i)],
@@ -72,7 +72,7 @@ const TunnelVision = () => {
             value: centerPosition,
             scaleFn: scaleLinear(
               [window.innerWidth, 0],
-              [-(halfCanvas - sizeScale(i) / 2), halfCanvas - sizeScale(i) / 2]
+              [-(halfSvg - sizeScale(i) / 2), halfSvg - sizeScale(i) / 2]
             )
           }
         ],
@@ -81,7 +81,7 @@ const TunnelVision = () => {
             value: centerPosition,
             scaleFn: scaleLinear(
               [window.innerHeight, 0],
-              [-(halfCanvas - sizeScale(i) / 2), halfCanvas - sizeScale(i) / 2]
+              [-(halfSvg - sizeScale(i) / 2), halfSvg - sizeScale(i) / 2]
             )
           }
         ]
@@ -107,8 +107,8 @@ const TunnelVision = () => {
             scaleFn: scaleLinear(
               [window.innerWidth, 0],
               [
-                -(halfCanvas - currentFrameSquareSize / 2),
-                halfCanvas - currentFrameSquareSize / 2
+                -(halfSvg - currentFrameSquareSize / 2),
+                halfSvg - currentFrameSquareSize / 2
               ]
             )
           };
@@ -121,8 +121,8 @@ const TunnelVision = () => {
             scaleFn: scaleLinear(
               [window.innerHeight, 0],
               [
-                -(halfCanvas - currentFrameSquareSize / 2),
-                halfCanvas - currentFrameSquareSize / 2
+                -(halfSvg - currentFrameSquareSize / 2),
+                halfSvg - currentFrameSquareSize / 2
               ]
             )
           };
@@ -139,26 +139,33 @@ const TunnelVision = () => {
 
   const draw = () => {
     const currFrame = currentFrame.current;
+    console.log(currFrame);
 
-    wrapper
+    if (!hasIntroFinished && currFrame > squares.length) {
+      registerIntroFinished();
+    }
+
+    tunnel.current
+      .attr("width", svgDimensions.size)
+      .attr("height", svgDimensions.size)
       .selectAll("rect")
       .data(squares)
       .join("rect")
       .attr("stroke", "black")
       .attr("fill", "none")
       .attr("opacity", (d, i) => {
-        if (i === currFrame && squares[currFrame].opacity === 0) {
+        if (i === currFrame) {
           squares[currFrame].opacity = 1;
           return 1;
         } else {
-          return d.opacity;
+          return hasIntroFinished ? 1 : d.opacity;
         }
       })
       .attr("width", (currSquare, i) =>
-        i < squares.length - 1 ? currSquare.size[currFrame] : wrappingDiv.size
+        i < squares.length - 1 ? currSquare.size[currFrame] : svgDimensions.size
       )
       .attr("height", (currSquare, i) =>
-        i < squares.length - 1 ? currSquare.size[currFrame] : wrappingDiv.size
+        i < squares.length - 1 ? currSquare.size[currFrame] : svgDimensions.size
       )
       .attr("stroke-width", (currSquare, i) =>
         i < squares.length - 1 ? currSquare.strokeWidth[currFrame] : 4
@@ -176,6 +183,8 @@ const TunnelVision = () => {
           : 0
       );
 
+    // console.log(prevMouseCoords.x, prevMouseCoords.y);
+
     prevMouseCoords.x =
       prevMouseCoords.x +
       (mouseCoords.x - prevMouseCoords.x) / mouseEaseDuration;
@@ -187,7 +196,7 @@ const TunnelVision = () => {
     rafId.current = requestAnimationFrame(draw);
   };
 
-  return <div className="tunnelWrapper" />;
+  return <div ref={tunnelWrapper} className="tunnelWrapper" />;
 };
 
 export default TunnelVision;
