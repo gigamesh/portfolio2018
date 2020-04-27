@@ -12,12 +12,12 @@ import {
   RevealBoxWrapper,
   NamePosed,
   BottomTextPosed,
-  TunnelAnimation,
+  TunnelWrapper,
   ColorSquare
 } from "./homeStyledComps";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
-const TunnelThrottled = throttle(30)(TunnelAnimation);
+const TunnelThrottled = throttle(30)(TunnelWrapper);
 
 export default class Home extends Component {
   constructor(props) {
@@ -63,19 +63,11 @@ export default class Home extends Component {
               </div>
             </RevealBoxWrapper>
             <TunnelThrottled visible={visible}>
-              <TunnelVision
-                options={{}}
-                percentage={0.5}
-                loaded={this.props.loaded}
-                introAnimationDone={this.props.introAnimationDone}
-              />
+              <TunnelVision loaded={this.props.loaded} />
             </TunnelThrottled>
             <RevealBoxBottom>
               <div id="reveal-down">
                 <BottomTextPosed pose={visible ? "visible" : "hidden"}>
-                  {/* <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" /> */}
                   web development & design
                 </BottomTextPosed>
               </div>

@@ -36,7 +36,7 @@ const NavWrap = styled(NavWrapAnimated)`
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 9em;
+  font-size: 20em;
   line-height: 1.1em;
   font-weight: 700;
   opacity: 0;
@@ -84,26 +84,14 @@ const NavLinkStyled = styled(NavLink)`
   width: 100%;
   z-index: 1;
   color: #fff;
+  padding-bottom: 30px;
   ${media.landscape.xs`
     -webkit-text-stroke: var(--main-color) 1px;
   `} ${media.portrait.xs`
     -webkit-text-stroke: var(--main-color) 1px;
   `}
-  &:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 18%;
-    z-index: -1;
-    transition: height 200ms ease;
-    background: ${({ color }) => color || "#fff"};
-    padding: 0 4px;
-    left: -2px;
-  }
   &:hover {
     color: ${({ color }) => color || "#fff"};
-    /* color: #fff; */
   }
 `;
 

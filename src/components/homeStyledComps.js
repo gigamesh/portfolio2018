@@ -129,6 +129,7 @@ export const Content = styled.div`
 export const RevealBoxWrapper = styled.div`
   height: 60px;
   overflow: hidden;
+  padding-bottom: 3px;
   ${media.portrait.md`
     height: 48px;
   `}
@@ -171,8 +172,8 @@ export const NamePosed = posed.h1({
     y: 0,
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
-    delay: 800,
-  },
+    delay: 800
+  }
 });
 
 export const BottomTextPosed = posed.h2({
@@ -182,14 +183,17 @@ export const BottomTextPosed = posed.h2({
     opacity: 1,
     transition: { type: "spring", stiffness: 60 },
     delay: 1200,
-  },
+    paddingTop: "15px"
+  }
 });
 
-export const TunnelAnimation = styled.div`
+export const TunnelWrapper = styled.div`
   transition: opacity 1s linear;
   position: relative;
   margin: 0 auto;
   width: 100%;
+  height: 0;
+  padding-top: 100%;
 `;
 
 export const ColorSquare = styled.div`
