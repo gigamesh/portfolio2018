@@ -139,7 +139,6 @@ const TunnelVision = () => {
 
   const draw = () => {
     const currFrame = currentFrame.current;
-    console.log(currFrame);
 
     wrapper
       .selectAll("rect")
