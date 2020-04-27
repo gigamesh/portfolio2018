@@ -200,6 +200,20 @@ export default class Contact extends Component {
           </Header>
           <InnerWrap pose={this.state.visisible ? "visible" : "hidden"}>
             <LinkList pose={visible ? "visible" : "hidden"}>
+              <ListItem
+                style={{ cursor: "pointer" }}
+                data-tip={this.state.tooltipText}
+                key={this.state.tooltipText}
+              >
+                <a rel="noopener noreferrer" href="mailto:m.masurka@gmail.com">
+                  <SVGInject
+                    path="/img/icons/mail.svg"
+                    svgClassName="icon-email"
+                  />
+                  <span>email</span>
+                </a>
+              </ListItem>
+
               <ListItem>
                 <a
                   rel="noopener noreferrer"
@@ -226,7 +240,7 @@ export default class Contact extends Component {
                   <span>github</span>
                 </a>
               </ListItem>
-              <ListItem>
+              {/* <ListItem>
                 <a
                   rel="noopener noreferrer"
                   href="https://medium.com/@m.masurka"
@@ -238,7 +252,7 @@ export default class Contact extends Component {
                   />
                   <span>medium</span>
                 </a>
-              </ListItem>
+              </ListItem> */}
               <ListItem>
                 <a
                   rel="noopener noreferrer"
@@ -252,20 +266,6 @@ export default class Contact extends Component {
                   <span>twitter</span>
                 </a>
               </ListItem>
-              <CopyToClipboard onCopy={this.onCopy} text="m.masurka@gmail.com">
-                <ListItem
-                  style={{ cursor: "pointer" }}
-                  data-tip={this.state.tooltipText}
-                  key={this.state.tooltipText}
-                >
-                  <SVGInject
-                    path="/img/icons/mail.svg"
-                    svgClassName="icon-email"
-                  />
-                  <span>email</span>
-                  <ReactTooltip className="tooltip-email" />
-                </ListItem>
-              </CopyToClipboard>
             </LinkList>
           </InnerWrap>
         </Container>
