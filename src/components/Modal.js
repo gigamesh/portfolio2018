@@ -151,10 +151,10 @@ const CloseIcon = styled.div`
   `}
 `;
 const Img = styled.img`
-  width: 40%;
-  max-width: 225px;
+  width: 40vw;
+  max-width: 400px;
   float: left;
-  margin-right: 20px;
+  margin-right: 5%;
   margin-bottom: 10px;
   height: auto;
   transition: box-shadow 100ms ease;
@@ -173,9 +173,6 @@ const TextWrap = styled.div`
   `}
   ${media.portrait.sm`
     font-size: 1em
-  `}
-  ${media.portrait.xs`
-    font-size: .8em
   `}
   button {
     display: block;
