@@ -44,11 +44,11 @@ const FullPageWrap = styled.div`
 `;
 const OuterWrap = styled.div`
   position: relative;
-  width: 80%;
+  padding: 0 5vw;
   max-width: 1000px;
   margin: 0 auto;
   top: 80px;
-  ${media.portrait.xl`
+  /* ${media.portrait.xl`
     width: 55%;
   `}
   ${media.portrait.lg`
@@ -56,7 +56,7 @@ const OuterWrap = styled.div`
   `}
   ${media.portrait.md`
     width: 70%;
-  `}
+  `} */
   ${media.landscape.md`
     top: 20px;  
   `}
@@ -151,21 +151,17 @@ const CloseIcon = styled.div`
   `}
 `;
 const Img = styled.img`
-  width: 100%;
+  width: 40%;
+  max-width: 225px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
   height: auto;
   transition: box-shadow 100ms ease;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.3);
   &:hover {
     box-shadow: 0px 0px 2px 4px rgba(88, 135, 211, 0.5);
   }
-  ${media.portrait.xl`
-    max-width: none;
-    display: block;
-    margin: 0 auto 5%;
-  `}
-  ${media.landscape.sm`
-    display: block;
-  `}
 `;
 const Text = styled.p`
   position: relative;
