@@ -73,11 +73,7 @@ ItemWrap = styled(ItemWrap)`
   ${media.portrait.lg`
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
-    padding: 30px; 
-  `}
-  ${media.portrait.sm`
     padding: 20px; 
-    grid-template-columns: 1fr;
   `}
 `;
 let GridCell = posed.div(animations.homeNav);
