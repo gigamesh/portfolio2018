@@ -23,9 +23,12 @@ const colorPulse = [
   '#e9f3ff',
 ];
 
-const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
+const TunnelVision = ({ hasIntroFinished, registerIntroFinished, isPulsing, togglePulse }) => {
   const tunnelWrapper = useRef(null);
   const tunnel = useRef(null);
+  const rafId = useRef(null);
+  const currentFrame = useRef(0);
+
   const squares = [];
   let sizeScale;
   const mouseCoords = {
@@ -37,8 +40,6 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
     y: window.innerHeight * 0.15
   };
   const svgDimensions = { x: null, y: null, size: null };
-  const rafId = useRef(null);
-  const currentFrame = useRef(0);
 
   useEffect(() => {
     const { width, top, left } = tunnelWrapper.current.getBoundingClientRect();
@@ -154,10 +155,15 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
         }
       });
     }
+    console.log(squares)
   };
 
   const draw = () => {
     const currFrame = currentFrame.current;
+
+    if(currFrame === 0){
+      togglePulse(false);
+    }
 
     if (!hasIntroFinished && currFrame > squares.length) {
       registerIntroFinished();
@@ -170,7 +176,8 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished }) => {
       .data(squares)
       .join("rect")
       .attr("stroke", "black")
-      .attr("fill", (d, i) => colorPulse[i % colorPulse.length])
+      // .attr("fill", (d, i) => isPulsing ? colorPulse[i + currFrame % colorPulse.length] : '#fff')
+      .attr("fill", '#fff')
       .attr("opacity", (d, i) => {
         if (!hasIntroFinished && i === squares.length - currFrame) {
           squares[squares.length - currFrame].opacity = 1;
