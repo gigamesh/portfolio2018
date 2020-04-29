@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import ReactSVG from "react-svg";
-import ReactTooltip from "react-tooltip";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import media from "../utils/mediaqueries";
 import NavItems from "./NavItems";
 import { animations } from "../utils/animations";
@@ -79,12 +77,6 @@ LinkList = styled(LinkList)`
   li:hover svg {
     fill: var(--dark-blue);
   }
-  .tooltip-email{
-    font-size: 20px;
-    background: #fff;
-    color: var(--main-color);
-    border: 1px solid var(--main-color);
-  }
   .icon-email {
     bottom: -10px;
   }
@@ -151,32 +143,14 @@ const SVGInject = styled(ReactSVG)`
 export default class Contact extends Component {
   state = {
     visible: false,
-    copied: false,
-    tooltipText: "Click to copy email address"
   };
 
   componentDidMount() {
     this.setState({
       visible: true,
-      copied: false
     });
   }
 
-  componentDidUpdate() {
-    ReactTooltip.rebuild();
-  }
-
-  onCopy = () => {
-    this.setState({
-      copied: true,
-      tooltipText: "Copied to clipboard!"
-    });
-    setTimeout(() => {
-      this.setState({
-        tooltipText: "Click to copy email address"
-      });
-    }, 8000);
-  };
 
   render() {
     let { visible } = this.state;
@@ -202,8 +176,6 @@ export default class Contact extends Component {
             <LinkList pose={visible ? "visible" : "hidden"}>
               <ListItem
                 style={{ cursor: "pointer" }}
-                data-tip={this.state.tooltipText}
-                key={this.state.tooltipText}
               >
                 <a rel="noopener noreferrer" href="mailto:m.masurka@gmail.com">
                   <SVGInject
