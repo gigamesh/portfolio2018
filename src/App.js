@@ -1,6 +1,5 @@
 import React, { Component, createRef } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import Signal from 'signals';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Home from "./components/Home";
 import Connect from "./components/Connect";
@@ -10,7 +9,7 @@ import MobileMenu from "./components/MobileMenu";
 import "./styles/page-swipes.css";
 
 class App extends Component {
-  isPulsing = createRef(false);
+  pulseFrame = createRef(0);
   state = {
     initialLoad: false,
     pageDimensions: {
@@ -23,17 +22,16 @@ class App extends Component {
     mobileMenuOpen: false,
     homeNavShowing: true,
     source: "",
-    hasIntroFinished: false,
+    hasIntroFinished: false
   };
 
   registerIntroFinished = () => {
     this.setState({ hasIntroFinished: true });
   };
 
-  togglePulse = (isPulsing) => {
-    console.log('togglePulse', isPulsing)
-    this.isPulsing.current = isPulsing;
-  }
+  resetPulse = () => {
+    this.pulseFrame.current = 0;
+  };
 
   checkMenus = () => {
     let { x, y } = this.state.pageDimensions;
@@ -113,7 +111,7 @@ class App extends Component {
       pageDimensions,
       homeNavShowing,
       source,
-      hasIntroFinished,
+      hasIntroFinished
     } = this.state;
 
     const mobileMenuComp = color => (
@@ -128,7 +126,7 @@ class App extends Component {
       />
     );
 
-    const home = (routeProps) => (
+    const home = routeProps => (
       <Home
         {...routeProps}
         hasIntroFinished={hasIntroFinished}
@@ -136,12 +134,12 @@ class App extends Component {
         navLinkHoverHandler={this.navLinkHoverHandler}
         homeNavShowing={homeNavShowing}
         clickHandler={this.clickHandler}
-        isPulsing={this.isPulsing}
-        togglePulse={this.togglePulse}
+        pulseFrame={this.pulseFrame}
+        resetPulse={this.resetPulse}
       >
         {menuBtnShowing && mobileMenuComp()}
       </Home>
-    )
+    );
 
     return (
       <React.Fragment>
@@ -179,15 +177,8 @@ class App extends Component {
                   </About>
                 )}
               />
-              <Route
-                path="/"
-                exact
-                render={routeProps => home(routeProps)}
-              />
-              <Route
-                path="/:any"
-                render={routeProps => home(routeProps)}
-              />
+              <Route path="/" exact render={routeProps => home(routeProps)} />
+              <Route path="/:any" render={routeProps => home(routeProps)} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

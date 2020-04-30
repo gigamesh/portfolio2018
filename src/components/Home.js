@@ -31,11 +31,12 @@ export default class Home extends Component {
 
   render() {
     const { visible } = this.state;
-    const { 
-      homeNavShowing, 
-      hasIntroFinished, 
-      isPulsing, 
-      togglePulse } = this.props;
+    const {
+      homeNavShowing,
+      hasIntroFinished,
+      pulseFrame,
+      resetPulse
+    } = this.props;
 
     return (
       <FullWrap>
@@ -58,8 +59,8 @@ export default class Home extends Component {
               <TunnelVision
                 hasIntroFinished={hasIntroFinished}
                 registerIntroFinished={this.props.registerIntroFinished}
-                isPulsing={isPulsing}
-                togglePulse={togglePulse}
+                pulseFrame={pulseFrame}
+                resetPulse={resetPulse}
               />
             </TunnelThrottled>
             <RevealBoxBottom>
@@ -73,10 +74,10 @@ export default class Home extends Component {
             </RevealBoxBottom>
           </Content>
           {homeNavShowing && (
-            <BigNavHome 
+            <BigNavHome
               visible={visible || hasIntroFinished}
-              togglePulse={togglePulse}
-              >
+              resetPulse={resetPulse}
+            >
               {this.props.children}
             </BigNavHome>
           )}

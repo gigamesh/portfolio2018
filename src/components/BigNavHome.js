@@ -102,7 +102,7 @@ export default props => {
     let linkMap = text.map(val => {
       let link = `/${val}`;
       return (
-        <LinkWrapper key={val} onMouseEnter={()=> props.togglePulse(true)}>
+        <LinkWrapper key={val} onMouseEnter={() => props.resetPulse()}>
           <NavLinkStyled to={link} color={`var(--light-blue)`}>
             {val}
           </NavLinkStyled>

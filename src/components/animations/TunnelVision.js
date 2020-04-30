@@ -1,6 +1,11 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { select } from "d3-selection";
-import { scaleLinear, scalePow, scaleSequentialLog } from "d3-scale";
+import {
+  scaleLinear,
+  scalePow,
+  scaleSequentialLog,
+  scaleQuantize
+} from "d3-scale";
 import "./tunnel.css";
 
 const SQUARE_COUNT = 30;
@@ -11,19 +16,25 @@ const strokeWidthScale = scalePow()
   .exponent(EXPONENT)
   .domain([SQUARE_COUNT, 1])
   .range([2, 0.5]);
-const colorPulse = [
-  '#e9f3ff',
-  '#c7deff',
-  '#7aa7ee',
-  '#5887d3',
-  '#375688', 
-  '#5887d3',
-  '#7aa7ee',
-  '#c7deff',
-  '#e9f3ff',
+const pulseColors = [
+  "#ffffff",
+  "#e9f3ff",
+  "#c7deff",
+  "#7aa7ee",
+  "#7aa7ee",
+  "#c7deff",
+  "#e9f3ff",
+  "#ffffff"
 ];
+const pulseScale = scaleQuantize()
+  .domain([0, 40])
+  .range(Array.from({ length: SQUARE_COUNT + 1 }, (v, i) => i).reverse());
 
-const TunnelVision = ({ hasIntroFinished, registerIntroFinished, isPulsing, togglePulse }) => {
+const TunnelVision = ({
+  hasIntroFinished,
+  registerIntroFinished,
+  pulseFrame
+}) => {
   const tunnelWrapper = useRef(null);
   const tunnel = useRef(null);
   const rafId = useRef(null);
@@ -155,15 +166,13 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished, isPulsing, togg
         }
       });
     }
-    console.log(squares)
+    // console.log(squares);
   };
 
   const draw = () => {
     const currFrame = currentFrame.current;
 
-    if(currFrame === 0){
-      togglePulse(false);
-    }
+    console.log(pulseScale(pulseFrame.current));
 
     if (!hasIntroFinished && currFrame > squares.length) {
       registerIntroFinished();
@@ -176,8 +185,10 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished, isPulsing, togg
       .data(squares)
       .join("rect")
       .attr("stroke", "black")
-      // .attr("fill", (d, i) => isPulsing ? colorPulse[i + currFrame % colorPulse.length] : '#fff')
-      .attr("fill", '#fff')
+      .attr("fill", (d, i) => {
+        const denom = pulseScale(i + pulseFrame.current);
+        return pulseColors[(pulseColors.length - 1) % (denom > 0 ? denom : 1)];
+      })
       .attr("opacity", (d, i) => {
         if (!hasIntroFinished && i === squares.length - currFrame) {
           squares[squares.length - currFrame].opacity = 1;
@@ -216,6 +227,7 @@ const TunnelVision = ({ hasIntroFinished, registerIntroFinished, isPulsing, togg
       (mouseCoords.y - prevMouseCoords.y) / MOUSE_EASE_DURATION;
 
     currentFrame.current = currFrame < FRAMES_PER_LOOP - 1 ? currFrame + 1 : 0;
+    pulseFrame.current++;
 
     rafId.current = requestAnimationFrame(draw);
   };
