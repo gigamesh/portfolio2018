@@ -10,7 +10,7 @@ import { Header } from "./ui";
 
 const FullPageWrap = styled.div`
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
   background: #f7f7f7;
   position: absolute;
   width: 100%;
