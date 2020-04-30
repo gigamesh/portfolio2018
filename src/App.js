@@ -27,12 +27,12 @@ class App extends Component {
   };
 
   mouseCoords = {
-    x: window.innerWidth * 0.8,
-    y: window.innerHeight * 0.8
+    x: window.innerWidth * 0.9,
+    y: window.innerHeight * 0.1
   };
   prevMouseCoords = {
-    x: window.innerWidth * 0.8,
-    y: window.innerHeight * 0.8
+    x: window.innerWidth * 0.9,
+    y: window.innerHeight * 0.1
   };
 
   updatePrevMouseCoords = () => {
