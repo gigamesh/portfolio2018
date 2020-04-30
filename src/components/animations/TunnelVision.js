@@ -166,13 +166,10 @@ const TunnelVision = ({
         }
       });
     }
-    // console.log(squares);
   };
 
   const draw = () => {
     const currFrame = currentFrame.current;
-
-    console.log(pulseScale(pulseFrame.current));
 
     if (!hasIntroFinished && currFrame > squares.length) {
       registerIntroFinished();
