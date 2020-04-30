@@ -43,7 +43,7 @@ const portfolioItems = [
     title: "Fireblog",
     img: "/img/thumbnails/fireblog.jpg",
     text:
-      "This project started as a markdown-based blogging editor for a multidisciplinary economics conference I'm helping organize (RadicalxChange). I eventually decided to generalize and open-source it. It has a React front-end and uses Firebase Cloudstore for data persistence.",
+      "This project started as a markdown-based blogging editor for RadicalxChange, a nonprofit organization I'm involved with. The editor proved so useful leading up to our inaugural conference that I eventually decided to generalize and open-source it. It has a React front-end and uses Firebase Cloudstore for data persistence.",
     url: "https://fireblog-2018.firebaseapp.com",
     src: "https://github.com/gigamesh/fireblog"
   },
