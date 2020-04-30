@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import ReactSVG from 'react-svg'
-import ReactTooltip from 'react-tooltip'
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import media from '../utils/mediaqueries';
-import NavItems from './NavItems';
-import { animations } from '../utils/animations';
-import posed from 'react-pose';
-import { Header } from './ui'
+import React, { Component } from "react";
+import styled from "styled-components";
+import ReactSVG from "react-svg";
+import media from "../utils/mediaqueries";
+import NavItems from "./NavItems";
+import { animations } from "../utils/animations";
+import posed from "react-pose";
+import { Header } from "./ui";
 
 const FullPageWrap = styled.div`
   background: #f7f7f7;
@@ -16,15 +14,15 @@ const FullPageWrap = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
-`
+`;
 const Container = styled.div`
   top: -30px;
   position: relative;
   height: 65%;
   max-width: 1000px;
   width: 90%;
-  margin: 0 auto; 
-`
+  margin: 0 auto;
+`;
 const InnerWrap = styled.div`
   position: relative;
   background: #fff;
@@ -39,26 +37,25 @@ const InnerWrap = styled.div`
   ${media.portrait.md`
     padding: 20px;
     `}
-`
+`;
 
 let LinkList = posed.ul({
-  visible: {          
+  visible: {
     opacity: 1,
     staggerChildren: 100,
     delayChildren: 300
   },
-  hidden: {      
+  hidden: {
     opacity: 0,
     staggerChildren: 0
   }
-})
+});
 
 LinkList = styled(LinkList)`
   position: relative;
   list-style-type: none;
   font-size: 4.6em;
   line-height: 130%;
-  font-weight: 600;
   white-space: pre;
   overflow: hidden;
   left: 4%;
@@ -79,12 +76,6 @@ LinkList = styled(LinkList)`
   }
   li:hover svg {
     fill: var(--dark-blue);
-  }
-  .tooltip-email{
-    font-size: 20px;
-    background: #fff;
-    color: var(--main-color);
-    border: 1px solid var(--main-color);
   }
   .icon-email {
     bottom: -10px;
@@ -135,7 +126,7 @@ LinkList = styled(LinkList)`
           width: 40px;
     } 
   `}
-`
+`;
 
 let ListItem = posed.li(animations.homeNav);
 
@@ -147,36 +138,17 @@ const SVGInject = styled(ReactSVG)`
       display: inline;
     }
   }
-`
+`;
 
 export default class Contact extends Component {
   state = {
     visible: false,
-    copied: false,
-    tooltipText: 'Click to copy email address'
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.setState({
       visible: true,
-      copied: false
-    })
-  }
-
-  componentDidUpdate() {
-    ReactTooltip.rebuild();
-  }
-
-  onCopy = () => {
-    this.setState({
-      copied: true,
-      tooltipText: 'Copied to clipboard!'
     });
-    setTimeout(()=>{
-      this.setState({
-        tooltipText: 'Click to copy email address'
-    });
-    }, 8000)
   }
 
   render() {
@@ -185,69 +157,90 @@ export default class Contact extends Component {
     return (
       <FullPageWrap>
         {this.props.children}
-        {!this.props.menuBtnShowing && 
-        <NavItems 
-          color={'#5296ce'} 
-          hovercolor={'#205887'}
-          path={this.props.location.pathname}
-          />}
+        {!this.props.menuBtnShowing && (
+          <NavItems
+            color={"#5296ce"}
+            hovercolor={"#205887"}
+            path={this.props.location.pathname}
+          />
+        )}
         <Container>
-          <Header 
-            pose={this.state.visible ? 'visible' : 'hidden'}
-            color={'var(--light-blue)'}>
+          <Header
+            pose={this.state.visible ? "visible" : "hidden"}
+            color={"var(--light-blue)"}
+          >
             connect
           </Header>
-          <InnerWrap pose={this.state.visisible ? 'visible' : 'hidden'}>
+          <InnerWrap pose={this.state.visisible ? "visible" : "hidden"}>
             <LinkList pose={visible ? "visible" : "hidden"}>
+              <ListItem
+                style={{ cursor: "pointer" }}
+              >
+                <a rel="noopener noreferrer" href="mailto:m.masurka@gmail.com">
+                  <SVGInject
+                    path="/img/icons/mail.svg"
+                    svgClassName="icon-email"
+                  />
+                  <span>email</span>
+                </a>
+              </ListItem>
+
               <ListItem>
-                <a rel="noopener noreferrer" href="https://www.linkedin.com/in/matt-masurka-334762150/" target="_blank">
-                  <SVGInject 
-                    path="/img/icons/linkedin.svg" 
-                    svgClassName='icon-linkedin' />
+                <a
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/matt-masurka-334762150/"
+                  target="_blank"
+                >
+                  <SVGInject
+                    path="/img/icons/linkedin.svg"
+                    svgClassName="icon-linkedin"
+                  />
                   <span>linkedin</span>
                 </a>
               </ListItem>
               <ListItem>
-                <a rel="noopener noreferrer" href="https://github.com/gigamesh" target="_blank">
-                  <SVGInject 
-                    path="/img/icons/github.svg" 
-                    svgClassName='icon-github' />
+                <a
+                  rel="noopener noreferrer"
+                  href="https://github.com/gigamesh"
+                  target="_blank"
+                >
+                  <SVGInject
+                    path="/img/icons/github.svg"
+                    svgClassName="icon-github"
+                  />
                   <span>github</span>
                 </a>
               </ListItem>
-              <ListItem>
-                <a rel="noopener noreferrer" href="https://medium.com/@m.masurka" target="_blank">
-                  <SVGInject 
-                    path="/img/icons/medium.svg" 
-                    svgClassName='icon-medium' />
+              {/* <ListItem>
+                <a
+                  rel="noopener noreferrer"
+                  href="https://medium.com/@m.masurka"
+                  target="_blank"
+                >
+                  <SVGInject
+                    path="/img/icons/medium.svg"
+                    svgClassName="icon-medium"
+                  />
                   <span>medium</span>
                 </a>
-              </ListItem>
+              </ListItem> */}
               <ListItem>
-                <a rel="noopener noreferrer" href="https://twitter.com/gigamesh" target="_blank">
-                  <SVGInject 
-                    path="/img/icons/twitter.svg" 
-                    svgClassName='icon-twitter' />
+                <a
+                  rel="noopener noreferrer"
+                  href="https://twitter.com/gigamesh"
+                  target="_blank"
+                >
+                  <SVGInject
+                    path="/img/icons/twitter.svg"
+                    svgClassName="icon-twitter"
+                  />
                   <span>twitter</span>
                 </a>
               </ListItem>
-              <CopyToClipboard onCopy={this.onCopy} text='m.masurka@gmail.com'>
-                <ListItem 
-                  style={{cursor: 'pointer'}} 
-                  data-tip={this.state.tooltipText}
-                  key={this.state.tooltipText}
-                  >
-                  <SVGInject 
-                    path="/img/icons/mail.svg" 
-                    svgClassName='icon-email' />
-                  <span>email</span>
-                  <ReactTooltip className='tooltip-email'/>
-                </ListItem>
-              </CopyToClipboard>
             </LinkList>
           </InnerWrap>
         </Container>
       </FullPageWrap>
-    )
+    );
   }
 }

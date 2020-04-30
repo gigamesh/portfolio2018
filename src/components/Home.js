@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import throttle from "react-throttle-render";
 import TunnelVision from "./animations/TunnelVision";
-// import TunnelShapes from './animations/TunnelShapes';
 import "./LandingPage.css";
 import BigNavHome from "./BigNavHome";
 import {
@@ -12,40 +11,33 @@ import {
   RevealBoxWrapper,
   NamePosed,
   BottomTextPosed,
-  TunnelAnimation,
-  ColorSquare
+  TunnelWrapper
 } from "./homeStyledComps";
 
 // const TunnelShapesThrottled = throttle(30)(TunnelShapes);
-const TunnelThrottled = throttle(30)(TunnelAnimation);
+const TunnelThrottled = throttle(30)(TunnelWrapper);
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
-      tunnelWidth: 0
+      visible: false
     };
   }
 
   componentDidMount() {
     setTimeout(() => this.setState({ visible: true }), 0);
-    this.updateTunnelWidth();
-  }
-
-  updateTunnelWidth = () => {
-    this.setState({ tunnelWidth: this.contentDiv.clientWidth });
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.tunnelWidth !== this.contentDiv.clientWidth) {
-      this.updateTunnelWidth();
-    }
   }
 
   render() {
     const { visible } = this.state;
-    const { homeNavShowing } = this.props;
+    const {
+      homeNavShowing,
+      hasIntroFinished,
+      mouseCoords,
+      prevMouseCoords,
+      updatePrevMouseCoords
+    } = this.props;
 
     return (
       <FullWrap>
@@ -57,32 +49,36 @@ export default class Home extends Component {
           >
             <RevealBoxWrapper>
               <div id="reveal-up">
-                <NamePosed pose={visible ? "visible" : "hidden"}>
-                  Matthew Masurka
+                <NamePosed
+                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
+                >
+                  Matt Masurka
                 </NamePosed>
               </div>
             </RevealBoxWrapper>
             <TunnelThrottled visible={visible}>
               <TunnelVision
-                options={{}}
-                percentage={0.5}
-                loaded={this.props.loaded}
-                introAnimationDone={this.props.introAnimationDone}
+                hasIntroFinished={hasIntroFinished}
+                registerIntroFinished={this.props.registerIntroFinished}
+                mouseCoords={mouseCoords}
+                prevMouseCoords={prevMouseCoords}
+                updatePrevMouseCoords={updatePrevMouseCoords}
               />
             </TunnelThrottled>
             <RevealBoxBottom>
               <div id="reveal-down">
-                <BottomTextPosed pose={visible ? "visible" : "hidden"}>
-                  <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" />
-                  <ColorSquare color="var(--light-blue)" />
+                <BottomTextPosed
+                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
+                >
                   web development & design
                 </BottomTextPosed>
               </div>
             </RevealBoxBottom>
           </Content>
           {homeNavShowing && (
-            <BigNavHome visible={visible}>{this.props.children}</BigNavHome>
+            <BigNavHome visible={visible || hasIntroFinished}>
+              {this.props.children}
+            </BigNavHome>
           )}
         </InnerWrap>
       </FullWrap>
