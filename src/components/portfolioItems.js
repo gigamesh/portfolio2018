@@ -1,9 +1,16 @@
 const portfolioItems = [
   {
+    title: "FinFren",
+    img: "/img/thumbnails/finfren.png",
+    text:
+      "FinFren is an alert service for crypto currency investors built on an alogirthmic trading model. I built the model by saving +4 years of trading data from Coinbase's public API to a PostresQL database (using Prisma), ran a Monte Carlo simulation to optimize the model's parameters, and eventually built the web app using React and Firebase (Realtime DB, Firebase Functions, and the Firebase Auth API). The subscription payments are managed with Paypal.",
+    url: "http://finfren.com"
+  },
+  {
     title: "Quadratic Finance",
     img: "/img/thumbnails/librad.png",
     text:
-      "This is a data visualization I built using D3 and React for the purpose of explaining a novel funding mechanism for public goods. It features animation using D3's force simulations, with hundreds of SVG circle nodes and multiple state transitions.",
+      "This is a data visualization I built using D3 and React for the purpose of explaining a novel funding mechanism for public goods invented by Vitalik Buterin, Zoë Hitzig, and E. Glen Weyl. The mechanism has gained many advocates in the Web3 ecosystem but it is a little unintuitive so I thought a visualization might help explain it. The app features animation using D3's force simulations, with hundreds of SVG circle nodes and multiple state transitions.",
     url: "http://liberal-radicalism.s3-website-us-west-1.amazonaws.com/",
     src: "https://github.com/gigamesh/liberal-radicalism-d3"
   },

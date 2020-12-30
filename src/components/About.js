@@ -50,15 +50,18 @@ const TextStyled = styled(Text)`
       color: #205887
     }
   }
+  p {
+    margin-bottom: 1rem;
+  }
   color: var(--main-color);
   margin: 0 auto;
   align-self: center;
-  font-size: 1.8em;
+  font-size: 1.2em;
   font-weight: 200;
   width: 80%;
   max-width: 650px;
   text-align: justify;
-  line-height: normal;
+  line-height: 1.4;
   span {
     display: block;
     text-align: center;
@@ -169,19 +172,39 @@ export default class Contact extends Component {
         <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
           <span>Hello!</span>
           <p>
-            I'm Matt, a web developer based in Los Angeles. I also have
-            experience in the music industry and travelled the world as a &nbsp;
+            I'm Matt, a web developer, entrepreneur and musician based in Los
+            Angeles. Some people know me by my DJ/producer alter ego,{" "}
             <a
               href="https://open.spotify.com/artist/1Bo8Afb2Qbjs4x6kJHyjle?si=kj3V1cQLS32h8Ibfr4zLZA"
               target="_blank"
               rel="noopener noreferrer"
             >
-              music producer & DJ&nbsp;
+              Gigamesh
             </a>
-            for many years. It was a great experience, but in 2017 I decided to
-            pursue my love of technology and learn how to code. In addition to
-            programming and music, I'm a big enthusiast for visual design,
-            mechanism design, and effective altruism. ✌
+            .
+          </p>
+          <p>
+            In 2017, I decided to pursue my passion for technology and learn to
+            code. I spent the next 3 years honing my skills as a front end
+            developer on projects for organizations like Left Field Labs,
+            Google, Cisco, and RadicalxChange. Lately, I'm focused on{" "}
+            <a
+              href="https://finfren.com"
+              target="_blank"
+              rel="noopenner noreferrer"
+            >
+              FinFren
+            </a>
+            , a service I built for cryptocurrency traders, as well as the ways
+            I might be able to help deliver the incredible potential of{" "}
+            <a
+              href="https://twitter.com/Gigamesh/status/1343401220455636993?s=20"
+              target="_blank"
+              rel="noopenner noreferrer"
+            >
+              Web3
+            </a>
+            . ✌
           </p>
         </TextStyled>
         <HeadShot />
