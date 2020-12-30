@@ -176,18 +176,17 @@ const TextWrap = styled.div`
   `}
   button {
     display: block;
-    margin: 10% auto 0;
   }
 `;
 const Button = styled.button`
   background: var(--light-blue);
   font-size: 1em;
-  width: 40%;
+  width: 150px;
   padding: 0.5em;
   border-radius: 7px;
   color: white;
-  margin-top: 1em;
   border: none;
+  margin-right: 1em;
   &:focus {
     outline-style: none;
   }
@@ -197,9 +196,16 @@ const Button = styled.button`
   }
 `;
 const Link = styled.a`
-  display: block;
-  margin: 5px auto;
+  /* display: block; */
+  /* margin: 5px auto; */
   text-align: center;
+`;
+
+const ButtonWrap = styled.div`
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export default class Modal extends Component {
@@ -244,16 +250,16 @@ export default class Modal extends Component {
                 </a>
                 <TextWrap>
                   <Text>{text}</Text>
-                  <div id="link">
+                  <ButtonWrap id="link">
                     <a href={url} target="_blank" rel="noopener noreferrer">
-                      <Button>OPEN</Button>
+                      <Button>View app</Button>
                     </a>
                     {src && (
                       <Link href={src} target="_blank">
-                        [ github ]
+                        [ View source code ]
                       </Link>
                     )}
-                  </div>
+                  </ButtonWrap>
                 </TextWrap>
               </InnerWrap>
             </PoseDivWrap>
