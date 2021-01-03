@@ -6,33 +6,35 @@ import posed from "react-pose";
 import { animations } from "../utils/animations";
 
 const FullPageWrap = styled.div`
-  overflow: hidden;
   /* background: var(--lightest-blue); */
+  min-height: 100%;
   background: #fff;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   ${media.portrait.xl`
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 0.5 1fr;
   `}
   }
 `;
 
 const HeadShot = styled.div`
-  background: url("/img/photos/headshot.jpg");
+  background: url("/img/photos/new-headshot.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100%;
+  -height: 100%;
   ${media.portrait.xl`
     grid-row: 1/2;
-    background: url("/img/photos/headshot-small.jpg");
+    max-width: 40vh;
+    margin: 60px auto 0;
+    height: 40vh;
+    background: url("/img/photos/new-headshot-small.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -62,89 +64,73 @@ const TextStyled = styled(Text)`
   max-width: 650px;
   text-align: justify;
   line-height: 1.4;
-  span {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  h1 {
     display: block;
     text-align: center;
     position: relative;
-    top: -30px;
+    margin-bottom: 2rem;
     font-size: 2.8em;
-    /* font-weight: 100; */
+    font-weight: 100;
   }
   ${media.portrait.lg`
-    font-size: 1.5em;
-    span {
-      top: -10px;
+    font-size: 1em;
+    h1 {
       font-size: 2.3em;
     }
   `}
   ${media.portrait.md`
       width: 90%;
-    font-size: 1.1em;
-    span {
-      top: -10px;
-      font-size: 2.1em;
+    h1 {
+      font-size: 2em;
     }
   `}
   ${media.portrait.sm`
     font-size: 1em;
-    span {
+    h1 {
       font-size: 1.8em;
-      top: -10px;
     }
   `} 
   ${media.portrait.xs`
     font-size: 0.9em;
     width: 95%;
-    span {
+    h1 {
       font-size: 1.5em;
-      top: -5px;
     }
   `}
   @media (max-width: 400px) and (min-height: 700px) {
     width: 80%;
     font-size: 1em;
-    span {
+    h1 {
       font-size: 1.7em;
-      top: -10px;
     }
   }
   ${media.landscape.xl`
     font-size: 1.7em;
-    span {
+    h1 {
       font-size: 2.5em;
     }
   `}
   ${media.landscape.lg`
-    font-size: 1.3em;
-    span {
-      // top: -20px;
+    font-size: 1.2em;
+    h1 {
       font-size: 2.5em;
     }
   `}
-  ${media.landscape.md`
-    font-size: 1.1em;
-  `}
   ${media.landscape.sm`
     font-size: 1em;
-    span {
+    h1 {
       font-size: 1.8em;
-      top: -10px;
     }
   `}
   ${media.landscape.xs`
     font-size: 0.9em;
     width: 90%;
-    span {
+    h1 {
       font-size: 1.5em;
-      top: -5px;
     }
   `}
-`;
-
-const FooterText = styled.p`
-  text-align: center;
-  position: relative;
-  margin: 3vh auto 0;
 `;
 
 export default class Contact extends Component {
@@ -170,7 +156,7 @@ export default class Contact extends Component {
           />
         )}
         <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
-          <span>Hello!</span>
+          <h1>Hello!</h1>
           <p>
             I'm Matt, a web developer, entrepreneur and musician based in Los
             Angeles. Some people know me by my DJ/producer alter ego,{" "}
