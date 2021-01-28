@@ -173,24 +173,24 @@ export default class Contact extends Component {
             In 2017, I decided to pursue my passion for technology and learn to
             code. I spent the next 3 years honing my skills as a front end
             developer on projects for organizations like Left Field Labs,
-            Google, Cisco, and RadicalxChange. Lately, I'm focused on{" "}
+            Google, Cisco, and RadicalxChange. Lately, I'm part of the team at{" "}
             <a
               href="https://finfren.com"
               target="_blank"
-              rel="noopenner noreferrer"
+              rel="noopener noreferrer"
+            >
+              Optimism
+            </a>
+            , an Ethereum scaling solution, as well as the founder of{" "}
+            <a
+              href="https://finfren.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               FinFren
             </a>
-            , a service I built for cryptocurrency traders, as well as the ways
-            I might be able to help deliver the incredible potential of{" "}
-            <a
-              href="https://twitter.com/Gigamesh/status/1343401220455636993?s=20"
-              target="_blank"
-              rel="noopenner noreferrer"
-            >
-              Web3
-            </a>
-            . ✌
+            , a subscription-based algorithmic trading model that has
+            outperformed the market every year since 2016.
           </p>
         </TextStyled>
         <HeadShot />

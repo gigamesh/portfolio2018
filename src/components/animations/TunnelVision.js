@@ -32,7 +32,7 @@ const TunnelVision = ({
     svgDimensions.y = left;
 
     sizeScale = scalePow()
-      .exponent(6)
+      .exponent(4)
       .domain([0, squareCount])
       .range([0, svgDimensions.size]);
 
@@ -170,8 +170,6 @@ const TunnelVision = ({
             currSquare.y[currFrame].scaleFn(prevMouseCoords.y)
           : 0
       );
-
-    // console.log(prevMouseCoords.x, prevMouseCoords.y);
 
     updatePrevMouseCoords();
 

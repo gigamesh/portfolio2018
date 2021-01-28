@@ -7,10 +7,8 @@ import {
   FullWrap,
   InnerWrap,
   Content,
-  RevealBoxBottom,
   RevealBoxWrapper,
   NamePosed,
-  BottomTextPosed,
   TunnelWrapper
 } from "./homeStyledComps";
 
@@ -65,15 +63,6 @@ export default class Home extends Component {
                 updatePrevMouseCoords={updatePrevMouseCoords}
               />
             </TunnelThrottled>
-            <RevealBoxBottom>
-              <div id="reveal-down">
-                <BottomTextPosed
-                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
-                >
-                  web development & design
-                </BottomTextPosed>
-              </div>
-            </RevealBoxBottom>
           </Content>
           {homeNavShowing && (
             <BigNavHome visible={visible || hasIntroFinished}>

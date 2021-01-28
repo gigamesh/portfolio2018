@@ -142,12 +142,12 @@ const SVGInject = styled(ReactSVG)`
 
 export default class Contact extends Component {
   state = {
-    visible: false,
+    visible: false
   };
 
   componentDidMount() {
     this.setState({
-      visible: true,
+      visible: true
     });
   }
 
@@ -173,10 +173,8 @@ export default class Contact extends Component {
           </Header>
           <InnerWrap pose={this.state.visisible ? "visible" : "hidden"}>
             <LinkList pose={visible ? "visible" : "hidden"}>
-              <ListItem
-                style={{ cursor: "pointer" }}
-              >
-                <a rel="noopener noreferrer" href="mailto:m.masurka@gmail.com">
+              <ListItem style={{ cursor: "pointer" }}>
+                <a rel="noopener noreferrer" href="mailto:matt@masurka.com">
                   <SVGInject
                     path="/img/icons/mail.svg"
                     svgClassName="icon-email"

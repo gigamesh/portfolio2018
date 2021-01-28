@@ -8,7 +8,7 @@ import Portfolio from "./components/Portfolio";
 import MobileMenu from "./components/MobileMenu";
 import "./styles/page-swipes.css";
 
-const mouseEaseDuration = 15;
+const mouseEaseDuration = 12;
 
 class App extends Component {
   state = {
