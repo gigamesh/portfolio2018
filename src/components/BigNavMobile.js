@@ -49,7 +49,7 @@ LinkWrapper = styled(LinkWrapper)`
   width: 100%;
 `;
 
-const NavLinkStyled = styled(NavLink)`
+const LinkStyled = styled.a`
   position: relative;
   transition: color 200ms ease;
   -webkit-text-stroke: var(--main-color) 1.5px;
@@ -84,30 +84,27 @@ class BigNavMobile extends React.Component {
   render() {
     let { visible, clickHandler, pathname } = this.props;
 
-    const links = () => {
-      let text = ["about", "portfolio", "connect"];
+    let links = [
+      { text: "fren", href: "https://finfren.com" },
+      { text: "creator", href: "https://spectranova.life" },
+      { text: "producer", href: "https://gigameshmusic.com" },
+      { text: "optimist", href: "https://optimism.io" }
+    ];
 
-      let linkMap = text.map(val => {
-        let link = `/${val}`;
-        return (
-          <LinkWrapper key={val}>
-            <NavLinkStyled
-              to={link}
-              onClick={e => clickHandler(e, pathname)}
-              color={`var(--light-blue)`}
-            >
-              {val}
-            </NavLinkStyled>
-          </LinkWrapper>
-        );
-      });
-      return linkMap;
-    };
-    return (
-      <NavSectionStyled pose={visible ? "visible" : "hidden"} key={0}>
-        {links()}
-      </NavSectionStyled>
-    );
+    return links.map(link => {
+      return (
+        <LinkWrapper key={link.text}>
+          <LinkStyled
+            href={link.href}
+            color={`var(--light-blue)`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.text}
+          </LinkStyled>
+        </LinkWrapper>
+      );
+    });
   }
 }
 export default BigNavMobile;

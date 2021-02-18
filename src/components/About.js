@@ -170,18 +170,17 @@ export default class Contact extends Component {
             .
           </p>
           <p>
-            In 2017, I decided to pursue my passion for technology and learn to
-            code. I spent the next 3 years honing my skills as a front end
-            developer on projects for organizations like Left Field Labs,
-            Google, Cisco, and RadicalxChange. Lately, I'm part of the team at{" "}
+            I've developed web apps for organizations like Left Field Labs,
+            Google, Cisco, and RadicalxChange. Lately, I'm focused on the
+            incredible potential of Web 3.0 as an integrations engineer at{" "}
             <a
-              href="https://finfren.com"
+              href="https://optimism.io"
               target="_blank"
               rel="noopener noreferrer"
             >
               Optimism
             </a>
-            , an Ethereum scaling solution, as well as the founder of{" "}
+            , an Ethereum scaling solution. I also run{" "}
             <a
               href="https://finfren.com"
               target="_blank"
@@ -189,8 +188,8 @@ export default class Contact extends Component {
             >
               FinFren
             </a>
-            , a subscription-based algorithmic trading model that has
-            outperformed the market every year since 2016.
+            , a subscription-based trading model that has outperformed the
+            market every year since 2016.
           </p>
         </TextStyled>
         <HeadShot />

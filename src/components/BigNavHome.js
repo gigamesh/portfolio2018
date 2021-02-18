@@ -31,18 +31,16 @@ const NavWrapAnimated = posed.div({
 const NavWrap = styled(NavWrapAnimated)`
   position: relative;
   display: flex;
-  left: 2vmax;
+  left: 50px;
 `;
 
 const NavSectionStyled = styled(NavSection)`
+  padding-top: 50px;
   list-style-type: none;
-  font-size: 20em;
   line-height: 1em;
   opacity: 0;
   position: relative;
-  ${media.portrait.lg`
-    font-size: 6.3em;
-    `}
+  font-size: 6em;
   ${media.portrait.md`
     font-size: 5.5em;
     `}
@@ -51,15 +49,6 @@ const NavSectionStyled = styled(NavSection)`
     `}
   ${media.portrait.xs`
     font-size: 4em;
-    `}
-  ${media.landscape.xl`
-    font-size: 8.6em;
-    `}
-  ${media.landscape.lg`
-    font-size: 8.2em;
-    `}
-  ${media.landscape.md`
-    font-size: 6em;
     `}
   ${media.landscape.sm`
     font-size: 4.8em;
@@ -75,14 +64,13 @@ LinkWrapper = styled(LinkWrapper)`
   width: 100%;
 `;
 
-const NavLinkStyled = styled(NavLink)`
+const LinkStyled = styled.a`
   position: relative;
   transition: color 400ms ease;
   -webkit-text-stroke: var(--main-color) 1.5px;
   width: 100%;
   z-index: 1;
   color: #fff;
-  padding-bottom: 30px;
   ${media.landscape.xs`
     -webkit-text-stroke: var(--main-color) 1px;
   `} ${media.portrait.xs`
@@ -97,19 +85,27 @@ export default props => {
   let { visible } = props;
 
   const links = () => {
-    let text = ["about", "portfolio", "connect"];
+    let links = [
+      { text: "fren", href: "https://finfren.com" },
+      { text: "creator", href: "https://spectranova.life" },
+      { text: "producer", href: "https://gigameshmusic.com" },
+      { text: "optimist", href: "https://optimism.io" }
+    ];
 
-    let linkMap = text.map(val => {
-      let link = `/${val}`;
+    return links.map(link => {
       return (
-        <LinkWrapper key={val}>
-          <NavLinkStyled to={link} color={`var(--light-blue)`}>
-            {val}
-          </NavLinkStyled>
+        <LinkWrapper key={link.text}>
+          <LinkStyled
+            href={link.href}
+            color={`var(--light-blue)`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.text}
+          </LinkStyled>
         </LinkWrapper>
       );
     });
-    return linkMap;
   };
 
   return (
