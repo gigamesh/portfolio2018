@@ -1,21 +1,21 @@
-import React from 'react'
-import styled from 'styled-components'
-import posed from 'react-pose';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import posed from "react-pose";
+import { Link } from "react-router-dom";
 
 const NavSection = posed.ul({
   visible: {
     opacity: 1,
     delayChildren: 200,
-    staggerChildren: 100,
+    staggerChildren: 100
   }
 });
 
 const LinkWrapper = posed.li({
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 50}
+    transition: { type: "spring", stiffness: 50 }
   },
   hidden: { opacity: 0, y: -50 }
 });
@@ -24,7 +24,7 @@ const LinkWrapStyled = styled(LinkWrapper)`
   display: inline-block;
   padding: 0 10px;
   font-weight: 200;
-`
+`;
 
 const NavSectionStyled = styled(NavSection)`
   position: absolute;
@@ -47,7 +47,7 @@ const NavSectionStyled = styled(NavSection)`
       -webkit-text-stroke: var(--main-color) 1px;
     }
   }
-`
+`;
 
 const LinkStyled = styled(Link)`
   color: var(--main-color);
@@ -58,68 +58,60 @@ const LinkStyled = styled(Link)`
   &:hover {
     color: var(--dark-blue);
   }
-`
+`;
 
 class NavItems extends React.Component {
   state = {
     navSectionVisible: false
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.setState({
       navSectionVisible: true
-    })
+    });
   }
 
-  render(){
+  render() {
     const { navSectionVisible } = this.state;
 
     const navItems = [
-      { 
-        text: 'about',
-        to: '/about'
+      {
+        text: "about",
+        to: "/about"
       },
       {
-        text: 'portfolio',
-        to: '/portfolio'
-      },
-      {
-        text: 'connect',
-        to: '/connect'
-      },
-      // {
-      //   text: 'resume',
-      //   to: '/resume'
-      // },
+        text: "connect",
+        to: "/connect"
+      }
     ];
-    
+
     const navItemsMap = navItems.map(item => {
-      return  this.props.path !== item.to && 
-        <LinkWrapStyled key={item.text}>
-          <LinkStyled
-            color={this.props.color}
-            hovercolor={this.props.hovercolor}
-            to={item.to} 
+      return (
+        this.props.path !== item.to && (
+          <LinkWrapStyled key={item.text}>
+            <LinkStyled
+              color={this.props.color}
+              hovercolor={this.props.hovercolor}
+              to={item.to}
             >
-            {item.text}
-          </LinkStyled>
-        </LinkWrapStyled> 
-    })
+              {item.text}
+            </LinkStyled>
+          </LinkWrapStyled>
+        )
+      );
+    });
 
     return (
-    <React.Fragment>
-      <NavSectionStyled
-        pose={navSectionVisible ? "visible" : "hidden"}>
-        <Link to='/'>
-          <i className="material-icons">
-            home
-          </i>
-        </Link>
-        {navItemsMap}               
-      </NavSectionStyled>
-    </React.Fragment>
-    )
+      <React.Fragment>
+        <NavSectionStyled pose={navSectionVisible ? "visible" : "hidden"}>
+          <Link to="/">
+            <i className="material-icons">home</i>
+          </Link>
+          {navItemsMap}
+        </NavSectionStyled>
+      </React.Fragment>
+    );
   }
 }
 
-export default NavItems
+export default NavItems;

@@ -4,7 +4,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Home from "./components/Home";
 import Connect from "./components/Connect";
 import About from "./components/About";
-import Portfolio from "./components/Portfolio";
 import MobileMenu from "./components/MobileMenu";
 import "./styles/page-swipes.css";
 
@@ -162,19 +161,6 @@ class App extends Component {
                   <Connect {...routeProps} menuBtnShowing={menuBtnShowing}>
                     {menuBtnShowing && mobileMenuComp()}
                   </Connect>
-                )}
-              />
-              <Route
-                path="/portfolio"
-                exact
-                render={routeProps => (
-                  <Portfolio
-                    pageHeight={pageDimensions.y}
-                    {...routeProps}
-                    menuBtnShowing={menuBtnShowing}
-                  >
-                    {menuBtnShowing && mobileMenuComp()}
-                  </Portfolio>
                 )}
               />
               <Route

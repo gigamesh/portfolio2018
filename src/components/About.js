@@ -173,7 +173,10 @@ export default class Contact extends Component {
             In 2017, I decided to pursue my passion for technology and learn to
             code. I spent the next 3 years honing my skills as a front end
             developer on projects for organizations like Left Field Labs,
-            Google, Cisco, and RadicalxChange. Lately, I'm part of the team at{" "}
+            Google, Cisco, and RadicalxChange.
+          </p>
+          <p>
+            I'm currently part of the team at{" "}
             <a
               href="https://finfren.com"
               target="_blank"

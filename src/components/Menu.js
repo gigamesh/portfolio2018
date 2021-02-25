@@ -97,9 +97,6 @@ export default class Home extends Component {
             <NavLinkStyled to="/about">about</NavLinkStyled>
           </LinkWrapper>
           <LinkWrapper>
-            <NavLinkStyled to="/portfolio">portfolio</NavLinkStyled>
-          </LinkWrapper>
-          <LinkWrapper>
             <NavLinkStyled to="/resume">resume</NavLinkStyled>
           </LinkWrapper>
           <LinkWrapper>
