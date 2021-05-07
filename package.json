@@ -42,7 +42,7 @@
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "lottie-react-web": "^2.1.4",
     "mini-css-extract-plugin": "0.4.3",
     "node-sass": "^4.13.1",
