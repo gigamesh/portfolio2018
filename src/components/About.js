@@ -28,7 +28,7 @@ const HeadShot = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  -height: 100%;
+  height: 100%;
   ${media.portrait.xl`
     grid-row: 1/2;
     max-width: 40vh;
@@ -49,7 +49,7 @@ const TextStyled = styled(Text)`
     font-weight: 300;
     &:hover {
       text-decoration: underline;
-      color: #205887
+      color: #205887;
     }
   }
   p {
@@ -58,7 +58,7 @@ const TextStyled = styled(Text)`
   color: var(--main-color);
   margin: 0 auto;
   align-self: center;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 200;
   width: 80%;
   max-width: 650px;
@@ -71,7 +71,7 @@ const TextStyled = styled(Text)`
     text-align: center;
     position: relative;
     margin-bottom: 2rem;
-    font-size: 2.8em;
+    font-size: 2.4em;
     font-weight: 100;
   }
   ${media.portrait.lg`
@@ -107,7 +107,7 @@ const TextStyled = styled(Text)`
     }
   }
   ${media.landscape.xl`
-    font-size: 1.7em;
+    font-size: 1.3em;
     h1 {
       font-size: 2.5em;
     }
@@ -170,30 +170,32 @@ export default class Contact extends Component {
             .
           </p>
           <p>
-            In 2017, I decided to pursue my passion for technology and learn to
-            code. I spent the next 3 years honing my skills as a front end
-            developer on projects for organizations like Left Field Labs,
-            Google, Cisco, and RadicalxChange.
-          </p>
-          <p>
-            I'm currently part of the team at{" "}
+            After falling down the crypto rabbit hole in 2017, I decided to
+            learn to code. I spent the next 3 years honing my skills as a front
+            end developer on projects for organizations like Left Field Labs,
+            Google, Cisco, and RadicalxChange. I dove fully into web3 in 2021
+            when I joined{" "}
             <a
               href="https://finfren.com"
               target="_blank"
               rel="noopener noreferrer"
             >
               Optimism
-            </a>
-            , an Ethereum scaling solution, as well as the founder of{" "}
+            </a>{" "}
+            and built their Gateway from mainnet Ethereum.
+          </p>
+          <p>
+            Lately, I became a cofounder of{" "}
+            <a href="https://sound.xyz">sound.xyz</a>, a platform for musicians
+            to build a community for their{" "}
             <a
-              href="https://finfren.com"
+              href="https://kk.org/thetechnium/1000-true-fans/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              FinFren
+              1,000 true fans
             </a>
-            , a subscription-based algorithmic trading model that has
-            outperformed the market every year since 2016.
+            .
           </p>
         </TextStyled>
         <HeadShot />
