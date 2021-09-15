@@ -176,7 +176,7 @@ export default class Contact extends Component {
             Google, Cisco, and RadicalxChange. I dove fully into web3 in 2021
             when I joined{" "}
             <a
-              href="https://finfren.com"
+              href="https://optimism.io"
               target="_blank"
               rel="noopener noreferrer"
             >
