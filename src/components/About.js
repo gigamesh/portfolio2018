@@ -185,7 +185,7 @@ export default class Contact extends Component {
             and built their Gateway from mainnet Ethereum.
           </p>
           <p>
-            Lately, I became a cofounder of{" "}
+            Currently, I'm a cofounder of{" "}
             <a href="https://sound.xyz">sound.xyz</a>, a platform for musicians
             to build a community for their{" "}
             <a
