@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import media from "../utils/mediaqueries";
-import NavItems from "./NavItems";
-import posed from "react-pose";
-import { animations } from "../utils/animations";
+import React, { Component } from 'react';
+import posed from 'react-pose';
+import styled from 'styled-components';
+
+import { animations } from '../utils/animations';
+import media from '../utils/mediaqueries';
+import NavItems from './NavItems';
 
 const FullPageWrap = styled.div`
   /* background: var(--lightest-blue); */
@@ -29,6 +30,7 @@ const HeadShot = styled.div`
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+  align-self: flex-end;
   ${media.portrait.xl`
     grid-row: 1/2;
     max-width: 40vh;
@@ -58,77 +60,80 @@ const TextStyled = styled(Text)`
   color: var(--main-color);
   margin: 0 auto;
   align-self: center;
-  font-size: 1em;
+  font-size: 1.5rem;
   font-weight: 200;
   width: 80%;
   max-width: 650px;
   text-align: justify;
   line-height: 1.4;
-  padding-top: 30px;
+  padding-top: 50px;
   padding-bottom: 50px;
   h1 {
     display: block;
     text-align: center;
     position: relative;
     margin-bottom: 2rem;
-    font-size: 2.4em;
+    font-size: 2.4rem;
     font-weight: 100;
   }
-  ${media.portrait.lg`
-    font-size: 1em;
-    h1 {
-      font-size: 2.3em;
-    }
+  ${media.portrait.xl`
+    align-self: flex-start;
   `}
+  ${media.portrait.lg`
+    font-size: 1.5rem;
+    h1 {
+      font-size: 2.3rem;
+    }
+    `}
   ${media.portrait.md`
       width: 90%;
-    h1 {
-      font-size: 2em;
-    }
-  `}
+      h1 {
+        font-size: 2rem;
+      }
+      `}
   ${media.portrait.sm`
-    font-size: 1em;
+    font-size: 1.5rem;
     h1 {
-      font-size: 1.8em;
+      font-size: 1.8rem;
     }
-  `} 
+    `} 
   ${media.portrait.xs`
-    font-size: 0.9em;
+    font-size: 0.9rem;
     width: 95%;
     h1 {
-      font-size: 1.5em;
+      font-size: 1.5rem;
     }
   `}
   @media (max-width: 400px) and (min-height: 700px) {
     width: 80%;
-    font-size: 1em;
+    font-size: 1erm;
     h1 {
-      font-size: 1.7em;
+      font-size: 1.7rem;
     }
   }
   ${media.landscape.xl`
-    font-size: 1.3em;
+    font-size: 1.3rem;
     h1 {
-      font-size: 2.5em;
+      font-size: 2.5rem;
     }
   `}
   ${media.landscape.lg`
-    font-size: 1.2em;
+    font-size: 1.2rem;
     h1 {
-      font-size: 2.5em;
+      font-size: 2.5rem;
     }
   `}
   ${media.landscape.sm`
-    font-size: 1em;
+    font-size: 1.5rem;
     h1 {
-      font-size: 1.8em;
+      font-size: 1.8rem;
     }
   `}
   ${media.landscape.xs`
-    font-size: 0.9em;
+    font-size: 0.9rem;
     width: 90%;
     h1 {
-      font-size: 1.5em;
+      font-size: 1.5rem;
     }
   `}
 `;

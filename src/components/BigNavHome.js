@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import posed from "react-pose";
-import media from "../utils/mediaqueries";
-import { animations } from "../utils/animations";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import posed from 'react-pose';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { animations } from '../utils/animations';
+import media from '../utils/mediaqueries';
 
 const NavSection = posed.ul({
   visible: {
@@ -36,37 +37,10 @@ const NavWrap = styled(NavWrapAnimated)`
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 20em;
+  font-size: 9rem;
   line-height: 1em;
   opacity: 0;
   position: relative;
-  ${media.portrait.lg`
-    font-size: 6.3em;
-    `}
-  ${media.portrait.md`
-    font-size: 5.5em;
-    `}
-  ${media.portrait.sm`
-    font-size: 4.8em;
-    `}
-  ${media.portrait.xs`
-    font-size: 4em;
-    `}
-  ${media.landscape.xl`
-    font-size: 8.6em;
-    `}
-  ${media.landscape.lg`
-    font-size: 8.2em;
-    `}
-  ${media.landscape.md`
-    font-size: 6em;
-    `}
-  ${media.landscape.sm`
-    font-size: 4.8em;
-  `} 
-  ${media.landscape.xs`
-    font-size: 3.6em;
-  `} 
 `;
 
 let LinkWrapper = posed.li(animations.homeNav);

@@ -1,6 +1,7 @@
-import posed from "react-pose";
-import media from "../utils/mediaqueries";
-import styled from "styled-components";
+import posed from 'react-pose';
+import styled from 'styled-components';
+
+import media from '../utils/mediaqueries';
 
 export const FullWrap = styled.div`
   overflow: hidden;
@@ -31,8 +32,7 @@ export const InnerWrap = styled.div`
 
 export const Content = styled.div`
   right: ${props => (props.homenav === "true" ? "2vmax" : 0)};
-  width: 70vmin;
-  max-width: 520px;
+  width: 50vmin;
   min-width: 210px;
   user-select: none;
   position: relative;
@@ -119,7 +119,7 @@ export const Content = styled.div`
       font-size: .6em;
     }
   `}
-  max-width: ${({ homenav }) => (homenav === "true" ? "520px" : "none")};
+  max-width: ${({ homenav }) => (homenav === "true" ? "720px" : "none")};
 `;
 
 export const RevealBoxWrapper = styled.div`
