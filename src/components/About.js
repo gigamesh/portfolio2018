@@ -33,9 +33,9 @@ const HeadShot = styled.div`
   align-self: flex-end;
   ${media.portrait.xl`
     grid-row: 1/2;
-    max-width: 40vh;
-    margin: 60px auto 0;
-    height: 40vh;
+    height: 50vh;
+    max-width: 340px;
+    margin: 0 auto;
     background: url("/img/photos/new-headshot-small.png");
     background-size: cover;
     background-position: center center;
@@ -92,7 +92,7 @@ const TextStyled = styled(Text)`
       }
       `}
   ${media.portrait.sm`
-    font-size: 1.5rem;
+    font-size: 1rem;
     h1 {
       font-size: 1.8rem;
     }
