@@ -217,31 +217,9 @@ class LandingPage extends React.Component {
           <Overlay visible={this.state.animVisible} />
           <InnerWrap>
             <Content>
-              <RevealBoxWrapper>
-                <div id="reveal-up">
-                  <NamePosed
-                    pose={this.state.nameVisible ? "visible" : "hidden"}
-                  >
-                    matthew masurka
-                  </NamePosed>
-                </div>
-              </RevealBoxWrapper>
               <TunnelAnimation visible={this.state.animVisible}>
                 <TunnelVision percentage={0.5} />
               </TunnelAnimation>
-              <RevealBoxBottom>
-                <div id="reveal-down">
-                  <BottomTextPosed
-                    pose={this.state.bottomTextVisible ? "visible" : "hidden"}
-                  >
-                    web developer
-                    <span> • </span>
-                    designer
-                    <span> • </span>
-                    music producer
-                  </BottomTextPosed>
-                </div>
-              </RevealBoxBottom>
             </Content>
           </InnerWrap>
           <ChevDownLink onClick={this.scrollToNextPage}>
@@ -253,12 +231,7 @@ class LandingPage extends React.Component {
             this.pageTwo = section;
           }}
           style={{ height: "100vh" }}
-        >
-          {/* <Menu percentage={this.props.percentage}/> */}
-        </div>
-        {/* <h1 style={{top: 0, right: 0, position: 'fixed', color: 'red'}}>
-        {this.props.percentage}
-      </h1>  */}
+        ></div>
       </React.Fragment>
     );
     return this.props.percentage < 0.666 ? (
@@ -266,7 +239,6 @@ class LandingPage extends React.Component {
     ) : (
       <Redirect to="/home" />
     );
-    // return landingPageContent
   }
 }
 

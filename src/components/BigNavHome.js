@@ -1,10 +1,10 @@
-import React from 'react';
-import posed from 'react-pose';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import posed from "react-pose";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-import { animations } from '../utils/animations';
-import media from '../utils/mediaqueries';
+import { animations } from "../utils/animations";
+import media from "../utils/mediaqueries";
 
 const NavSection = posed.ul({
   visible: {
@@ -37,7 +37,7 @@ const NavWrap = styled(NavWrapAnimated)`
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 9rem;
+  font-size: 7.5rem;
   line-height: 1em;
   opacity: 0;
   position: relative;

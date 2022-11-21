@@ -21,6 +21,10 @@
   background: var(--lightest-blue)
 }
 
+html {
+  font-size: 20px;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
