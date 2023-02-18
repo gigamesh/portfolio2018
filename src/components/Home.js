@@ -45,15 +45,6 @@ export default class Home extends Component {
             homenav={homeNavShowing.toString()}
             innerRef={contentDiv => (this.contentDiv = contentDiv)}
           >
-            <RevealBoxWrapper>
-              <div id="reveal-up">
-                <NamePosed
-                  pose={visible || hasIntroFinished ? "visible" : "hidden"}
-                >
-                  Matt Masurka
-                </NamePosed>
-              </div>
-            </RevealBoxWrapper>
             <TunnelThrottled visible={visible}>
               <TunnelVision
                 hasIntroFinished={hasIntroFinished}

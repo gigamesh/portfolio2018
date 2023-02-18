@@ -37,7 +37,7 @@ const NavWrap = styled(NavWrapAnimated)`
 
 const NavSectionStyled = styled(NavSection)`
   list-style-type: none;
-  font-size: 7.5rem;
+  font-size: 6.5rem;
   line-height: 1em;
   opacity: 0;
   position: relative;

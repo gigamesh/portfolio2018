@@ -115,11 +115,15 @@ export default class Contact extends Component {
           />
         )}
         <TextStyled pose={this.state.textVisible ? "visible" : "hidden"}>
-          <h1>Hello!</h1>
+          <h1>
+            Hi{" "}
+            <span role="img" aria-label="hand waving">
+              👋
+            </span>
+          </h1>
           <p>
-            I'm Matthew Masurka, a software developer, entrepreneur and musician
-            based in Los Angeles. Some people know me by my DJ/producer alter
-            ego,{" "}
+            I'm Matt Masurka, a software engineer, entrepreneur and musician
+            based in Los Angeles. Some know me by my DJ/producer alter ego,{" "}
             <a
               href="https://open.spotify.com/artist/1Bo8Afb2Qbjs4x6kJHyjle?si=kj3V1cQLS32h8Ibfr4zLZA"
               target="_blank"
@@ -130,26 +134,43 @@ export default class Contact extends Component {
             .
           </p>
           <p>
-            After falling deep down the crypto rabbit hole in 2017, I learned to
-            code. I spent the next few years honing my skills as a front end
-            developer until eventually landing at Ethereum scaling project{" "}
+            I've produced{" "}
             <a
-              href="https://optimism.io"
+              href="https://www.youtube.com/watch?v=mqWq_48LxWQ"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Optimism
+              pop hits
+            </a>
+            , remixes for{" "}
+            <a
+              href="https://open.spotify.com/track/4AG78vnoHrJt4AGSzEremn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              multiple
             </a>{" "}
-            , where I built their first Gateway UI.
-          </p>
-          <p>
-            Currently, I'm a cofounder of{" "}
+            <a
+              href="https://open.spotify.com/track/38V0Rw7WwDJcLa5HP02MNR"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Grammy
+            </a>{" "}
+            <a
+              href="https://www.youtube.com/watch?v=eAt4xQbjofM"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              winners
+            </a>
+            , and toured internationally. More recently, I cofounded{" "}
             <a
               href="https://sound.xyz"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Sound
+              sound.xyz
             </a>
             , a protocol & platform helping musicians build stronger communities
             with their{" "}
@@ -160,7 +181,22 @@ export default class Contact extends Component {
             >
               100 true fans
             </a>
+            . My primary contribution to the project was writing smart contracts
+            for the{" "}
+            <a
+              href="https://github.com/soundxyz/sound-protocol"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sound Protocol
+            </a>
             .
+          </p>
+          <p>
+            In 2023, I'm shifting to an advisory role at Sound and refocusing my
+            energy toward making music again. I'll also be exploring mechanisms
+            that can help mitigate the{" "}
+            <a href="https://youtu.be/WVEP0zAK-xQ">Metacrisis</a>.
           </p>
         </TextStyled>
         <HeadShot />
