@@ -70,5 +70,5 @@ ul {
   #headshot-loader { background: url('/img/photos/headshot-small.jpg')}
 }
 @media (min-width: 951px) {
-  #headshot-loader { background: url('/img/photos/headshot.jpg')}
+  #headshot-loader { background: url('/img/photos/spock-cropped-sm.jpg')}
 }

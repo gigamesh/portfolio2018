@@ -24,7 +24,7 @@ const FullPageWrap = styled.div`
 `;
 
 const HeadShot = styled.div`
-  background: url("/img/photos/desert-headshot-bw.jpg");
+  background: url("/img/photos/spock-cropped.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -196,7 +196,14 @@ export default class Contact extends Component {
             In 2023, I'm shifting to an advisory role at Sound and refocusing my
             energy toward making music again. I'll also be exploring mechanisms
             that can help mitigate the{" "}
-            <a href="https://youtu.be/WVEP0zAK-xQ">Metacrisis</a>.
+            <a
+              href="https://youtu.be/WVEP0zAK-xQ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Metacrisis
+            </a>
+            .
           </p>
         </TextStyled>
         <HeadShot />
