@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import posed from "react-pose";
 import ReactSVG from "react-svg";
+import styled from "styled-components";
+import { animations } from "../utils/animations";
 import media from "../utils/mediaqueries";
 import NavItems from "./NavItems";
-import { animations } from "../utils/animations";
-import posed from "react-pose";
 import { Header } from "./ui";
 
 const FullPageWrap = styled.div`
@@ -225,14 +225,14 @@ export default class Contact extends Component {
               <ListItem>
                 <a
                   rel="noopener noreferrer"
-                  href="https://twitter.com/gigamesh"
+                  href="https://warpcast.com/gigamesh"
                   target="_blank"
                 >
                   <SVGInject
-                    path="/img/icons/twitter.svg"
-                    svgClassName="icon-twitter"
+                    path="/img/icons/warpcast.svg"
+                    svgClassName="icon-warpcast"
                   />
-                  <span>twitter</span>
+                  <span>warpcast</span>
                 </a>
               </ListItem>
             </LinkList>

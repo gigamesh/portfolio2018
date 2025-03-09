@@ -1,9 +1,9 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Home from "./components/Home";
-import Connect from "./components/Connect";
 import About from "./components/About";
+import Connect from "./components/Connect";
+import Home from "./components/Home";
 import MobileMenu from "./components/MobileMenu";
 import "./styles/page-swipes.css";
 
@@ -201,7 +201,6 @@ class App extends Component {
             </Switch>
           </CSSTransition>
         </TransitionGroup>
-        <div id="headshot-loader" />
       </React.Fragment>
     );
   }
