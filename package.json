@@ -83,7 +83,7 @@
   },
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "deploy:s3": "pnpm build && aws s3 sync ./build s3://masurka-portfolio --acl public-read --delete"
   },
