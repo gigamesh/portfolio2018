@@ -24,7 +24,7 @@ const FullPageWrap = styled.div`
 `;
 
 const HeadShot = styled.div`
-  background: url("/img/photos/spock-cropped.jpg");
+  background: url("/img/photos/headshot.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -164,7 +164,7 @@ export default class Contact extends Component {
             >
               winners
             </a>
-            , and toured internationally. More recently, I cofounded{" "}
+            , and toured internationally. In 2021, I cofounded{" "}
             <a
               href="https://sound.xyz"
               target="_blank"
@@ -193,15 +193,13 @@ export default class Contact extends Component {
             .
           </p>
           <p>
-            In 2023, I'm shifting to an advisory role at Sound and refocusing my
-            energy toward making music again. I'll also be exploring mechanisms
-            that can help mitigate the{" "}
+            Lately, I'm making music, building apps, and hanging out on{" "}
             <a
-              href="https://youtu.be/WVEP0zAK-xQ"
+              href="https://warpcast.com/gigamesh"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Metacrisis
+              Farcaster
             </a>
             .
           </p>
