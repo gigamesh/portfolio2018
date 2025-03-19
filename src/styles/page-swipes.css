@@ -1,0 +1,43 @@
+.swipe-enter {
+  transform: translateX(-100%);
+  z-index: 50;
+  position: absolute;
+}
+
+.swipe-enter.swipe-enter-active {
+  z-index: 50;
+  position: absolute;
+  transform: translateX(0);
+  transition: transform 500ms ease;
+}
+
+.swipe-exit {
+  z-index: -50;
+  position: absolute;
+  transform: translateX(0);
+}
+
+.swipe-exit.swipe-exit-active {
+  z-index: -50;
+  position: absolute;
+  transform: translateX(0);
+  transition: transform 500ms ease;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
