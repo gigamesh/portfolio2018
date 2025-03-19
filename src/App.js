@@ -21,8 +21,7 @@ class App extends Component {
     bigNavMobileOpen: false,
     mobileMenuOpen: false,
     homeNavShowing: true,
-    source: "",
-    hasIntroFinished: false
+    source: ""
   };
 
   mouseCoords = {
@@ -41,10 +40,6 @@ class App extends Component {
     this.prevMouseCoords.y =
       this.prevMouseCoords.y +
       (this.mouseCoords.y - this.prevMouseCoords.y) / mouseEaseDuration;
-  };
-
-  registerIntroFinished = () => {
-    this.setState({ hasIntroFinished: true });
   };
 
   checkMenus = () => {
@@ -133,8 +128,7 @@ class App extends Component {
       bigNavMobileOpen,
       pageDimensions,
       homeNavShowing,
-      source,
-      hasIntroFinished
+      source
     } = this.state;
 
     const mobileMenuComp = color => (
@@ -177,8 +171,6 @@ class App extends Component {
                 exact
                 render={routeProps => (
                   <Home
-                    hasIntroFinished={hasIntroFinished}
-                    registerIntroFinished={this.registerIntroFinished}
                     homeNavShowing={homeNavShowing}
                     clickHandler={this.clickHandler}
                     mouseCoords={this.mouseCoords}
