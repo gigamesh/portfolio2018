@@ -37,13 +37,7 @@ export default class Home extends Component {
             homenav={homeNavShowing.toString()}
             innerRef={contentDiv => (this.contentDiv = contentDiv)}
           >
-            <TunnelThrottled visible={visible}>
-              <TunnelVision
-                mouseCoords={mouseCoords}
-                prevMouseCoords={prevMouseCoords}
-                updatePrevMouseCoords={updatePrevMouseCoords}
-              />
-            </TunnelThrottled>
+            <TunnelVision />
           </Content>
           {homeNavShowing && (
             <BigNavHome visible={visible}>{this.props.children}</BigNavHome>
