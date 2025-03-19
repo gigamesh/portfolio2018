@@ -238,6 +238,12 @@ devDependencies:
   '@tailwindcss/postcss':
     specifier: ^4
     version: 4.0.14
+  '@types/d3-scale':
+    specifier: ^4.0.9
+    version: 4.0.9
+  '@types/d3-selection':
+    specifier: ^3.0.11
+    version: 3.0.11
   '@types/node':
     specifier: ^20
     version: 20.17.24
@@ -3003,6 +3009,20 @@ packages:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  /@types/d3-scale@4.0.9:
+    resolution: {integrity: sha512-dLmtwB8zkAeO/juAMfnV+sItKjlsw2lKdZVVy6LRr0cBmegxSABiLEpGVmSJJ8O08i4+sGR6qQtb6WtuwJdvVw==}
+    dependencies:
+      '@types/d3-time': 3.0.4
+    dev: true
+
+  /@types/d3-selection@3.0.11:
+    resolution: {integrity: sha512-bhAXu23DJWsrI45xafYpkQ4NtcKMwWnAC/vKrd2l+nxMFuvOT3XMYTIj2opv8vq8AO5Yh7Qac/nSeP/3zjTK0w==}
+    dev: true
+
+  /@types/d3-time@3.0.4:
+    resolution: {integrity: sha512-yuzZug1nkAAaBlBBikKZTgzCeA+k1uy4ZFwWANOfKw5z5LRhV0gNA7gNkKm7HoK+HRN0wX3EkxGk0fpbWhmB7g==}
+    dev: true
 
   /@types/invariant@2.2.37:
     resolution: {integrity: sha512-IwpIMieE55oGWiXkQPSBY1nw1nFs6bsKXTFskNY8sdS17K24vyEBRQZEwlRS7ZmXCWnJcQtbxWzly+cODWGs2A==}

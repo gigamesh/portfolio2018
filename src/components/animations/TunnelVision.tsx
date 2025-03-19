@@ -1,7 +1,41 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
-import { select } from "d3-selection";
 import { scaleLinear, scalePow } from "d3-scale";
+import { select } from "d3-selection";
+import React, { useEffect, useRef } from "react";
 import "./tunnel.css";
+
+// Define types
+interface MouseCoords {
+  x: number;
+  y: number;
+}
+
+interface ScaleFunction {
+  (value: number): number;
+}
+
+interface CoordinatePoint {
+  value: number;
+  scaleFn: ScaleFunction;
+}
+
+interface Square {
+  size: number[];
+  strokeWidth: number[];
+  opacity: number;
+  x: CoordinatePoint[];
+  y: CoordinatePoint[];
+}
+
+interface SVGDimensions {
+  x: number | null;
+  y: number | null;
+  size: number | null;
+}
+
+interface TunnelVisionProps {
+  prevMouseCoords: MouseCoords;
+  updatePrevMouseCoords: () => void;
+}
 
 const squareCount = 30;
 const strokeWidthScale = scalePow()
@@ -10,22 +44,21 @@ const strokeWidthScale = scalePow()
   .range([0.5, 2]);
 const framesPerLoop = 120;
 
-const TunnelVision = ({
-  hasIntroFinished,
-  registerIntroFinished,
-  mouseCoords,
+export const TunnelVision: React.FC<TunnelVisionProps> = ({
   prevMouseCoords,
   updatePrevMouseCoords
 }) => {
-  const tunnelWrapper = useRef(null);
-  const tunnel = useRef(null);
-  const squares = [];
-  let sizeScale;
-  const svgDimensions = { x: null, y: null, size: null };
-  const rafId = useRef(null);
-  const currentFrame = useRef(0);
+  const tunnelWrapper = useRef<HTMLDivElement>(null);
+  const tunnel = useRef<any>(null);
+  const squares: Square[] = [];
+  let sizeScale: any;
+  const svgDimensions: SVGDimensions = { x: null, y: null, size: null };
+  const rafId = useRef<number | null>(null);
+  const currentFrame = useRef<number>(0);
 
   useEffect(() => {
+    if (!tunnelWrapper.current) return;
+
     const { width, top, left } = tunnelWrapper.current.getBoundingClientRect();
     svgDimensions.size = width;
     svgDimensions.x = top;
@@ -43,35 +76,43 @@ const TunnelVision = ({
     initSquares();
     rafId.current = requestAnimationFrame(draw);
     return () => {
-      cancelAnimationFrame(rafId.current);
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
   });
 
-  const initSquares = () => {
+  const initSquares = (): void => {
+    if (svgDimensions.size === null) return;
+
     const halfSvg = svgDimensions.size / 2;
 
     for (let i = 0; i <= squareCount; i++) {
       const centerPosition = halfSvg - sizeScale(i) / 2;
-      const square = {
+      const square: Square = {
         size: [sizeScale(i)],
         strokeWidth: [strokeWidthScale(i)],
         opacity: 0,
         x: [
           {
             value: centerPosition,
-            scaleFn: scaleLinear(
-              [window.innerWidth, 0],
-              [-(halfSvg - sizeScale(i) / 2), halfSvg - sizeScale(i) / 2]
-            )
+            scaleFn: scaleLinear()
+              .domain([window.innerWidth, 0])
+              .range([
+                -(halfSvg - sizeScale(i) / 2),
+                halfSvg - sizeScale(i) / 2
+              ])
           }
         ],
         y: [
           {
             value: centerPosition,
-            scaleFn: scaleLinear(
-              [window.innerHeight, 0],
-              [-(halfSvg - sizeScale(i) / 2), halfSvg - sizeScale(i) / 2]
-            )
+            scaleFn: scaleLinear()
+              .domain([window.innerHeight, 0])
+              .range([
+                -(halfSvg - sizeScale(i) / 2),
+                halfSvg - sizeScale(i) / 2
+              ])
           }
         ]
       };
@@ -93,13 +134,12 @@ const TunnelVision = ({
                 framesPerLoop) *
                 frame +
               square.x[0].value,
-            scaleFn: scaleLinear(
-              [window.innerWidth, 0],
-              [
+            scaleFn: scaleLinear()
+              .domain([window.innerWidth, 0])
+              .range([
                 -(halfSvg - currentFrameSquareSize / 2),
                 halfSvg - currentFrameSquareSize / 2
-              ]
-            )
+              ])
           };
           square.y[frame] = {
             value:
@@ -107,13 +147,12 @@ const TunnelVision = ({
                 framesPerLoop) *
                 frame +
               square.y[0].value,
-            scaleFn: scaleLinear(
-              [window.innerHeight, 0],
-              [
+            scaleFn: scaleLinear()
+              .domain([window.innerHeight, 0])
+              .range([
                 -(halfSvg - currentFrameSquareSize / 2),
                 halfSvg - currentFrameSquareSize / 2
-              ]
-            )
+              ])
           };
           square.size[frame] = currentFrameSquareSize;
           square.strokeWidth[frame] =
@@ -126,12 +165,10 @@ const TunnelVision = ({
     }
   };
 
-  const draw = () => {
-    const currFrame = currentFrame.current;
+  const draw = (): void => {
+    if (svgDimensions.size === null) return;
 
-    if (!hasIntroFinished && currFrame > squares.length) {
-      registerIntroFinished();
-    }
+    const currFrame = currentFrame.current;
 
     tunnel.current
       .attr("width", svgDimensions.size)
@@ -141,30 +178,28 @@ const TunnelVision = ({
       .join("rect")
       .attr("stroke", "black")
       .attr("fill", "none")
-      .attr("opacity", (d, i) => {
+      .attr("opacity", (d: Square, i: number) => {
         if (i === currFrame) {
           squares[currFrame].opacity = 1;
-          return 1;
-        } else {
-          return hasIntroFinished ? 1 : d.opacity;
         }
+        return 1;
       })
-      .attr("width", (currSquare, i) =>
+      .attr("width", (currSquare: Square, i: number) =>
         i < squares.length - 1 ? currSquare.size[currFrame] : svgDimensions.size
       )
-      .attr("height", (currSquare, i) =>
+      .attr("height", (currSquare: Square, i: number) =>
         i < squares.length - 1 ? currSquare.size[currFrame] : svgDimensions.size
       )
-      .attr("stroke-width", (currSquare, i) =>
+      .attr("stroke-width", (currSquare: Square, i: number) =>
         i < squares.length - 1 ? currSquare.strokeWidth[currFrame] : 4
       )
-      .attr("x", (currSquare, i) =>
+      .attr("x", (currSquare: Square, i: number) =>
         i < squares.length - 1
           ? currSquare.x[currFrame].value +
             currSquare.x[currFrame].scaleFn(prevMouseCoords.x)
           : 0
       )
-      .attr("y", (currSquare, i) =>
+      .attr("y", (currSquare: Square, i: number) =>
         i < squares.length - 1
           ? currSquare.y[currFrame].value +
             currSquare.y[currFrame].scaleFn(prevMouseCoords.y)
@@ -179,5 +214,3 @@ const TunnelVision = ({
 
   return <div ref={tunnelWrapper} className="tunnelWrapper" />;
 };
-
-export default TunnelVision;
