@@ -2,8 +2,7 @@
 
 import { scaleLinear, scalePow } from "d3-scale";
 import { select } from "d3-selection";
-import React, { useEffect, useRef } from "react";
-import "./tunnel.css";
+import React, { useEffect, useRef, useState } from "react";
 
 // Define types
 interface MouseCoords {
@@ -41,10 +40,6 @@ interface TunnelVisionProps {
 }
 
 const squareCount = 30;
-const strokeWidthScale = scalePow()
-  .exponent(6)
-  .domain([0, squareCount])
-  .range([0.5, 2]);
 const framesPerLoop = 120;
 const DEFAULT_MOUSE_EASE_DURATION = 12;
 
@@ -58,19 +53,34 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
   const svgDimensions = useRef<SVGDimensions>({ x: null, y: null, size: null });
   const rafId = useRef<number | null>(null);
   const currentFrame = useRef<number>(0);
+  const [isClient, setIsClient] = useState(false);
 
-  if (typeof window === "undefined") return null;
-
-  // Manage mouse coordinates internally
+  // Safely initialize mouse coordinates
   const mouseCoords = useRef<MouseCoords>({
-    x: window.innerWidth * 0.9,
-    y: window.innerHeight * 0.1
+    x: 0,
+    y: 0
   });
 
   const prevMouseCoords = useRef<MouseCoords>({
-    x: window.innerWidth * 0.9,
-    y: window.innerHeight * 0.1
+    x: 0,
+    y: 0
   });
+
+  // Set isClient to true on component mount
+  useEffect(() => {
+    setIsClient(true);
+
+    // Initialize mouse coordinates only after client-side rendering
+    mouseCoords.current = {
+      x: window.innerWidth * 0.9,
+      y: window.innerHeight * 0.1
+    };
+
+    prevMouseCoords.current = {
+      x: window.innerWidth * 0.9,
+      y: window.innerHeight * 0.1
+    };
+  }, []);
 
   // Mouse movement handler
   const handleMouseMove = (e: MouseEvent): void => {
@@ -90,7 +100,7 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
 
   // Setup effect - runs once on mount
   useEffect(() => {
-    if (!tunnelWrapper.current) return;
+    if (!isClient || !tunnelWrapper.current) return;
 
     const {
       width,
@@ -108,7 +118,7 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
       .range([0, svgDimensions.current.size]);
 
     if (!tunnel.current) {
-      tunnel.current = select(".tunnelWrapper").append("svg");
+      tunnel.current = select("#tunnelWrapper").append("svg");
     }
 
     // Add mouse move event listener
@@ -125,10 +135,11 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
       }
       document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [isClient]); // Add isClient as a dependency
 
   const initSquares = (): void => {
-    if (svgDimensions.current.size === null || !sizeScale.current) return;
+    if (!isClient || svgDimensions.current.size === null || !sizeScale.current)
+      return;
 
     // Reset squares array
     squares.current = [];
@@ -139,7 +150,7 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
       const centerPosition = halfSvg - sizeScale.current(i) / 2;
       const square: Square = {
         size: [sizeScale.current(i)],
-        strokeWidth: [strokeWidthScale(i)],
+        strokeWidth: [getStrokeWidthScale(i)],
         opacity: 0,
         x: [
           {
@@ -215,8 +226,18 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
     }
   };
 
+  // Extract the strokeWidthScale function as a separate function
+  const getStrokeWidthScale = (index: number): number => {
+    const strokeWidthScale = scalePow()
+      .exponent(6)
+      .domain([0, squareCount])
+      .range([0.5, 2]);
+
+    return strokeWidthScale(index);
+  };
+
   const draw = (): void => {
-    if (svgDimensions.current.size === null) return;
+    if (!isClient || svgDimensions.current.size === null) return;
 
     const currFrame = currentFrame.current;
 
@@ -268,6 +289,8 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
 
   // Effect to handle window resize
   useEffect(() => {
+    if (!isClient) return;
+
     const handleResize = () => {
       if (!tunnelWrapper.current) return;
 
@@ -294,7 +317,13 @@ export const TunnelVision: React.FC<TunnelVisionProps> = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isClient]); // Add isClient as a dependency
 
-  return <div ref={tunnelWrapper} className="tunnelWrapper" />;
+  return (
+    <div
+      ref={tunnelWrapper}
+      id="tunnelWrapper"
+      className="h-full w-full inset-0"
+    />
+  );
 };
