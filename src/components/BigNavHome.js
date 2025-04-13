@@ -1,52 +1,28 @@
 import React from "react";
-import posed from "react-pose";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { animations } from "../utils/animations";
 import media from "../utils/mediaqueries";
 
-const NavSection = posed.ul({
-  visible: {
-    opacity: 1,
-    zIndex: 4,
-    delayChildren: 2200,
-    staggerChildren: 100
-  },
-  hidden: {
-    opacity: 0
-  }
-});
+const H1 = styled.h1`
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.3rem;
+`;
 
-const NavWrapAnimated = posed.div({
-  visible: {
-    width: "35%",
-    delayChildren: 2000,
-    transition: { ease: [0.71, 0.13, 0.35, 0.86], delay: 1800, duration: 800 }
-  },
-  hidden: {
-    width: 0
-  }
-});
-
-const NavWrap = styled(NavWrapAnimated)`
+const NavWrap = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
   left: 2vmax;
+  width: 35%;
 `;
 
-const NavSectionStyled = styled(NavSection)`
+const NavSection = styled.ul`
   list-style-type: none;
-  font-size: 6.5rem;
-  line-height: 1em;
-  opacity: 0;
+  font-size: 5rem;
+  line-height: 5rem;
   position: relative;
-`;
-
-let LinkWrapper = posed.li(animations.homeNav);
-LinkWrapper = styled(LinkWrapper)`
-  position: relative;
-  width: 100%;
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -54,9 +30,7 @@ const NavLinkStyled = styled(NavLink)`
   transition: color 400ms ease;
   -webkit-text-stroke: var(--main-color) 1.5px;
   width: 100%;
-  z-index: 1;
   color: #fff;
-  padding-bottom: 30px;
   ${media.landscape.xs`
     -webkit-text-stroke: var(--main-color) 1px;
   `} ${media.portrait.xs`
@@ -76,21 +50,20 @@ export default props => {
     let linkMap = text.map(val => {
       let link = `/${val}`;
       return (
-        <LinkWrapper key={val}>
+        <li>
           <NavLinkStyled to={link} color={`var(--light-blue)`}>
             {val}
           </NavLinkStyled>
-        </LinkWrapper>
+        </li>
       );
     });
     return linkMap;
   };
 
   return (
-    <NavWrap pose={visible ? "visible" : "hidden"}>
-      <NavSectionStyled pose={visible ? "visible" : "hidden"}>
-        {links()}
-      </NavSectionStyled>
+    <NavWrap>
+      <H1>Matt Masurka</H1>
+      <NavSection>{links()}</NavSection>
     </NavWrap>
   );
 };

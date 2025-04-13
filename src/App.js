@@ -20,9 +20,8 @@ class App extends Component {
     menuBtnShowing: false,
     bigNavMobileOpen: false,
     mobileMenuOpen: false,
-    homeNavShowing: true,
-    source: "",
-    hasIntroFinished: false
+    isDesktop: true,
+    source: ""
   };
 
   mouseCoords = {
@@ -43,10 +42,6 @@ class App extends Component {
       (this.mouseCoords.y - this.prevMouseCoords.y) / mouseEaseDuration;
   };
 
-  registerIntroFinished = () => {
-    this.setState({ hasIntroFinished: true });
-  };
-
   checkMenus = () => {
     let { x, y } = this.state.pageDimensions;
 
@@ -59,9 +54,9 @@ class App extends Component {
       this.setState({ menuBtnShowing: true });
     }
     if ((x < 1000 && x / y < 1.6) || (x > 1000 && x / y < 1.2)) {
-      this.setState({ homeNavShowing: false, menuBtnShowing: true });
+      this.setState({ isDesktop: false, menuBtnShowing: true });
     } else {
-      this.setState({ homeNavShowing: true });
+      this.setState({ isDesktop: true });
     }
   };
 
@@ -132,9 +127,8 @@ class App extends Component {
       mobileMenuOpen,
       bigNavMobileOpen,
       pageDimensions,
-      homeNavShowing,
-      source,
-      hasIntroFinished
+      isDesktop,
+      source
     } = this.state;
 
     const mobileMenuComp = color => (
@@ -152,7 +146,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <TransitionGroup>
-          <CSSTransition key={pathname} timeout={500} classNames="fade">
+          <CSSTransition key={pathname} timeout={0} classNames="fade">
             <Switch location={this.props.location} key="switch">
               <Route
                 path="/connect"
@@ -177,9 +171,7 @@ class App extends Component {
                 exact
                 render={routeProps => (
                   <Home
-                    hasIntroFinished={hasIntroFinished}
-                    registerIntroFinished={this.registerIntroFinished}
-                    homeNavShowing={homeNavShowing}
+                    isDesktop={isDesktop}
                     clickHandler={this.clickHandler}
                     mouseCoords={this.mouseCoords}
                     prevMouseCoords={this.prevMouseCoords}
