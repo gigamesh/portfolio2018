@@ -1,6 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
-import { select } from "d3-selection";
 import { scaleLinear, scalePow } from "d3-scale";
+import { select } from "d3-selection";
+import React, { useEffect, useRef } from "react";
 import "./tunnel.css";
 
 const squareCount = 30;
@@ -11,8 +11,6 @@ const strokeWidthScale = scalePow()
 const framesPerLoop = 120;
 
 const TunnelVision = ({
-  hasIntroFinished,
-  registerIntroFinished,
   mouseCoords,
   prevMouseCoords,
   updatePrevMouseCoords
@@ -129,10 +127,6 @@ const TunnelVision = ({
   const draw = () => {
     const currFrame = currentFrame.current;
 
-    if (!hasIntroFinished && currFrame > squares.length) {
-      registerIntroFinished();
-    }
-
     tunnel.current
       .attr("width", svgDimensions.size)
       .attr("height", svgDimensions.size)
@@ -146,7 +140,7 @@ const TunnelVision = ({
           squares[currFrame].opacity = 1;
           return 1;
         } else {
-          return hasIntroFinished ? 1 : d.opacity;
+          return d.opacity;
         }
       })
       .attr("width", (currSquare, i) =>

@@ -1,12 +1,12 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import styled from "styled-components";
-import TunnelVision from "./animations/TunnelVision";
 import posed from "react-pose";
+import { Redirect } from "react-router-dom";
 import scrollToComponent from "react-scroll-to-component";
-import media from "../utils/mediaqueries";
-import "./LandingPage.css";
 import ReactSVG from "react-svg";
+import styled from "styled-components";
+import media from "../utils/mediaqueries";
+import TunnelVision from "./animations/TunnelVision";
+import "./LandingPage.css";
 
 const FullPageWrap = styled.div`
   overflow: hidden;
